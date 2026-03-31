@@ -7,13 +7,27 @@ public abstract class Mission {
     protected int day;
     protected List<CrewMember> participants;
 
-    public Mission Resolve(String type, int day){
+    public Mission(String type, int day) {
         this.type = type;
         this.day = day;
-        this.participants = participants;
+        this.participants = new ArrayList<>();
     }
 
     public abstract MissionResult resolve();
 
+    public String getType(){
+        return type;
+    }
 
+    public boolean isValid(){
+        return participants != null && participants.size() >= 2;
+    }
+
+    public void addParticipants(List<CrewMember> crew){
+        this.participants.addAll(crew);
+    }
+
+    public List<CrewMember> getParticipants() {
+        return participants;
+    }
 }

@@ -1,4 +1,6 @@
 import com.example.space_colony.model.CrewMember;
+import com.example.space_colony.model.Mission;
+import com.example.space_colony.model.MissionResult;
 
 import java.util.List;
 import java.util.ArrayList;
