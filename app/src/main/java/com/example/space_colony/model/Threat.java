@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import java.util.Random;
+
 public class Threat {
     String name;
     int attack;
@@ -77,7 +79,7 @@ public class Threat {
         }
     }
 
-    public int attactTarget(Crewmember target) {
+    public int attackTarget(Fighter target) {
         int attackVariation = randomInRange(-1, 1);
         int actualAttack = attack + attackVariation;
         int damage = attack - target.getResilience();
@@ -88,12 +90,5 @@ public class Threat {
 
         target.takeDamage(damage);
         return damage;
-    }
-
-    public enum CrewStatus {
-        READY,
-        ASSIGNED_SIMULATOR,
-        ON_MISSION,
-        IN_MEDBAY
     }
 }

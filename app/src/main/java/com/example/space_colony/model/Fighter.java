@@ -8,6 +8,9 @@ public abstract class Fighter extends CrewMember{
     public Fighter(String name) {
         super(name);
     }
+    public int getResilience() {
+        return this.resilience;
+    }
     public void restoreEnergy() {
         this.energy = this.maxEnergy;
     }
