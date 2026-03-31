@@ -17,6 +17,8 @@ public abstract class Fighter extends CrewMember{
     public void takeDamage(int damage) {
         this.energy = max(0,this.energy - damage);
     }
-
-    abstract void useSpecialSkill();
+    public void heal(int amount) {
+        this.energy += amount;
+    }
+    abstract void useSpecialSkill(Threat target, Fighter ally);
 }
