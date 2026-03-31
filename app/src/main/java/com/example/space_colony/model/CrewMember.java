@@ -9,7 +9,7 @@ public abstract class CrewMember {
     protected int energy;
     protected int xp;
     protected int id;
-    protected Threat.CrewStatus status;
+    protected CrewStatus status;
     private static int idCounter;
     private int missionCompleted;
     private int trainingSession;
@@ -36,6 +36,6 @@ public abstract class CrewMember {
         this.xp += xp;
     }
     public boolean isAvailable() {
-        return this.status == Threat.CrewStatus.READY;
+        return this.status == CrewStatus.READY;
     }
 }
