@@ -1,5 +1,9 @@
 package com.example.space_colony.model;
 
+import static java.lang.Math.max;
+
+import com.example.space_colony.CrewStatus;
+
 public abstract class CrewMember {
     protected String name;
     protected String specialization;
@@ -30,8 +34,16 @@ public abstract class CrewMember {
     public int getMissionCompleted() { return this.missionCompleted; }
     public int getTrainingSession() { return this.trainingSession; }
     public int getTimesInMedbay() { return this.timesInMedbay; }
-    void gainXp(int xp) {
+    public void gainXp(int xp) {
         this.xp += xp;
     }
-
+    public void restoreEnergy() {
+        this.energy = this.maxEnergy;
+    }
+    public void takeDamage(int damage) {
+        this.energy = max(0,this.energy - damage);
+    }
+    public boolean isAvailable() {
+        return this.status == CrewStatus.READY;
+    }
 }
