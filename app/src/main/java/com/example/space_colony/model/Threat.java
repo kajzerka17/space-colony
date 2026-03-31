@@ -27,7 +27,7 @@ public class Threat {
         return attack;
     }
 
-    public int resilience(){
+    public int getResilience(){
         return resilience;
     }
 
