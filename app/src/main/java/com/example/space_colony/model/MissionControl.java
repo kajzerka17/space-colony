@@ -1,3 +1,5 @@
+package com.example.space_colony.model;
+
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.Mission;
 import com.example.space_colony.model.MissionResult;
