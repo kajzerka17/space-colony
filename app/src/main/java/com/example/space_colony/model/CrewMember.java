@@ -2,8 +2,6 @@ package com.example.space_colony.model;
 
 import static java.lang.Math.max;
 
-import com.example.space_colony.CrewStatus;
-
 public abstract class CrewMember {
     protected String name;
     protected String specialization;
@@ -11,7 +9,7 @@ public abstract class CrewMember {
     protected int energy;
     protected int xp;
     protected int id;
-    protected CrewStatus status;
+    protected Threat.CrewStatus status;
     private static int idCounter;
     private int missionCompleted;
     private int trainingSession;
@@ -38,6 +36,6 @@ public abstract class CrewMember {
         this.xp += xp;
     }
     public boolean isAvailable() {
-        return this.status == CrewStatus.READY;
+        return this.status == Threat.CrewStatus.READY;
     }
 }

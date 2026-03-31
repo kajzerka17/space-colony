@@ -89,4 +89,11 @@ public class Threat {
         target.takeDamage(damage);
         return damage;
     }
+
+    public enum CrewStatus {
+        READY,
+        ASSIGNED_SIMULATOR,
+        ON_MISSION,
+        IN_MEDBAY
+    }
 }
