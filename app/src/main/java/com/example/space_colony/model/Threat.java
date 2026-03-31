@@ -3,12 +3,12 @@ package com.example.space_colony.model;
 import java.util.Random;
 
 public class Threat {
-    String name;
-    int attack;
-    int resilience;
-    int maxEnergy;
-    int energy;
-    int day;
+    private String name;
+    private int attack;
+    private int resilience;
+    private int maxEnergy;
+    private int energy;
+    private int day;
 
     public Threat(String name, int maxEnergy, int attack, int resilience, int day) {
         this.name = name;
