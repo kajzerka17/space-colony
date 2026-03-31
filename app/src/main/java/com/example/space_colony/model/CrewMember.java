@@ -17,7 +17,7 @@ public abstract class CrewMember {
     private int trainingSession;
     private int timesInMedbay;
 
-    CrewMember(String name) {
+    public CrewMember(String name) {
         this.name = name;
         this.xp = 0;
         this.id = idCounter++;
@@ -36,12 +36,6 @@ public abstract class CrewMember {
     public int getTimesInMedbay() { return this.timesInMedbay; }
     public void gainXp(int xp) {
         this.xp += xp;
-    }
-    public void restoreEnergy() {
-        this.energy = this.maxEnergy;
-    }
-    public void takeDamage(int damage) {
-        this.energy = max(0,this.energy - damage);
     }
     public boolean isAvailable() {
         return this.status == CrewStatus.READY;
