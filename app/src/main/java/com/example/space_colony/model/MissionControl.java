@@ -1,5 +1,6 @@
 package com.example.space_colony.model;
 
+import java.util.List;
 import java.util.Random;
 
 public class MissionControl {
@@ -17,5 +18,8 @@ public class MissionControl {
             type = rand.nextInt(2); // 0 or 1 for other mission types
         }
         return new Mission(type);
+    }
+
+    protected void selectCrew(List<CrewMember> crew){
     }
 }

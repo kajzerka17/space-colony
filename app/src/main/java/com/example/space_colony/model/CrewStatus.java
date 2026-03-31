@@ -1,6 +1,6 @@
 package com.example.space_colony.model;
 
-public enum crewStatus {
+public enum CrewStatus {
     READY,
     ASSIGNED_SIMULATOR,
     ON_MISSION,
