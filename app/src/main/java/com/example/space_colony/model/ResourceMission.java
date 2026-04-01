@@ -14,11 +14,11 @@ public class ResourceMission extends Mission {
     @Override
     public MissionResult resolve() {
         fragmentsGained = setFragments() + getEngineerBonus();
-        return new MissionResult(fragmentsGained, getSummary());
+        return new MissionResult(0, fragmentsGained, getSummary());
     }
 
     protected int setFragments() {
-        return new Random().nextInt(3) + 1; // 1, 2, or 3
+        return new Random().nextInt(4) + 1; // 1, 2, 3 or 4 shards
     }
 
     protected int getEngineerBonus() {
