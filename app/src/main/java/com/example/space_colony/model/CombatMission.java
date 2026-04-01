@@ -1,0 +1,50 @@
+package com.example.space_colony.model;
+
+import java.util.List;
+
+public class CombatMission extends Mission{
+    private Threat threat;
+    private int currentTurn;
+
+    public CombatMission(String type, int day, List<CrewMember> participants, Threat threat){
+        super(type, day, participants);
+        this.threat = threat;
+        this.currentTurn = 0;
+    }
+
+    public Threat getThreat(){
+        return threat;
+    }
+
+    public int getCurrentTurn(){
+        return currentTurn;
+    }
+
+    @Override
+    public boolean isValid() {
+        if (participants == null || participants.size() < 2) {
+            return false;
+        }
+
+        for (int i = 0; i < participants.size(); i++) {
+            String job = participants.get(i).getSpecialization();
+
+            if (!job.equals("Soldier") && !job.equals("Medic") && !job.equals("Defender") && !job.equals("Megician")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public MissionResult resolve(){
+        if (!isValid()){
+            return new MissionResult( 0, 0, "Invalid combat mission");
+        }
+    }
+
+
+
+
+
+}

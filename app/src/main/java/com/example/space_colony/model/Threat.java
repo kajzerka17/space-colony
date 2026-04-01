@@ -19,31 +19,31 @@ public class Threat {
         this.day = day;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getAttack(){
+    public int getAttack() {
         return attack;
     }
 
-    public int getResilience(){
+    public int getResilience() {
         return resilience;
     }
 
-    public int getMaxEnergy(){
+    public int getMaxEnergy() {
         return maxEnergy;
     }
 
-    public int getEnergy(){
+    public int getEnergy() {
         return energy;
     }
 
-    public int getDay(){
+    public int getDay() {
         return day;
     }
 
-    public boolean isDefeated(){
+    public boolean isDefeated() {
         return energy == 0;
     }
 
@@ -51,6 +51,7 @@ public class Threat {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
+
     public static Threat rollStats(int day) {
         int maxEnergyMin = 18;
         int maxEnergyMax = 22 + ((day - 1) / 2) * 2;
@@ -68,14 +69,14 @@ public class Threat {
         return new Threat("Threat", rolledMaxEnergy, rolledAttack, rolledResilience, day);
     }
 
-    public void takeDamage(int damage){
-        if (damage < 0){
+    public void takeDamage(int damage) {
+        if (damage < 0) {
             damage = 0;
         }
 
         energy = energy - damage;
 
-        if (energy < 0){
+        if (energy < 0) {
             energy = 0;
         }
     }

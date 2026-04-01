@@ -39,4 +39,8 @@ public abstract class CrewMember {
     public boolean isAvailable() {
         return this.status == CrewStatus.READY;
     }
+
+    public String getSpecialization() {
+        return specialization;
+    }
 }

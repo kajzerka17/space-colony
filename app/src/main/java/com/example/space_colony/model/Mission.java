@@ -7,10 +7,15 @@ public abstract class Mission {
     protected int day;
     protected List<CrewMember> participants;
 
-    Mission(String type, int day) {
+    Mission(String type, int day, List<CrewMember> participants) {
         this.type = type;
         this.day = day;
-        this.participants = new ArrayList<>();
+
+        if (participants == null){
+            this.participants = new ArrayList<>();
+        }else {
+            this.participants = new ArrayList<>(participants);
+        }
     }
 
     public abstract MissionResult resolve();
