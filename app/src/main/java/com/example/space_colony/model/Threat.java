@@ -101,4 +101,14 @@ public class Threat {
         target.takeDamage(damage);
         return damage;
     }
+
+    public void performAttack(Fighter fighter) {
+        int damage = attack - fighter.getEffectiveResilience();
+
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        fighter.takeDamage(damage);
+    }
 }
