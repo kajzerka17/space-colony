@@ -7,7 +7,7 @@ public class ResourceMission extends Mission {
     private int fragmentsGained;
 
     ResourceMission(int day) {
-        super("Resource", day);
+        super("Resource", day, null);
         this.fragmentsGained = 0;
     }
 
