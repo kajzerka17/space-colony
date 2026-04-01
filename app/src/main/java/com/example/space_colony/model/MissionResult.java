@@ -9,7 +9,7 @@ public class MissionResult {
     private List<CrewMember> crewToMedbay;
     private String summary;
 
-    public MissionResult(int xpGained, int fragmentsGained, String summary){
+    public MissionResult(int xpGained, String summary){
         this.success = success;
         this.xpGained = xpGained;
         this.fragmentsGained = fragmentsGained;

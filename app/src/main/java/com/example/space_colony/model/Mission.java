@@ -7,7 +7,7 @@ public abstract class Mission {
     protected int day;
     protected List<CrewMember> participants;
 
-    public Mission(String type, int day) {
+    Mission(String type, int day) {
         this.type = type;
         this.day = day;
         this.participants = new ArrayList<>();
