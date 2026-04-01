@@ -10,7 +10,6 @@ public class Soldier extends Fighter{
         this.energy = 18;
         this.attack = 7;
         this.resilience = 5;
-        this.status = CrewStatus.READY;
         this.powerStrikeUses = 2;
     }
 
@@ -23,7 +22,7 @@ public class Soldier extends Fighter{
         if (powerStrikeUses > 0){
             powerStrikeUses = powerStrikeUses - 1;
 
-            int damage = attack - target.getResilience() + attack / 2;
+            int damage = (int) (this.getEffectiveAttack()*1.5 - target.getResilience());
 
             if (damage < 0){
                 damage = 0;
@@ -32,7 +31,5 @@ public class Soldier extends Fighter{
             target.takeDamange(damage);
             target.reduceResilience(2);
         }
-
-
     }
 }

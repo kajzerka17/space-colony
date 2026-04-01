@@ -5,31 +5,37 @@ import static java.lang.Math.max;
 public abstract class Fighter extends CrewMember{
     protected int attack;
     protected int resilience;
+    protected int bonusResilience;
+    protected int bonusAttack;
+    protected int bonusMaxEnergy;
     public Fighter(String name) {
         super(name);
+        this.status = CrewStatus.READY;
+        this.bonusResilience = 0;
+        this.bonusMaxEnergy = 0;
+        this.bonusAttack = 0;
     }
-    public int getResilience() {
-        return this.resilience;
-    }
+    public int getEffectiveResilience() { return resilience + bonusResilience; }
+    public int getEffectiveAttack() { return attack + bonusAttack; }
+    public int getEffectiveMaxEnergy() { return energy + bonusMaxEnergy; }
     public void restoreEnergy() {
-        this.energy = this.maxEnergy;
+        this.energy = this.getEffectiveMaxEnergy();
     }
     public void performAttack(Threat target) {
-        int damage = this.attack - target.getResilience();
+        int damage = this.getEffectiveAttack() - target.getResilience();
 
         if (damage < 0) {
             damage = 0;
         }
 
-        target.takeDamange(damage);
+        target.takeDamage(damage);
     }
     public void takeDamage(int damage) {
         this.energy = max(0,this.energy - damage);
     }
     public void heal(int amount) {
         this.energy += amount;
-        this.energy = max(this.energy,maxEnergy);
+        this.energy = max(this.energy,getEffectiveMaxEnergy());
     }
     abstract void useSpecialSkill(Threat target, Fighter ally);
-
 }

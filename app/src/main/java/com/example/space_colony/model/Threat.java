@@ -68,7 +68,7 @@ public class Threat {
         return new Threat("Threat", rolledMaxEnergy, rolledAttack, rolledResilience, day);
     }
 
-    public void takeDamange(int damage){
+    public void takeDamage(int damage){
         if (damage < 0){
             damage = 0;
         }

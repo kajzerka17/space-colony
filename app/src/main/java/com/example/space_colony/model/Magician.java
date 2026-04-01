@@ -6,15 +6,22 @@ public class Magician extends Fighter {
     private double vanishChance;
     public Magician (String name) {
         super(name);
+        this.specialization = "Magician";
+        this.maxEnergy = 19;
+        this.energy = 19;
+        this.attack = 6;
         this.vanishChance = 0.3;
     }
+    @Override
     public void useSpecialSkill(Threat target, Fighter ally) {
         double rand = Math.random();
         if(rand <= vanishChance) {
             // vanish the target
+            target.takeDamage(10000);
         }
         else {
             // vanish himself
+            ally.takeDamage(10000);
         }
     }
 }
