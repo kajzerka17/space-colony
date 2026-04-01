@@ -79,6 +79,14 @@ public class Threat {
         }
     }
 
+    public void reduceResilience(int amount) {
+        resilience = resilience - amount;
+
+        if (resilience < 0) {
+            resilience = 0;
+        }
+    }
+
     public int attackTarget(Fighter target) {
         int attackVariation = randomInRange(-1, 1);
         int actualAttack = attack + attackVariation;
