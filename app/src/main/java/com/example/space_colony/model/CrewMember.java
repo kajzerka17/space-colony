@@ -12,7 +12,7 @@ public abstract class CrewMember {
     protected CrewStatus status;
     private static int idCounter;
     private int missionCompleted;
-    private int trainingSession;
+    protected int trainingSessions;
     private int timesInMedbay;
 
     public CrewMember(String name) {
@@ -20,7 +20,7 @@ public abstract class CrewMember {
         this.xp = 0;
         this.id = idCounter++;
         this.missionCompleted = 0;
-        this.trainingSession = 0;
+        this.trainingSessions = 0;
         this.timesInMedbay = 0;
     }
 
@@ -31,7 +31,7 @@ public abstract class CrewMember {
     public int getEnergy() { return this.energy; }
     public CrewStatus getStatus() { return this.status; }
     public int getMissionCompleted() { return this.missionCompleted; }
-    public int getTrainingSession() { return this.trainingSession; }
+    public int getTrainingSession() { return this.trainingSessions; }
     public int getTimesInMedbay() { return this.timesInMedbay; }
     public void gainXp(int xp) {
         this.xp += xp;
