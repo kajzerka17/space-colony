@@ -3,7 +3,7 @@ package com.example.space_colony.model;
 public class RepairMission extends Mission{
     private boolean requiresEngineer;
     RepairMission(int day) {
-        super("Repair", day);
+        super("Repair", day, null);
     }
     @Override
     public MissionResult resolve() {

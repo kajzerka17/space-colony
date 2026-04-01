@@ -26,7 +26,7 @@ public class MissionControl {
         switch (type) {
             case 0: currentMission = new ResourceMission(day); break;
             case 1: currentMission = new RepairMission(day); break;
-            default: currentMission = new CombatMission(day); break;
+            default: currentMission = new CombatMission("Combat", day, null, Threat.rollStats(day)); break;
         }
         return currentMission;
     }
