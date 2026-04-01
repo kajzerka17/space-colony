@@ -29,6 +29,7 @@ public abstract class CrewMember {
     public int getXp() { return this.xp; }
     public int getMaxEnergy() { return this.maxEnergy; }
     public int getEnergy() { return this.energy; }
+    public CrewStatus getStatus() { return this.status; }
     public int getMissionCompleted() { return this.missionCompleted; }
     public int getTrainingSession() { return this.trainingSession; }
     public int getTimesInMedbay() { return this.timesInMedbay; }
