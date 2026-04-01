@@ -28,7 +28,7 @@ public class Soldier extends Fighter{
                 damage = 0;
             }
 
-            target.takeDamange(damage);
+            target.takeDamage(damage);
             target.reduceResilience(2);
         }
     }
