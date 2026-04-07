@@ -73,6 +73,9 @@ public class Simulator {
     public int getXpGrant() {
         return xpGrant;
     }
+    public void addXpGrant(int amount) {
+        this.xpGrant += amount;
+    }
 
     public int getSinglePowerCost() {
         return powerCost;

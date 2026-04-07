@@ -110,28 +110,29 @@ public class GameManager {
 //        return missionControl.canLaunch();
 //    }
 
-    public MissionResult launchMission() {
-        MissionResult result = missionControl.launchMission();
-
-        if (result.isSuccess()) {
-            // Collect rewards
-            fragments += result.getFragmentsGained();
-            distributeXP(result.getXpGained(), missionControl.getSelectedCrew());
-            statistics.recordMission();
-
-            System.out.println("Mission SUCCESS — +" + result.getFragmentsGained()
-                    + " fragments, +" + result.getXpGained() + " XP");
-        } else {
-            System.out.println("Mission FAILED.");
-        }
-
-        // Send injured crew to medbay
-        for (CrewMember cm : result.getCrewToMedbay()) {
-            medbay.admit(cm);
-        }
-
-        return result;
-    }
+    // what is this i dont know yet.
+//    public MissionResult launchMission() {
+//        MissionResult result = missionControl.launchMission();
+//
+//        if (result.isSuccess()) {
+//            // Collect rewards
+//            fragments += result.getFragmentsGained();
+//            distributeXP(result.getXpGained(), missionControl.getSelectedCrew());
+//            statistics.recordMission();
+//
+//            System.out.println("Mission SUCCESS — +" + result.getFragmentsGained()
+//                    + " fragments, +" + result.getXpGained() + " XP");
+//        } else {
+//            System.out.println("Mission FAILED.");
+//        }
+//
+//        // Send injured crew to medbay
+//        for (CrewMember cm : result.getCrewToMedbay()) {
+//            medbay.admit(cm);
+//        }
+//
+//        return result;
+//    }
 
     private void distributeXP(int xp, List<CrewMember> crew) {
         for (CrewMember cm : crew) {
@@ -158,21 +159,20 @@ public class GameManager {
         return false;
     }
 
-    public void selectCrewForMission(List<CrewMember> crew) {
-        missionControl.selectCrew(crew);
-    }
+//    public void selectCrewForMission(List<CrewMember> crew) {
+//        missionControl.selectCrew(crew);
+//    }
 
-    public int getSquadSize() {
-        return missionControl.getSquadSize();
-    }
+//    public int getSquadSize() {
+//        return missionControl.getSquadSize();
+//    }
 
-    // ─────────────────────────────────────────
+
     // Upgrades
-    // ─────────────────────────────────────────
 
     public void unlockUpgrade(ColonyUpgrade upgrade) {
         // Add to map, incrementing count
-        unlockedUpgrades.merge(upgrade, 1, Integer::sum);
+        unlockedUpgrades.merge(upgrade, 1, Integer::sum); // add 1 to the upgrade
         int count = unlockedUpgrades.get(upgrade);
 
         System.out.println(upgrade + " purchased (x" + count + ")");
@@ -184,18 +184,18 @@ public class GameManager {
                 break;
 
             case TRAINING_RIG:
-                simulator.upgradePowerCost();  // each one improves simulator further
+                simulator.addXpGrant(1);  // each one improves simulator further
                 System.out.println("Simulator upgraded (level " + count + ")");
                 break;
 
             case RECRUITMENT_POST:
                 quarters.addMaxCapacity(1); // max capacity +1 after
-                System.out.println("Max crew now: " + quarters.get);
+                System.out.println("Max crew now: " + quarters.getMaxCapacity());
                 break;
 
             case COMMAND_CENTER:
-                missionControl.unlockAdvancedMissions();
-                System.out.println("Command Center level " + count);
+//                missionControl.unlockAdvancedMissions();
+//                System.out.println("Command Center level " + count);
                 break;
         }
     }
@@ -206,7 +206,6 @@ public class GameManager {
     public int getCurrentDay()              { return currentDay; }
     public int getFragments()               { return fragments; }
     public int getPower()                   { return power; }
-    public int getMaxCrew()                 { return maxCrew; }
     public Quarters getQuarters()           { return quarters; }
     public Simulator getSimulator()         { return simulator; }
     public MissionControl getMissionControl() { return missionControl; }
