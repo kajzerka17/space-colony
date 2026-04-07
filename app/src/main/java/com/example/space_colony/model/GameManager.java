@@ -1,14 +1,14 @@
 package com.example.space_colony.model;
 
+import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class GameManager {
 
-    // ─────────────────────────────────────────
-    // Singleton
-    // ─────────────────────────────────────────
+    // Singleton class
     private static GameManager instance;
 
     public static GameManager getInstance() {
@@ -20,8 +20,9 @@ public class GameManager {
     private int currentDay;
     private int fragments;
     private int power;
+    private int maxPower;
     private int maxCrew;
-    private Set<ColonyUpgrade> unlockedUpgrades;
+    private Map<ColonyUpgrade, Integer> unlockedUpgrades;
 
     // Managed subsystems
     private Quarters quarters;
@@ -30,17 +31,17 @@ public class GameManager {
     private Medbay medbay;
     private Statistics statistics;
 
-    // ─────────────────────────────────────────
-    // Private Constructor (Singleton)
-    // ─────────────────────────────────────────
-    private GameManager() {
-        this.currentDay       = 0;
-        this.fragments        = 0;
-        this.power            = 0;
-        this.maxCrew          = 5;
-        this.unlockedUpgrades = EnumSet.noneOf(ColonyUpgrade.class);
 
-        // Initialize all subsystems
+    // Private Constructor for Singleton
+    private GameManager() {
+        this.currentDay = 0;
+        this.fragments = 0;
+        this.maxPower = 20;
+        this.power = 20;
+        this.maxCrew = 5;
+        this.unlockedUpgrades = new EnumMap<>(ColonyUpgrade.class);
+
+        // Initialize subsystems
         this.quarters      = new Quarters(maxCrew);
         this.simulator     = new Simulator();
         this.missionControl = new MissionControl();
@@ -48,14 +49,12 @@ public class GameManager {
         this.statistics    = new Statistics();
     }
 
-    // ─────────────────────────────────────────
-    // Game Lifecycle
-    // ─────────────────────────────────────────
+
+    // Game cycle
 
     public void startGame() {
         currentDay = 1;
         fragments  = 0;
-        power      = 10;  // starting power
         System.out.println("=== Game Started — Day " + currentDay + " ===");
     }
 
@@ -92,8 +91,6 @@ public class GameManager {
 
         // Generate a new mission for the day
         missionControl.generateMission(currentDay);
-
-        System.out.println("Mission available: " + missionControl.getCurrentMission().getType());
     }
 
     public void endDay() {
@@ -112,9 +109,9 @@ public class GameManager {
     // Mission
     // ─────────────────────────────────────────
 
-    public boolean canLaunch() {
-        return missionControl.canLaunch();
-    }
+//    public boolean canLaunch() {
+//        return missionControl.canLaunch();
+//    }
 
     public MissionResult launchMission() {
         MissionResult result = missionControl.launchMission();
@@ -141,7 +138,7 @@ public class GameManager {
 
     private void distributeXP(int xp, List<CrewMember> crew) {
         for (CrewMember cm : crew) {
-            cm.gainXP(xp);
+            cm.gainXp(xp);
         }
     }
 
@@ -150,7 +147,7 @@ public class GameManager {
     // ─────────────────────────────────────────
 
     public boolean recruit(CrewMember cm) {
-        if (!quarters.atCapacity()) {
+        if (!quarters.isAtCapacity()) {
             quarters.recruit(cm);
             statistics.recordRecruitment();
             System.out.println(cm.getName() + " recruited!");
@@ -184,46 +181,38 @@ public class GameManager {
     // ─────────────────────────────────────────
 
     public void unlockUpgrade(ColonyUpgrade upgrade) {
-        if (unlockedUpgrades.contains(upgrade)) {
-            System.out.println(upgrade + " already unlocked.");
-            return;
-        }
+        // Add to map, incrementing count
+        unlockedUpgrades.merge(upgrade, 1, Integer::sum);
+        int count = unlockedUpgrades.get(upgrade);
+
+        System.out.println(upgrade + " purchased (x" + count + ")");
 
         switch (upgrade) {
             case POWER_CELL:
-                power += 20;
-                System.out.println("Power Cell unlocked — +20 power.");
+                this.addPower(10);  // increase power by 10
+                System.out.println("+20 power. Total power: " + power);
                 break;
 
             case TRAINING_RIG:
-                simulator.upgradePowerCost();
-                System.out.println("Training Rig unlocked — simulator upgraded.");
+                simulator.upgradePowerCost();  // each one improves simulator further
+                System.out.println("Simulator upgraded (level " + count + ")");
                 break;
 
             case RECRUITMENT_POST:
-                maxCrew += 2;
+                maxCrew += 2;  // each one adds +2 crew slots
                 quarters.setMaxCapacity(maxCrew);
-                System.out.println("Recruitment Post unlocked — max crew +" + 2);
+                System.out.println("Max crew now: " + maxCrew);
                 break;
 
             case COMMAND_CENTER:
-                // Unlocks harder missions or more mission options
                 missionControl.unlockAdvancedMissions();
-                System.out.println("Command Center unlocked — advanced missions available.");
+                System.out.println("Command Center level " + count);
                 break;
         }
-
-        unlockedUpgrades.add(upgrade);
-        statistics.recordUpgrade();
     }
 
-    public boolean hasUpgrade(ColonyUpgrade upgrade) {
-        return unlockedUpgrades.contains(upgrade);
-    }
 
-    // ─────────────────────────────────────────
     // Getters
-    // ─────────────────────────────────────────
 
     public int getCurrentDay()              { return currentDay; }
     public int getFragments()               { return fragments; }
@@ -236,9 +225,8 @@ public class GameManager {
     public Statistics getStatistics()       { return statistics; }
     public Set<ColonyUpgrade> getUnlockedUpgrades() { return unlockedUpgrades; }
 
-    // ─────────────────────────────────────────
+
     // Resources
-    // ─────────────────────────────────────────
 
     public void addFragments(int amount) {
         fragments += amount;

@@ -11,7 +11,7 @@ import java.util.Random;
 public class MissionControl {
     private Mission currentMission;
     private List<CrewMember> selectedCrew;
-    private Mission generateMission(int day) {
+    public Mission generateMission(int day) {
         Random rand = new Random();
         int roll = rand.nextInt(100);
         int enemyChance = Math.min(10 + day * 5, 60);
@@ -33,7 +33,7 @@ public class MissionControl {
     private void selectCrew(List<CrewMember> crew) {
         this.selectedCrew = crew;
     }
-    private MissionResult launchMission() {
+    public MissionResult launchMission() {
         if (!canLaunch()) return null;
 
         currentMission.getParticipants().addAll(selectedCrew);
