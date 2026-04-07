@@ -172,6 +172,7 @@ public class GameManager {
 
     public void unlockUpgrade(ColonyUpgrade upgrade) {
         // Add to map, incrementing count
+        this.spendFragments(upgrade.getCost());
         unlockedUpgrades.merge(upgrade, 1, Integer::sum); // add 1 to the upgrade
         int count = unlockedUpgrades.get(upgrade);
 
@@ -211,7 +212,7 @@ public class GameManager {
     public MissionControl getMissionControl() { return missionControl; }
     public Medbay getMedbay()               { return medbay; }
     public Statistics getStatistics()       { return statistics; }
-    public Set<ColonyUpgrade> getUnlockedUpgrades() { return unlockedUpgrades; }
+    //public Set<ColonyUpgrade> getUnlockedUpgrades() { return unlockedUpgrades; }
 
 
     // Resources
