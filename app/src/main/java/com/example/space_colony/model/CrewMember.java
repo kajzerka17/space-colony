@@ -52,4 +52,8 @@ public abstract class CrewMember {
     public void setStatus(CrewStatus crewStatus) {
         this.status = status;
     }
+
+    public void resetXp() {
+        xp = 0;
+    }
 }
