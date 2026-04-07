@@ -17,11 +17,11 @@ public class GameManager {
         }
         return instance;
     }
+    final int baseMaxCrew = 5;
     private int currentDay;
     private int fragments;
     private int power;
     private int maxPower;
-    private int maxCrew;
     private Map<ColonyUpgrade, Integer> unlockedUpgrades;
 
     // Managed subsystems
@@ -38,52 +38,49 @@ public class GameManager {
         this.fragments = 0;
         this.maxPower = 20;
         this.power = 20;
-        this.maxCrew = 5;
         this.unlockedUpgrades = new EnumMap<>(ColonyUpgrade.class);
 
         // Initialize subsystems
-        this.quarters      = new Quarters(maxCrew);
+        this.quarters      = new Quarters(baseMaxCrew);
         this.simulator     = new Simulator();
         this.missionControl = new MissionControl();
         this.medbay        = new Medbay();
         this.statistics    = new Statistics();
     }
 
+    // dont think we need this
+//    public void startGame() {
+//        currentDay = 1;
+//        fragments  = 0;
+//        System.out.println("=== Game Started — Day " + currentDay + " ===");
+//    }
 
-    // Game cycle
+    // this method will be added when we do save/load file.
+//    public void loadGame(int day, int fragments, int power,
+//                         List<CrewMember> crew,
+//                         Set<ColonyUpgrade> upgrades) {
+//        this.currentDay        = day;
+//        this.fragments         = fragments;
+//        this.power             = power;
+//        this.unlockedUpgrades  = upgrades;
+//
+//        // Restore crew into quarters
+//        for (CrewMember cm : crew) {
+//            quarters.recruit(cm);
+//        }
+//
+//        System.out.println("=== Game Loaded — Day " + currentDay + " ===");
+//    }
 
-    public void startGame() {
-        currentDay = 1;
-        fragments  = 0;
-        System.out.println("=== Game Started — Day " + currentDay + " ===");
-    }
 
-    public void loadGame(int day, int fragments, int power,
-                         List<CrewMember> crew,
-                         Set<ColonyUpgrade> upgrades) {
-        this.currentDay        = day;
-        this.fragments         = fragments;
-        this.power             = power;
-        this.unlockedUpgrades  = upgrades;
-
-        // Restore crew into quarters
-        for (CrewMember cm : crew) {
-            quarters.recruit(cm);
-        }
-
-        System.out.println("=== Game Loaded — Day " + currentDay + " ===");
-    }
-
-    // ─────────────────────────────────────────
     // Day Management
-    // ─────────────────────────────────────────
 
     public void startDay() {
         System.out.println("\n=== Day " + currentDay + " Begin ===");
 
         // Restore crew energy at start of each day
         for (CrewMember cm : quarters.getCrew()) {
-            cm.restoreEnergy(cm.getMaxEnergy());  // full restore
+            cm.restoreEnergy();  // full restore
         }
 
         // Advance medbay timers
@@ -146,15 +143,8 @@ public class GameManager {
     // Crew Management
     // ─────────────────────────────────────────
 
-    public boolean recruit(CrewMember cm) {
-        if (!quarters.isAtCapacity()) {
-            quarters.recruit(cm);
-            statistics.recordRecruitment();
-            System.out.println(cm.getName() + " recruited!");
-            return true;
-        }
-        System.out.println("Quarters full — cannot recruit.");
-        return false;
+    public void recruit(CrewMember cm) {
+        quarters.recruit(cm);
     }
 
     public boolean assignToSimulator(CrewMember cm) {
@@ -189,7 +179,7 @@ public class GameManager {
 
         switch (upgrade) {
             case POWER_CELL:
-                this.addPower(10);  // increase power by 10
+                ;  // increase power by 10
                 System.out.println("+20 power. Total power: " + power);
                 break;
 
@@ -199,9 +189,8 @@ public class GameManager {
                 break;
 
             case RECRUITMENT_POST:
-                maxCrew += 2;  // each one adds +2 crew slots
-                quarters.setMaxCapacity(maxCrew);
-                System.out.println("Max crew now: " + maxCrew);
+                quarters.addMaxCapacity(1); // max capacity +1 after
+                System.out.println("Max crew now: " + quarters.get);
                 break;
 
             case COMMAND_CENTER:
@@ -241,10 +230,6 @@ public class GameManager {
         return false;
     }
 
-    public void addPower(int amount) {
-        power += amount;
-    }
-
     public boolean spendPower(int amount) {
         if (power >= amount) {
             power -= amount;
@@ -263,7 +248,7 @@ public class GameManager {
                 "\nDay         : " + currentDay +
                 "\nFragments   : " + fragments +
                 "\nPower       : " + power +
-                "\nCrew Size   : " + quarters.getCrew().size() + "/" + maxCrew +
+                "\nCrew Size   : " + quarters.getCrew().size() + "/" + quarters.getMaxCapacity() +
                 "\nUpgrades    : " + unlockedUpgrades +
                 "\n" + statistics.getSummary() +
                 "\n==================================";

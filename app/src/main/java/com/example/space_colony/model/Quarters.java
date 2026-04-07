@@ -10,21 +10,21 @@ public class Quarters {
         this.crew = new ArrayList<>();
     }
 
-    private boolean recruit(CrewMember cm){
+    public boolean recruit(CrewMember cm){
         if (atCapacity()) return false;
-        cm.setStatus(CrewStatus.READY);
+        // cm.setStatus(CrewStatus.READY);
         crew.add(cm);
         return true;
     }
 
-    private CrewMember getCrewMember(int id) {
+    public CrewMember getCrewMember(int id) {
         for (CrewMember member : crew) {
             if (member.getId() == id) return member;
         }
         return null;
     }
 
-    private List<CrewMember> getAvailableCrew(){
+    public List<CrewMember> getAvailableCrew(){
         List<CrewMember> available = new ArrayList<>();
         for (CrewMember member : crew){
             if(member.isAvailable()) available.add(member);
@@ -40,7 +40,7 @@ public class Quarters {
         return crew.size() >= maxCapacity;
     }
 
-    private List<CrewMember> getCrew(){
+    public List<CrewMember> getCrew(){
         return crew;
     }
 
@@ -53,5 +53,11 @@ public class Quarters {
         if (atCapacity()) return false;
         crew.add(cm);
         return true;
+    }
+    public void addMaxCapacity(int capacity) {
+        this.maxCapacity += capacity;
+    }
+    public int getMaxCapacity() {
+        return this.maxCapacity;
     }
 }
