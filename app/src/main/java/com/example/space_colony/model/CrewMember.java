@@ -43,4 +43,13 @@ public abstract class CrewMember {
     public String getSpecialization() {
         return specialization;
     }
+
+    public void restoreEnergy() {
+        this.energy = this.maxEnergy;
+        this.status = CrewStatus.READY;
+    }
+
+    public void setStatus(CrewStatus crewStatus) {
+        this.status = status;
+    }
 }
