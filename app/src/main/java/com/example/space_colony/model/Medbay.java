@@ -27,7 +27,7 @@ public class Medbay {
         stayTimers.remove(member.getId());
         member.restoreEnergy();
         member.resetXp();
-        member.status = CrewStatus.READY
+        member.status = CrewStatus.READY;
     }
 
     public void advanceDay() {
