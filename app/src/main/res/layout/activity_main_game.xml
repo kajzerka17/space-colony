@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"
+        app:layout_constraintVertical_bias="0.637"
         app:srcCompat="@drawable/lounge" />
 
     <TextView
@@ -75,15 +75,125 @@
         app:layout_constraintStart_toEndOf="@+id/textPower"
         app:layout_constraintTop_toBottomOf="@+id/screenDayCount" />
 
-    <Button
-        android:id="@+id/crewManagerButton"
-        style="@style/Widget.AppCompat.Button"
+    <TextView
+        android:id="@+id/textMission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="Crew"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:text="Mission Description: "
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPower" />
+
+    <TextView
+        android:id="@+id/screenMission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/audiowide"
+        android:text="Fix the base"
+        android:textColor="#F4F4F4"
+        app:layout_constraintStart_toEndOf="@+id/textMission"
+        app:layout_constraintTop_toBottomOf="@+id/screenPowerCount" />
+
+    <Button
+        android:id="@+id/crewManagerButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Quarters"
+        android:textSize="10sp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMission" />
+
+    <Button
+        android:id="@+id/crewTrainingButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Training"
+        android:textSize="10sp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toEndOf="@+id/crewManagerButton"
+        app:layout_constraintTop_toBottomOf="@+id/screenMission" />
+
+    <Button
+        android:id="@+id/MissionButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Mission"
+        android:textSize="10sp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crewManagerButton" />
+
+    <Button
+        android:id="@+id/MedbayButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Medbay"
+        android:textSize="10sp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toEndOf="@+id/MissionButton"
+        app:layout_constraintTop_toBottomOf="@+id/crewTrainingButton" />
+
+    <Button
+        android:id="@+id/EndDayButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="End the day"
+        android:textSize="10sp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MissionButton" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Save"
+        android:textSize="10sp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EndDayButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
