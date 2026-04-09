@@ -1,8 +1,9 @@
 package com.example.space_colony.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CombatMission extends Mission{
+public class CombatMission extends Mission {
     private Threat threat;
     private int currentTurn;
 
@@ -36,6 +37,15 @@ public class CombatMission extends Mission{
         return true;
     }
 
+    public List<CrewMember> getAliveFighter() {
+        List<CrewMember> aliveFighter = new ArrayList<>();
+        for (CrewMember member : participants) {
+            if (member.getEnergy() > 0) {
+                aliveFighter.add(member);
+            }
+        }
+        return aliveFighter;
+    }
     public boolean hasAliveFighter() {
         for (int i = 0; i < participants.size(); i++) {
             if (participants.get(i).getEnergy() > 0) {
@@ -45,7 +55,7 @@ public class CombatMission extends Mission{
 
         return false;
     }
-
+    //
     public Fighter getCurrentFighter() {
         int startIndex = currentTurn % participants.size();
 
@@ -63,20 +73,15 @@ public class CombatMission extends Mission{
     @Override
     public MissionResult resolve() {
         if (!isValid()) {
-            return new MissionResult(0, 0, "Invalid combat mission");
+            return new MissionResult(0, 0, "Invalid combat mission", null);
         }
 
         while (!threat.isDefeated() && hasAliveFighter()) {
             Fighter fighter = getCurrentFighter();
 
             if (fighter != null) {
-                int damage = fighter.getEffectiveAttack() - threat.getResilience();
-
-                if (damage < 0) {
-                    damage = 0;
-                }
-
-                threat.takeDamage(damage);
+                // SOS - player could not choose the action yet
+                fighter.performAttack(threat);
 
                 if (!threat.isDefeated()) {
                     threat.performAttack(fighter);
@@ -86,14 +91,15 @@ public class CombatMission extends Mission{
             }
         }
 
+        List<CrewMember> aliveFighter = getAliveFighter();
         if (threat.isDefeated()) {
             for (int i = 0; i < participants.size(); i++) {
                 participants.get(i).gainXp(10);
             }
 
-            return new MissionResult(10, 0, "Threat defeated");
+            return new MissionResult(10, 0, "Threat defeated", aliveFighter);
         }
 
-        return new MissionResult(0, 0, "All fighters defeated");
+        return new MissionResult(0, 0, "All fighters defeated", aliveFighter);
     }
 }

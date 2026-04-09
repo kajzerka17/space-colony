@@ -94,7 +94,10 @@ public class GameManager {
         System.out.println("\n=== Day " + currentDay + " End ===");
 
         // Advance simulator training
-        simulator.train();
+        int cost = this.simulator.getPowerCost();
+        if (cost <= this.maxPower) {
+            simulator.train();
+        }
 
         // Record day in statistics
         statistics.advanceDay();
@@ -140,9 +143,8 @@ public class GameManager {
         }
     }
 
-    // ─────────────────────────────────────────
+
     // Crew Management
-    // ─────────────────────────────────────────
 
     public void recruit(CrewMember cm) {
         quarters.recruit(cm);
@@ -174,19 +176,20 @@ public class GameManager {
         // Add to map, incrementing count
         this.spendFragments(upgrade.getCost());
         unlockedUpgrades.merge(upgrade, 1, Integer::sum); // add 1 to the upgrade
-        int count = unlockedUpgrades.get(upgrade);
+        //int count = unlockedUpgrades.get(upgrade);
 
-        System.out.println(upgrade + " purchased (x" + count + ")");
+        //System.out.println(upgrade + " purchased (x" + count + ")");
 
         switch (upgrade) {
             case POWER_CELL:
-                ;  // increase power by 10
+                ;  // increase max power by 10
+                this.addMaxPower(10);
                 System.out.println("+20 power. Total power: " + power);
                 break;
 
             case TRAINING_RIG:
                 simulator.addXpGrant(1);  // each one improves simulator further
-                System.out.println("Simulator upgraded (level " + count + ")");
+                //System.out.println("Simulator upgraded (level " + count + ")");
                 break;
 
             case RECRUITMENT_POST:
@@ -216,7 +219,9 @@ public class GameManager {
 
 
     // Resources
-
+    public void addMaxPower(int amount) {
+        this.maxPower += amount;
+    }
     public void addFragments(int amount) {
         fragments += amount;
     }
@@ -239,9 +244,8 @@ public class GameManager {
         return false;
     }
 
-    // ─────────────────────────────────────────
+
     // Game Summary
-    // ─────────────────────────────────────────
 
     public String getSummary() {
         return "\n========== GAME SUMMARY ==========" +
