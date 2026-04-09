@@ -7,7 +7,7 @@ public abstract class Mission {
     protected int day;
     protected List<CrewMember> participants;
 
-    Mission(String type, int day, List<CrewMember> participants) {
+    Mission(String type, int day, List<? extends CrewMember> participants) {
         this.type = type;
         this.day = day;
 
@@ -28,7 +28,7 @@ public abstract class Mission {
         return participants != null && participants.size() >= 2;
     }
 
-    public void addParticipants(List<CrewMember> crew){
+    public void addParticipants(List<? extends CrewMember> crew){
         this.participants.addAll(crew);
     }
 
