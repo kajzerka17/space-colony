@@ -81,8 +81,8 @@
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text=" Exit Game "
-        app:backgroundTint="@color/mainButton"
         android:textAlignment="center"
+        app:backgroundTint="@color/mainButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loadGameButton" />
