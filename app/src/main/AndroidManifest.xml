@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spacecolony">
         <activity
+            android:name=".CrewManagerActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainGame"
             android:exported="false" />
         <activity
