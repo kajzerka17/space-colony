@@ -58,7 +58,11 @@ public class CrewManagerActivity extends AppCompatActivity {
 //            startActivity(new Intent(this, CreateCrewMemberActivity.class));
 //        });
 
-
+        Button quartersButton = findViewById(R.id.descriptionButton);
+        quartersButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CrewManagerActivity.this, DescriptionActivity.class);
+            startActivity(intent);
+        });
 
 
 
