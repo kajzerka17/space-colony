@@ -6,7 +6,7 @@ public class Medic extends Fighter{
     private int healAmount;
     public Medic(String name) {
         super(name);
-        this.specialization = "Magician";
+        this.specialization = "Madic";
         this.maxEnergy = 22;
         this.energy = 22;
         this.attack = 4;

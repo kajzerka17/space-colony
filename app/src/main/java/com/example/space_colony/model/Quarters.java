@@ -13,6 +13,7 @@ public class Quarters {
     public boolean recruit(CrewMember cm){
         if (atCapacity()) return false;
         // cm.setStatus(CrewStatus.READY);
+        cm.setStatus(CrewStatus.READY);
         crew.add(cm);
         return true;
     }

@@ -30,35 +30,44 @@ public class MissionControl {
         }
         return currentMission;
     }
-    private void selectCrew(List<CrewMember> crew) {
-        this.selectedCrew = crew;
+    public void selectCrew(List<CrewMember> crew) {
+        if (crew == null){
+            this.selectedCrew = new ArrayList<>();
+        }else{
+            this.selectedCrew = new ArrayList<>(crew);
+        }
     }
     public MissionResult launchMission() {
-        if (!canLaunch()) return null;
+        if (!canLaunch()) {
+            return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
+        }
 
+        currentMission.getParticipants().clear();
         currentMission.getParticipants().addAll(selectedCrew);
+
+        if (!currentMission.isValid()) {
+            currentMission.getParticipants().clear();
+            return new MissionResult(false, 0, 0, "Selected crew is invalid for this mission.", new ArrayList<>());
+        }
+
+        for (CrewMember member : selectedCrew) {
+            member.setStatus(CrewStatus.ON_MISSION);
+        }
 
         MissionResult result = currentMission.resolve();
 
-        //Send defeated crew to medbay, return survivors
-        for (CrewMember member : selectedCrew) {
-            if (!member.isAvailable()) {
-                //handled by MissionResult's crewToMedbay list
-            }
-        }
         selectedCrew.clear();
         currentMission = null;
 
         return result;
     }
-    private boolean canLaunch() {
+    public boolean canLaunch() {
         return currentMission != null
                 && selectedCrew != null
-                && selectedCrew.size() >= 2
-                && currentMission.isValid();
+                && selectedCrew.size() >= 2;
     }
 
-    private int getSquadSize() {
+    public int getSquadSize() {
         return selectedCrew != null ? selectedCrew.size() : 0;
     }
 }

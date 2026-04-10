@@ -46,6 +46,17 @@ public class CombatMission extends Mission {
         }
         return aliveFighter;
     }
+
+    public List<CrewMember> getDefeatedFighter() {
+        List<CrewMember> defeatedFighter = new ArrayList<>();
+        for (CrewMember member : participants) {
+            if (member.getEnergy() <= 0) {
+                defeatedFighter.add(member);
+            }
+        }
+        return defeatedFighter;
+    }
+
     public boolean hasAliveFighter() {
         for (int i = 0; i < participants.size(); i++) {
             if (participants.get(i).getEnergy() > 0) {
@@ -73,7 +84,7 @@ public class CombatMission extends Mission {
     @Override
     public MissionResult resolve() {
         if (!isValid()) {
-            return new MissionResult(0, 0, "Invalid combat mission", null);
+            return new MissionResult(false,0, 0, "Invalid combat mission", new ArrayList<>());
         }
 
         while (!threat.isDefeated() && hasAliveFighter()) {
@@ -92,14 +103,15 @@ public class CombatMission extends Mission {
         }
 
         List<CrewMember> aliveFighter = getAliveFighter();
+        List<CrewMember> defeatedFighter = getDefeatedFighter();
         if (threat.isDefeated()) {
-            for (int i = 0; i < participants.size(); i++) {
-                participants.get(i).gainXp(10);
+            for (int i = 0; i < aliveFighter.size(); i++) {
+                aliveFighter.get(i).gainXp(10);
             }
 
-            return new MissionResult(10, 0, "Threat defeated", aliveFighter);
+            return new MissionResult(true,10, 0, "Threat defeated", defeatedFighter);
         }
 
-        return new MissionResult(0, 0, "All fighters defeated", aliveFighter);
+        return new MissionResult(false,0, 0, "All fighters defeated", defeatedFighter);
     }
 }

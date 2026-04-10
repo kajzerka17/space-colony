@@ -78,9 +78,13 @@ public class GameManager {
     public void startDay() {
         System.out.println("\n=== Day " + currentDay + " Begin ===");
 
+        power = maxPower;
+
         // Restore crew energy at start of each day
         for (CrewMember cm : quarters.getCrew()) {
-            cm.restoreEnergy();  // full restore
+            if (cm.getStatus() == CrewStatus.READY) {
+                cm.restoreEnergy();
+            }  // full restore
         }
 
         // Advance medbay timers
@@ -95,14 +99,22 @@ public class GameManager {
 
         // Advance simulator training
         int cost = this.simulator.getPowerCost();
-        if (cost <= this.maxPower) {
+        if (cost <= this.power) {
+            List<CrewMember> trainedCrew = new java.util.ArrayList<>(simulator.getAssigned());
+
+            spendPower(cost);
             simulator.train();
+
+            for (CrewMember cm : trainedCrew) {
+                statistics.recordTraining(cm);
+            }
         }
 
         // Record day in statistics
         statistics.advanceDay();
 
         currentDay++;
+        startDay();
     }
 
     // ─────────────────────────────────────────
@@ -114,28 +126,33 @@ public class GameManager {
 //    }
 
     // what is this i dont know yet.
-//    public MissionResult launchMission() {
-//        MissionResult result = missionControl.launchMission();
-//
-//        if (result.isSuccess()) {
-//            // Collect rewards
-//            fragments += result.getFragmentsGained();
-//            distributeXP(result.getXpGained(), missionControl.getSelectedCrew());
-//            statistics.recordMission();
-//
-//            System.out.println("Mission SUCCESS — +" + result.getFragmentsGained()
-//                    + " fragments, +" + result.getXpGained() + " XP");
-//        } else {
-//            System.out.println("Mission FAILED.");
-//        }
-//
-//        // Send injured crew to medbay
-//        for (CrewMember cm : result.getCrewToMedbay()) {
-//            medbay.admit(cm);
-//        }
-//
-//        return result;
-//    }
+    public MissionResult launchMission() {
+        MissionResult result = missionControl.launchMission();
+
+        if (result == null) {
+            return new MissionResult(false, 0, 0, "Mission launch failed.", new java.util.ArrayList<>());
+        }
+
+        if (result.getSummary().equals("Mission cannot be launched.")
+                || result.getSummary().equals("Selected crew is invalid for this mission.")) {
+            return result;
+        }
+
+        fragments += result.getFragmentsGained();
+        statistics.recordMission();
+
+        for (CrewMember cm : result.getCrewToMedbay()) {
+            medbay.admit(cm);
+        }
+
+        for (CrewMember cm : quarters.getCrew()) {
+            if (cm.getStatus() == CrewStatus.ON_MISSION) {
+                cm.setStatus(CrewStatus.READY);
+            }
+        }
+
+        return result;
+    }
 
     private void distributeXP(int xp, List<CrewMember> crew) {
         for (CrewMember cm : crew) {
@@ -146,14 +163,19 @@ public class GameManager {
 
     // Crew Management
 
-    public void recruit(CrewMember cm) {
-        quarters.recruit(cm);
+    public boolean recruit(CrewMember cm) {
+        boolean recruited = quarters.recruit(cm);
+
+        if (recruited) {
+            statistics.recordRecruitment();
+        }
+
+        return recruited;
     }
 
     public boolean assignToSimulator(CrewMember cm) {
         if (simulator.canAssign(cm)) {
             simulator.assign(cm);
-            statistics.recordTraining(cm);
             System.out.println(cm.getName() + " assigned to simulator.");
             return true;
         }
@@ -161,9 +183,9 @@ public class GameManager {
         return false;
     }
 
-//    public void selectCrewForMission(List<CrewMember> crew) {
-//        missionControl.selectCrew(crew);
-//    }
+    public void selectCrewForMission(List<CrewMember> crew) {
+        missionControl.selectCrew(crew);
+    }
 
 //    public int getSquadSize() {
 //        return missionControl.getSquadSize();
@@ -174,7 +196,10 @@ public class GameManager {
 
     public void unlockUpgrade(ColonyUpgrade upgrade) {
         // Add to map, incrementing count
-        this.spendFragments(upgrade.getCost());
+        if (!spendFragments(upgrade.getCost())) {
+            return;
+        }
+
         unlockedUpgrades.merge(upgrade, 1, Integer::sum); // add 1 to the upgrade
         //int count = unlockedUpgrades.get(upgrade);
 
@@ -184,7 +209,7 @@ public class GameManager {
             case POWER_CELL:
                 ;  // increase max power by 10
                 this.addMaxPower(10);
-                System.out.println("+20 power. Total power: " + power);
+                System.out.println("+10 max power. Total power: " + maxPower);
                 break;
 
             case TRAINING_RIG:

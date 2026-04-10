@@ -9,8 +9,8 @@ public class MissionResult {
     private List<CrewMember> crewToMedbay;
     private String summary;
 
-    public MissionResult(int xpGained, int fragmentsGained, String summary, List<CrewMember> crewToMedbay){
-        //this.success = success;
+    public MissionResult(boolean success, int xpGained, int fragmentsGained, String summary, List<CrewMember> crewToMedbay){
+        this.success = success;
         this.xpGained = xpGained;
         this.fragmentsGained = fragmentsGained;
         this.crewToMedbay = crewToMedbay;

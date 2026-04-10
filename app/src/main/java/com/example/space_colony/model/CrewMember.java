@@ -19,6 +19,7 @@ public abstract class CrewMember {
         this.name = name;
         this.xp = 0;
         this.id = idCounter++;
+        this.status = CrewStatus.READY;
         this.missionCompleted = 0;
         this.trainingSessions = 0;
         this.timesInMedbay = 0;
@@ -50,7 +51,7 @@ public abstract class CrewMember {
     }
 
     public void setStatus(CrewStatus crewStatus) {
-        this.status = status;
+        this.status = crewStatus;
     }
 
     public void resetXp() {

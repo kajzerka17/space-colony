@@ -7,7 +7,7 @@ public class RepairMission extends Mission{
     }
     @Override
     public MissionResult resolve() {
-        return new MissionResult(0, 0, getSummary(), null);
+        return new MissionResult(true,0, 0, getSummary(), null);
     }
     @Override
     public boolean isValid() {
