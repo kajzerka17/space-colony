@@ -10,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainGame extends AppCompatActivity {
+public class MainGameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainGame extends AppCompatActivity {
 
         Button startButton = findViewById(R.id.crewManagerButton);
         startButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainGame.this, CrewManagerActivity.class);
+            Intent intent = new Intent(MainGameActivity.this, CrewManagerActivity.class);
             startActivity(intent);
         });
     }
