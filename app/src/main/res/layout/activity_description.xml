@@ -27,11 +27,214 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:fontFamily="@font/audiowide"
-        android:scaleX="3"
-        android:scaleY="3"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
         android:text="Class description"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundQuarter" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundDescription" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/redCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewRed"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/red" />
+
+                <TextView
+                    android:id="@+id/textViewRed"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Soldier - Power Strike - Twice per mission, deals x1.5 damage and reduces enemy Resilience by 2. Every 20 XP increases Attack by 1."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cyanCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewCyan"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/cyan" />
+
+                <TextView
+                    android:id="@+id/textViewCyan"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Medic - Refresh - Once per mission, restores 5 Energy to one selected crew member. Every 20 XP increases the healing by 1."
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/greenCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewGreen"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/green" />
+
+                <TextView
+                    android:id="@+id/textViewGreen"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Defender - Wall of shield - Passive: Resilience is increased by 2 at the start of the mission for its duration. Every 20 XP increases the bonus by 1."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/orangeCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewOrange"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/orange" />
+
+                <TextView
+                    android:id="@+id/textViewOrange"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Engineer - Required for Repair missions; increases the probability weight of rolling 3 – 4 Fragments. No direct XP scaling."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pinkCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewPink"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/pink" />
+
+                <TextView
+                    android:id="@+id/textViewPink"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Scientist - Increases the Max Energy of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +2 Max Energy."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/purpleCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewPurple"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/purple" />
+
+                <TextView
+                    android:id="@+id/textViewPurple"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Magician - Create shortcut - Once per mission, 30% chance to remove the threat directly; 10% chance Magician is sent to Medbay instead; rest chance nothing happens. Every 20 XP increases the success chance of Vanish by 5%, up to 55%."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/whiteCrew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="0dp">
+
+                <ImageView
+                    android:id="@+id/imageViewWhite"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/white" />
+
+                <TextView
+                    android:id="@+id/textViewWhite"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/audiowide"
+                    android:text="Blacksmith - Increases the Attack and Resilience of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +1 Attack and +1 Resilience."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/backButtonDescription"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Go back"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
