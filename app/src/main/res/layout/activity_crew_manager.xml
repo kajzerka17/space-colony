@@ -7,6 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".CrewManagerActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/quarter" />
+
+    <TextView
+        android:id="@+id/textQuarters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:text="Quarters"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
     <LinearLayout
         android:layout_width="409dp"
         android:layout_height="729dp"
@@ -15,41 +41,29 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="vertical"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Button" />
 
-            <Button
-                android:id="@+id/returnButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Go Back" />
-
-            <Button
-                android:id="@+id/recruitButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Recruit" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="620dp" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Button" />
 
     </LinearLayout>
 

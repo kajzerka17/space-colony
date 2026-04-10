@@ -38,55 +38,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/newGameButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="350dp"
-        android:fontFamily="@font/audiowide"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text=" New Game "
-        app:backgroundTint="@color/mainButton"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="120dp"
+        android:paddingTop="90dp">
 
-    <Button
-        android:id="@+id/loadGameButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/audiowide"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text="Load Game"
-        app:backgroundTint="@color/mainButton"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newGameButton" />
+        <Button
+            android:id="@+id/newGameButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="350dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text=" New Game "
+            android:textAlignment="center"
+            app:backgroundTint="@color/mainButton" />
 
-    <Button
-        android:id="@+id/exitGameButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/audiowide"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text=" Exit Game "
-        android:textAlignment="center"
-        app:backgroundTint="@color/mainButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loadGameButton" />
+        <Button
+            android:id="@+id/loadGameButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="Load Game"
+            android:textAlignment="center"
+            app:backgroundTint="@color/mainButton" />
+
+        <Button
+            android:id="@+id/exitGameButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text=" Exit Game "
+            android:textAlignment="center"
+            app:backgroundTint="@color/mainButton" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
