@@ -8,22 +8,24 @@
     tools:context=".CrewManagerActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/backgroundQuarter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleX="1.25"
         android:scaleY="1.25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/quarter" />
 
     <TextView
         android:id="@+id/textQuarters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/audiowide"
         android:scaleX="3"
         android:scaleY="3"
@@ -31,39 +33,71 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundQuarter" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="vertical"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="73dp"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            <Button
+                android:id="@+id/backButtonQ"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/audiowide"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:text="Go Back"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="@color/mainButton"/>
+
+            <Button
+                android:id="@+id/recruitButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/audiowide"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:text="Recruit"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="@color/mainButton"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
+            android:layout_height="548dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp" />
+
+        <Button
+            android:id="@+id/descriptionButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="620dp" />
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="class description"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+            app:backgroundTint="@color/mainButton"/>
 
     </LinearLayout>
 
