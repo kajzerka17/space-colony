@@ -70,4 +70,7 @@ public class MissionControl {
     public int getSquadSize() {
         return selectedCrew != null ? selectedCrew.size() : 0;
     }
+    public Mission getCurrentMission() {
+        return currentMission;
+    }
 }

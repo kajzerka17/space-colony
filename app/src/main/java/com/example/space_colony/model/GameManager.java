@@ -34,7 +34,7 @@ public class GameManager {
 
     // Private Constructor for Singleton
     private GameManager() {
-        this.currentDay = 0;
+        this.currentDay = 1;
         this.fragments = 0;
         this.maxPower = 20;
         this.power = 20;
@@ -74,7 +74,9 @@ public class GameManager {
 
 
     // Day Management
-
+    public Mission getCurrentMission() {
+        return missionControl.getCurrentMission();
+    }
     public void startDay() {
         System.out.println("\n=== Day " + currentDay + " Begin ===");
 
