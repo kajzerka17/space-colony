@@ -71,9 +71,9 @@
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="100"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
                     />
             </LinearLayout>
 
@@ -102,9 +102,9 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="10"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
                     />
             </LinearLayout>
 
@@ -131,9 +131,9 @@
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="10"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
                     />
             </LinearLayout>
 
@@ -158,7 +158,12 @@
                     android:fontFamily="@font/audiowide"
                     android:text="Engineer - Required for Repair missions; increases the probability weight of rolling 3 – 4 Fragments. No direct XP scaling."
                     android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -182,7 +187,12 @@
                     android:fontFamily="@font/audiowide"
                     android:text="Scientist - Increases the Max Energy of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +2 Max Energy."
                     android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -206,7 +216,12 @@
                     android:fontFamily="@font/audiowide"
                     android:text="Magician - Create shortcut - Once per mission, 30% chance to remove the threat directly; 10% chance Magician is sent to Medbay instead; rest chance nothing happens. Every 20 XP increases the success chance of Vanish by 5%, up to 55%."
                     android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -230,7 +245,12 @@
                     android:fontFamily="@font/audiowide"
                     android:text="Blacksmith - Increases the Attack and Resilience of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +1 Attack and +1 Resilience."
                     android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="8"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    />
             </LinearLayout>
 
         </LinearLayout>
