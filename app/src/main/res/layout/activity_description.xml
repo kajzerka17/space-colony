@@ -69,7 +69,12 @@
                     android:fontFamily="@font/audiowide"
                     android:text="Soldier - Power Strike - Twice per mission, deals x1.5 damage and reduces enemy Resilience by 2. Every 20 XP increases Attack by 1."
                     android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="100"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -95,7 +100,12 @@
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="10"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +129,12 @@
                     android:fontFamily="@font/audiowide"
                     android:text="Defender - Wall of shield - Passive: Resilience is increased by 2 at the start of the mission for its duration. Every 20 XP increases the bonus by 1."
                     android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="10"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -222,7 +237,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/backButtonDescription"
+        android:id="@+id/backButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
