@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.space_colony.adapter.CrewMemberAdapter;
 import com.example.space_colony.model.Blacksmith;
 import com.example.space_colony.model.CrewMember;
+import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.Medic;
 import com.example.space_colony.model.Scientist;
 
@@ -26,10 +27,10 @@ public class CrewManagerActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CrewMemberAdapter adapter;
 
-    // GameManager manager = GameManager.getInstance();
-    // private List<CrewMember> crews = manager.getQuarters().getCrew();
+     GameManager manager = GameManager.getInstance();
+     private List<CrewMember> crews = manager.getQuarters().getCrew();
 
-    private List<CrewMember> crews = new ArrayList<>();
+//    private List<CrewMember> crews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +44,17 @@ public class CrewManagerActivity extends AppCompatActivity {
             return insets;
         });
 
+//        ///testing purpose only
+//
+//        manager.getQuarters().addMaxCapacity(5);
+//
+//        ///
         Button backButton = findViewById(R.id.backButton);
         Button recruitButton = findViewById(R.id.recruitButton);
         Button quartersButton = findViewById(R.id.descriptionButton);
 
         recyclerView = findViewById(R.id.recyclerViewCrew);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // crews = new ArrayList<>(); // or fetch from your data source
-        crews.add(new Medic("An"));
-        crews.add(new Blacksmith("Gracjian"));
-        crews.add(new Scientist("jiyuan"));
 
         adapter = new CrewMemberAdapter(crews);
         recyclerView.setAdapter(adapter);
@@ -68,5 +69,13 @@ public class CrewManagerActivity extends AppCompatActivity {
             Intent intent = new Intent(CrewManagerActivity.this, DescriptionActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        crews = manager.getQuarters().getCrew();
+        adapter.updateList(crews);
+        adapter.notifyDataSetChanged();
     }
 }

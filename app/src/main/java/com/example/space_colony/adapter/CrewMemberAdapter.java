@@ -81,6 +81,10 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         return items.size();
     }
 
+    public void updateList(List<T> newList) {
+        this.items = newList;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView tvName;
         final TextView tvRole;

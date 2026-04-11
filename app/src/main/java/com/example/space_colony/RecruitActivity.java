@@ -2,8 +2,10 @@ package com.example.space_colony;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,25 +43,39 @@ public class RecruitActivity extends AppCompatActivity {
 
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());
-
-        manager = GameManager.getInstance();
-
         Button recruitButton = findViewById(R.id.recruitButton);
-    }
 
-    public void recruit (View view) {
-        String name = nameInput.toString();
-        // String selectedRole
+        nameInput = findViewById(R.id.nameInput);
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] options = {"Blacksmith","Medic","Engineer","Scientist","Soldier","Magician","Defender"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item,options);
+        spinner.setAdapter(adapter);
 
-        CrewMember newMember = switch (selectedRole) {
-            case "Blacksmith" -> new Blacksmith(name);
-            case "Medic" -> new Medic(name);
-            case "Engineer" -> new Engineer(name);
-            case "Scientist" -> new Scientist(name);
-            case "Soldier" -> new Soldier(name);
-            case "Magician" -> new Magician(name);
-            case "Defender" -> new Defender(name);
-            default -> new Medic(name);
-        };
+        recruitButton.setOnClickListener(v -> {
+            String name = nameInput.getText().toString();
+            String selectedRole = spinner.getSelectedItem().toString();
+
+            CrewMember newMember;
+            if (selectedRole.equals("Blacksmith")) {
+                newMember = new Blacksmith(name);
+            } else if (selectedRole.equals("Medic")) {
+                newMember = new Medic(name);
+            } else if (selectedRole.equals("Engineer")) {
+                newMember = new Engineer(name);
+            } else if (selectedRole.equals("Scientist")) {
+                newMember = new Scientist(name);
+            } else if (selectedRole.equals("Soldier")) {
+                newMember = new Soldier(name);
+            } else if (selectedRole.equals("Magician")) {
+                newMember = new Magician(name);
+            } else if (selectedRole.equals("Defender")) {
+                newMember = new Defender(name);
+            } else {
+                newMember = new Medic(name);
+            }
+
+            manager.recruit(newMember);
+            finish(); // go back to crew list
+        });
     }
 }
