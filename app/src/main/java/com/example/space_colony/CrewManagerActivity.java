@@ -60,9 +60,9 @@ public class CrewManagerActivity extends AppCompatActivity {
 
         backButton.setOnClickListener(v -> finish());
 
-        // recruitButton.setOnClickListener(v -> {
-        //     startActivity(new Intent(this, CreateCrewMemberActivity.class));
-        // });
+         recruitButton.setOnClickListener(v -> {
+             startActivity(new Intent(this, RecruitActivity.class));
+         });
 
         quartersButton.setOnClickListener(v -> {
             Intent intent = new Intent(CrewManagerActivity.this, DescriptionActivity.class);
