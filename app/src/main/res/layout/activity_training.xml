@@ -7,4 +7,92 @@
     android:layout_height="match_parent"
     tools:context=".TrainingActivity">
 
+    <ImageView
+        android:id="@+id/backgroundTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/simulator" />
+
+    <TextView
+        android:id="@+id/textTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:text="Training"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundTraining" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:text="Currently Training:"
+        android:textColor="#FBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTraining" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTraining"
+        android:layout_width="match_parent"
+        android:layout_height="501dp"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTraining"
+        tools:layout_editor_absoluteX="16dp">
+
+        <Button
+            android:id="@+id/backButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="Go Back"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/mainButton" />
+
+        <Button
+            android:id="@+id/trainButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="Train..."
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/mainButton" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

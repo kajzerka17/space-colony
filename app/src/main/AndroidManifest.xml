@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spacecolony">
         <activity
+            android:name=".TrainCrewActivity"
+            android:exported="false" />
+        <activity
             android:name=".TrainingActivity"
             android:exported="false" />
         <activity
