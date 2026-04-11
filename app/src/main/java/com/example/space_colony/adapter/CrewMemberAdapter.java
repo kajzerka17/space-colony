@@ -27,7 +27,7 @@ import java.util.List;
 
 public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapter<CrewMemberAdapter.ViewHolder>{
 
-    private List<T> items;
+    protected List<T> items;
 
     public CrewMemberAdapter(List<T> items) {
         this.items         = new ArrayList<>(items);
