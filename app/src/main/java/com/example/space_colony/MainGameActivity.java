@@ -35,9 +35,8 @@ public class MainGameActivity extends AppCompatActivity {
 
         gameManager = GameManager.getInstance();
 
-        dayTextView = findViewById(R.id.dayTextView);
-        fragmentsTextView = findViewById(R.id.fragmentsTextView);
-        powerTextView = findViewById(R.id.powerTextView);
+        dayTextView = findViewById(R.id.screenDayCount);
+        powerTextView = findViewById(R.id.screenPowerCount);
 
         if (gameManager.getCurrentMission() == null) {
             gameManager.startDay();
@@ -51,7 +50,7 @@ public class MainGameActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button finishDayButton = findViewById(R.id.finishDayButton);
+        Button finishDayButton = findViewById(R.id.EndDayButton);
         finishDayButton.setOnClickListener(v -> {
             gameManager.endDay();
             updateUi();
@@ -65,8 +64,7 @@ public class MainGameActivity extends AppCompatActivity {
     }
 
     private void updateUi() {
-        dayTextView.setText("Day: " + gameManager.getCurrentDay());
-        fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
-        powerTextView.setText("Power: " + gameManager.getPower());
+        dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
+        powerTextView.setText(String.valueOf(gameManager.getPower()));
     }
 }

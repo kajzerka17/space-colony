@@ -48,6 +48,20 @@ public class GameManager {
         this.statistics    = new Statistics();
     }
 
+    public void resetGame() {
+        this.currentDay = 1;
+        this.fragments = 0;
+        this.maxPower = 20;
+        this.power = 20;
+        this.unlockedUpgrades.clear();
+
+        this.quarters = new Quarters(baseMaxCrew);
+        this.simulator = new Simulator();
+        this.missionControl = new MissionControl();
+        this.medbay = new Medbay();
+        this.statistics = new Statistics();
+    }
+
     // dont think we need this
 //    public void startGame() {
 //        currentDay = 1;
