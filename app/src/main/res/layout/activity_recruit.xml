@@ -69,18 +69,35 @@
         app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
     <Button
-        android:id="@+id/buttonRecruit"
+        android:id="@+id/recruitButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/audiowide"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="Recruit"
+        app:backgroundTint="@color/mainButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:backgroundTint="@color/mainButton" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Go Back"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recruitButton"
+        app:layout_constraintVertical_bias="0.17000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
