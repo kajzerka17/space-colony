@@ -31,7 +31,12 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundRecruit" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundRecruit"
+        android:shadowColor="#000000"
+        android:shadowRadius="8"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
 
     <EditText
         android:id="@+id/nameInput"

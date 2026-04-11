@@ -33,7 +33,12 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundQuarter" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundQuarter"
+        android:shadowColor="#000000"
+        android:shadowRadius="8"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
