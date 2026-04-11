@@ -13,69 +13,60 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.space_colony.adapter.CrewMemberAdapter;
+import com.example.space_colony.model.Blacksmith;
 import com.example.space_colony.model.CrewMember;
-import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.Medic;
+import com.example.space_colony.model.Scientist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CrewManagerActivity extends AppCompatActivity {
+
     private RecyclerView recyclerView;
     private CrewMemberAdapter adapter;
-    private GameManager manager;
-    private List<CrewMember> crews;
+
+    // GameManager manager = GameManager.getInstance();
+    // private List<CrewMember> crews = manager.getQuarters().getCrew();
+
+    private List<CrewMember> crews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_crew_manager);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-
-
         Button backButton = findViewById(R.id.backButton);
         Button recruitButton = findViewById(R.id.recruitButton);
-        manager = GameManager.getInstance();
+        Button quartersButton = findViewById(R.id.descriptionButton);
 
         recyclerView = findViewById(R.id.recyclerViewCrew);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        crews = manager.getQuarters().getCrew();
+        // crews = new ArrayList<>(); // or fetch from your data source
+        crews.add(new Medic("An"));
+        crews.add(new Blacksmith("Gracjian"));
+        crews.add(new Scientist("jiyuan"));
 
         adapter = new CrewMemberAdapter(crews);
         recyclerView.setAdapter(adapter);
 
         backButton.setOnClickListener(v -> finish());
-//        btnCreate.setOnClickListener(v -> {
-//            startActivity(new Intent(this, CreateCrewMemberActivity.class));
-//        });
-        recruitButton.setOnClickListener(v -> {
-            int nextNumber = crews.size() + 1;
-            CrewMember newMember = new Medic("Medic " + nextNumber);
 
-            boolean recruited = manager.recruit(newMember);
+         recruitButton.setOnClickListener(v -> {
+             startActivity(new Intent(this, RecruitActivity.class));
+         });
 
-            if (recruited) {
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        Button descriptionButton = findViewById(R.id.descriptionButton);
-        descriptionButton.setOnClickListener(v -> {
+        quartersButton.setOnClickListener(v -> {
             Intent intent = new Intent(CrewManagerActivity.this, DescriptionActivity.class);
             startActivity(intent);
         });
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        }
     }
 }
