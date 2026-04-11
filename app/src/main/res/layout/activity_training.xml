@@ -31,7 +31,12 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundTraining" />
+        app:layout_constraintTop_toTopOf="@+id/backgroundTraining"
+        android:shadowColor="#000000"
+        android:shadowRadius="8"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
 
     <TextView
         android:id="@+id/textView4"
@@ -45,7 +50,12 @@
         android:textColor="#FBFBFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTraining" />
+        app:layout_constraintTop_toBottomOf="@+id/textTraining"
+        android:shadowColor="#000000"
+        android:shadowRadius="8"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTraining"
@@ -89,7 +99,7 @@
             android:fontFamily="@font/audiowide"
             android:scaleX="1.5"
             android:scaleY="1.5"
-            android:text="Train..."
+            android:text="Train"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/mainButton" />
 
