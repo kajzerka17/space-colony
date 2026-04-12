@@ -56,6 +56,12 @@ public class MainGameActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button trainingButton = findViewById(R.id.crewTrainingButton);
+        trainingButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainGameActivity.this, TrainingActivity.class);
+            startActivity(intent);
+        });
+
         Button finishDayButton = findViewById(R.id.endDayButton);
         finishDayButton.setOnClickListener(v -> {
             gameManager.endDay();

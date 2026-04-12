@@ -34,6 +34,17 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         //this.clickListener = clickListener;
     }
 
+    public interface OnCrewClickListener {
+        void onCrewClick(CrewMember member);
+    }
+
+    private OnCrewClickListener clickListener;
+
+    public CrewMemberAdapter(List<T> items, OnCrewClickListener clickListener) {
+        this.items = items;
+        this.clickListener = clickListener;
+    }
+
     public void updateData(List<T> newItems) {
         this.items = new ArrayList<>(newItems);
         notifyDataSetChanged();
@@ -74,6 +85,12 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         } else {
             holder.imgCrewMember.setImageResource(R.drawable.green);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            if (clickListener != null) {
+                clickListener.onCrewClick(items.get(position));
+            }
+        });
     }
 
     @Override

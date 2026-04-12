@@ -37,6 +37,7 @@ public class MedbayActivity extends AppCompatActivity {
 
         manager.getMedbay().admit(new Soldier("an"));
         Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewMedbay);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,6 +45,6 @@ public class MedbayActivity extends AppCompatActivity {
         adapter = new MedbayAdapter(medbayCrews);
         recyclerView.setAdapter(adapter);
 
-        backButton.setOnClickListener(v -> finish());
+
     }
 }
