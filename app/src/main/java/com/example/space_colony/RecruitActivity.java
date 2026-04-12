@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +54,10 @@ public class RecruitActivity extends AppCompatActivity {
 
         recruitButton.setOnClickListener(v -> {
             String name = nameInput.getText().toString();
+            if (name.isEmpty()) {
+                Toast.makeText(this, "Name can not be empty", Toast.LENGTH_LONG).show();
+                return;
+            }
             String selectedRole = spinner.getSelectedItem().toString();
 
             CrewMember newMember;

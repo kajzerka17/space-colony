@@ -16,7 +16,12 @@ public abstract class CrewMember {
     private int timesInMedbay;
 
     public CrewMember(String name) {
-        this.name = name;
+        if(name == null || name == "") {
+            this.name = "noname";
+        }
+        else {
+            this.name = name;
+        }
         this.xp = 0;
         this.id = idCounter++;
         this.status = CrewStatus.READY;
