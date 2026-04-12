@@ -18,7 +18,6 @@ import com.example.space_colony.model.Blacksmith;
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.Defender;
 import com.example.space_colony.model.Engineer;
-import com.example.space_colony.model.Fighter;
 import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.Magician;
 import com.example.space_colony.model.Medic;

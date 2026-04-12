@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.space_colony.adapter.CrewMemberAdapter;
+import com.example.space_colony.adapter.MedbayAdapter;
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.GameManager;
+import com.example.space_colony.model.Soldier;
 
 import java.util.List;
 
 public class MedbayActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private CrewMemberAdapter adapter;
+    private MedbayAdapter adapter;
     GameManager manager = GameManager.getInstance();
     private List<CrewMember> medbayCrews = manager.getMedbay().getPatients();
 
@@ -33,12 +34,14 @@ public class MedbayActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        manager.getMedbay().admit(new Soldier("an"));
         Button backButton = findViewById(R.id.backButton);
 
-        recyclerView = findViewById(R.id.recyclerViewMedbay);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewMedbay);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new CrewMemberAdapter(medbayCrews);
+        adapter = new MedbayAdapter(medbayCrews);
         recyclerView.setAdapter(adapter);
 
         backButton.setOnClickListener(v -> finish());

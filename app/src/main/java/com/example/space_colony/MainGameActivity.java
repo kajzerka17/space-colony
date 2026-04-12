@@ -50,7 +50,13 @@ public class MainGameActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button finishDayButton = findViewById(R.id.EndDayButton);
+        Button medbayButton = findViewById(R.id.medbayButton);
+        medbayButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainGameActivity.this, MedbayActivity.class);
+            startActivity(intent);
+        });
+
+        Button finishDayButton = findViewById(R.id.endDayButton);
         finishDayButton.setOnClickListener(v -> {
             gameManager.endDay();
             updateUi();

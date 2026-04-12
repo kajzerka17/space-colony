@@ -24,10 +24,9 @@ import java.util.List;
 
 public class CrewManagerActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private CrewMemberAdapter adapter;
+    CrewMemberAdapter adapter;
 
-     GameManager manager = GameManager.getInstance();
+    GameManager manager = GameManager.getInstance();
      private List<CrewMember> crews = manager.getQuarters().getCrew();
 
 //    private List<CrewMember> crews = new ArrayList<>();
@@ -53,9 +52,8 @@ public class CrewManagerActivity extends AppCompatActivity {
         Button recruitButton = findViewById(R.id.recruitButton);
         Button quartersButton = findViewById(R.id.descriptionButton);
 
-        recyclerView = findViewById(R.id.recyclerViewCrew);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewCrew);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         adapter = new CrewMemberAdapter(crews);
         recyclerView.setAdapter(adapter);
 
