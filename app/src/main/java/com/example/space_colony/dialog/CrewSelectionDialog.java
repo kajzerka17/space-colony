@@ -43,6 +43,7 @@ public class CrewSelectionDialog {
             @Override
             public void onCrewClick(CrewMember member) {
                 listener.onCrewSelected(member);
+                dialog.dismiss();
             }
         });
 

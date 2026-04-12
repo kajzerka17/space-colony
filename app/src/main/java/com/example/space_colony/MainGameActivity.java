@@ -62,6 +62,12 @@ public class MainGameActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button missionButton = findViewById(R.id.missionButton);
+        missionButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainGameActivity.this, ResourceMissionActivity.class);
+            startActivity(intent);
+        });
+
         Button finishDayButton = findViewById(R.id.endDayButton);
         finishDayButton.setOnClickListener(v -> {
             gameManager.endDay();
