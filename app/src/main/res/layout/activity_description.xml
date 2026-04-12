@@ -43,7 +43,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="400dp"
         android:layout_marginTop="50dp"
         app:layout_constraintTop_toBottomOf="@+id/textDescription">
 
@@ -72,14 +72,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Soldier - Power Strike - Twice per mission, deals x1.5 damage and reduces enemy Resilience by 2. Every 20 XP increases Attack by 1."
-                    android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="8"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    />
+                    android:shadowRadius="8"
+                    android:text="Soldier - Power Strike - Twice per mission, deals x1.5 damage and reduces enemy Resilience by 2. Every 20 XP increases Attack by 1."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,16 +100,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="8"
                     android:text="Medic - Refresh - Once per mission, restores 5 Energy to one selected crew member. Every 20 XP increases the healing by 1."
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="#FFFFFF"
-                    android:shadowColor="#000000"
-                    android:shadowRadius="8"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    />
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -132,14 +130,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Defender - Wall of shield - Passive: Resilience is increased by 2 at the start of the mission for its duration. Every 20 XP increases the bonus by 1."
-                    android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="8"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    />
+                    android:shadowRadius="8"
+                    android:text="Defender - Wall of shield - Passive: Resilience is increased by 2 at the start of the mission for its duration. Every 20 XP increases the bonus by 1."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -161,14 +158,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Engineer - Required for Repair missions; increases the probability weight of rolling 3 – 4 Fragments. No direct XP scaling."
-                    android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="8"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    />
+                    android:shadowRadius="8"
+                    android:text="Engineer - Required for Repair missions; increases the probability weight of rolling 3 – 4 Fragments. No direct XP scaling."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -190,14 +186,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Scientist - Increases the Max Energy of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +2 Max Energy."
-                    android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="8"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    />
+                    android:shadowRadius="8"
+                    android:text="Scientist - Increases the Max Energy of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +2 Max Energy."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -219,14 +214,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Magician - Create shortcut - Once per mission, 30% chance to remove the threat directly; 10% chance Magician is sent to Medbay instead; rest chance nothing happens. Every 20 XP increases the success chance of Vanish by 5%, up to 55%."
-                    android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="8"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    />
+                    android:shadowRadius="8"
+                    android:text="Magician - Create shortcut - Once per mission, 30% chance to remove the threat directly; 10% chance Magician is sent to Medbay instead; rest chance nothing happens. Every 20 XP increases the success chance of Vanish by 5%, up to 55%."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -248,14 +242,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Blacksmith - Increases the Attack and Resilience of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +1 Attack and +1 Resilience."
-                    android:textAlignment="viewStart"
-                    android:textColor="#FFFFFF"
                     android:shadowColor="#000000"
-                    android:shadowRadius="8"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    />
+                    android:shadowRadius="8"
+                    android:text="Blacksmith - Increases the Attack and Resilience of all fighters. At 3 / 5 / 10 / 20 XP, all fighters gain +1 Attack and +1 Resilience."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
         </LinearLayout>

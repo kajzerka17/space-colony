@@ -34,6 +34,7 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/audiowide"
                 android:text="Crew Member Name"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -49,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:fontFamily="@font/audiowide"
                     android:text="Role"
                     android:textColor="@color/darker_gray"
                     android:textSize="13sp" />
@@ -59,17 +61,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/audiowide"
                     android:minWidth="0dp"
                     android:paddingLeft="20dp"
                     android:text="Day(s) remaining:   "
-                    android:textSize="13sp"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tvTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:fontFamily="@font/audiowide"
                     android:minWidth="0dp"
                     android:paddingLeft="0dp"
                     android:text="Time"
