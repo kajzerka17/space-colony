@@ -8,7 +8,7 @@
     tools:context=".ResourceMissionActivity">
 
     <ImageView
-        android:id="@+id/backgroundResource"
+        android:id="@+id/backgroundRepair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleX="1.25"
@@ -19,10 +19,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/resource" />
+        app:srcCompat="@drawable/repair" />
 
     <TextView
-        android:id="@+id/textMissionResource"
+        android:id="@+id/textMissionRepair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -41,18 +41,18 @@
         />
 
     <TextView
-        android:id="@+id/textResource"
+        android:id="@+id/textRepair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/audiowide"
         android:scaleX="2"
         android:scaleY="2"
-        android:text="Resource gathering"
+        android:text="Repair"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMissionResource"
+        app:layout_constraintTop_toBottomOf="@+id/textMissionRepair"
         android:shadowColor="#000000"
         android:shadowRadius="8"
         android:shadowDx="1"
@@ -60,18 +60,18 @@
         />
 
     <TextView
-        android:id="@+id/textResourceDescription"
+        android:id="@+id/textRepairDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/audiowide"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:text="The base requires resources needed for further development and needs 2 people to look for them. Please choose the appropriate crew."
+        android:text="There have been major complication which led to the base being partially destroyed. Please select an engineer and one more crew member to proceed with the mission."
         android:textColor="#FFFEFE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textResource"
+        app:layout_constraintTop_toBottomOf="@+id/textRepair"
         android:shadowColor="#000000"
         android:shadowRadius="8"
         android:shadowDx="1"
@@ -79,17 +79,17 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewResource"
+        android:id="@+id/recyclerViewRepair"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="20dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/textResourceDescription"
+        app:layout_constraintTop_toBottomOf="@+id/textRepairDescription"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/reosurceChooseButton"
+        android:id="@+id/repairChooseButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,11 +100,11 @@
         android:scaleY="1.5"
         android:text="choose"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewResource"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewRepair"
         app:backgroundTint="@color/mainButton"/>
 
     <Button
-        android:id="@+id/resourceButton"
+        android:id="@+id/repairButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
         android:scaleY="1.5"
         android:text="begin"
         app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewResource"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewRepair"
         app:backgroundTint="@color/mainButton"/>
 
     <Button
@@ -129,6 +129,6 @@
         android:text="go back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewResource"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewRepair"
         app:backgroundTint="@color/mainButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
