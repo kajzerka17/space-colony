@@ -8,7 +8,7 @@
     tools:context=".TrainCrewActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/backgroundTrainCrew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleX="1.25"
@@ -18,4 +18,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/simulator" />
+
+    <TextView
+        android:id="@+id/textChoiceTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.4"
+        android:scaleY="1.4"
+        android:text="Choose a crew member for training"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:shadowColor="#000000"
+        android:shadowRadius="8"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTrainCrew"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/textChoiceTraining"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/audiowide"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="go back"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTrainCrew" />
 </androidx.constraintlayout.widget.ConstraintLayout>
