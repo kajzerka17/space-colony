@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.space_colony.adapter.CrewMemberAdapter;
+import com.example.space_colony.dialog.CrewSelectionDialog;
+import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.Simulator;
 import com.example.space_colony.model.Soldier;
@@ -41,6 +43,20 @@ public class TrainingActivity extends AppCompatActivity {
         simulator.assign(new Soldier("An"));   // testing
         adapter = new CrewMemberAdapter<>(simulator.getAssigned());
         recyclerView.setAdapter(adapter);
+
+        Button selectCrewButton = findViewById(R.id.trainButton);
+
+        selectCrewButton.setOnClickListener(v -> {
+            CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
+                @Override
+                public void onCrewSelected(CrewMember member) {
+                    // one crew get selected to add to training
+                    manager.assignToSimulator(member);
+                    adapter.updateData(simulator.getAssigned());
+                }
+            });
+            dialog.show();
+        });
     }
 
     @Override

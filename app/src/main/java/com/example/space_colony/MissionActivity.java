@@ -52,9 +52,11 @@ public abstract class MissionActivity extends AppCompatActivity {
         CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
             @Override
             public void onCrewSelected(CrewMember member) {
+                // this need to be reconnected to the game mechanism
+                // only temporarily used for testing
                 crewOnMission.add(member);
                 adapter.updateData(crewOnMission);
-                Log.d("HOLA", "onCrewSelected: ");
+                //Log.d("HOLA", "onCrewSelected: ");
             }
         });
         chooseButton.setOnClickListener(v -> {

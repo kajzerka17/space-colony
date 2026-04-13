@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import android.util.Log;
+
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameManager {
+
+    final String TAG = "GAME MANAGER";
 
     // Singleton class
     private static GameManager instance;
@@ -192,10 +196,12 @@ public class GameManager {
     public boolean assignToSimulator(CrewMember cm) {
         if (simulator.canAssign(cm)) {
             simulator.assign(cm);
-            System.out.println(cm.getName() + " assigned to simulator.");
+            //System.out.println(cm.getName() + " assigned to simulator.");
+            Log.d(TAG, "assignToSimulator successfully");
             return true;
         }
-        System.out.println(cm.getName() + " cannot be assigned to simulator.");
+        Log.d(TAG, "assignToSimulator failed");
+        //System.out.println(cm.getName() + " cannot be assigned to simulator.");
         return false;
     }
 
