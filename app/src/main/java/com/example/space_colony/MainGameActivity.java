@@ -37,6 +37,7 @@ public class MainGameActivity extends AppCompatActivity {
 
         dayTextView = findViewById(R.id.screenDayCount);
         powerTextView = findViewById(R.id.screenPowerCount);
+        fragmentsTextView = findViewById(R.id.textFragmentsTop);
 
         if (gameManager.getCurrentMission() == null) {
             gameManager.startDay();
@@ -73,6 +74,12 @@ public class MainGameActivity extends AppCompatActivity {
             gameManager.endDay();
             updateUi();
         });
+
+        Button shopButton = findViewById(R.id.shopButton);
+        shopButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainGameActivity.this, UpgradeActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -84,5 +91,6 @@ public class MainGameActivity extends AppCompatActivity {
     private void updateUi() {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
         powerTextView.setText(String.valueOf(gameManager.getPower()));
+        fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
     }
 }

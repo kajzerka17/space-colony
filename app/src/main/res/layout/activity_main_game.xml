@@ -130,10 +130,44 @@
         android:shadowDy="1"
         />
 
+    <Button
+        android:id="@+id/shopButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="72dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/audiowide"
+        android:text="SHOP"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:padding="0dp"
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textFragmentsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/audiowide"
+        android:text="Fragments: 0"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:shadowColor="#000000"
+        android:shadowRadius="6"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shopButton" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
