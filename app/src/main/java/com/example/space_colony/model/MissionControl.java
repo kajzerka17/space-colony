@@ -10,7 +10,12 @@ import java.util.Random;
 
 public class MissionControl {
     private Mission currentMission;
-    private List<CrewMember> selectedCrew;
+//    private List<CrewMember> selectedCrew;
+
+    public MissionControl(int day) {
+        //this.currentMission = generateMission(day);
+    }
+
     public Mission generateMission(int day) {
         Random rand = new Random();
         int roll = rand.nextInt(100);
@@ -30,45 +35,38 @@ public class MissionControl {
         }
         return currentMission;
     }
-    public void selectCrew(List<CrewMember> crew) {
-        if (crew == null){
-            this.selectedCrew = new ArrayList<>();
-        }else{
-            this.selectedCrew = new ArrayList<>(crew);
-        }
+//    public void selectCrew(List<CrewMember> crew) {
+//        if (crew == null){
+//            this.selectedCrew = new ArrayList<>();
+//        }else{
+//            this.selectedCrew = new ArrayList<>(crew);
+//        }
+//    }
+
+    public void addCrew(CrewMember crew) {
+        currentMission.addParticipant(crew);
     }
+
     public MissionResult launchMission() {
-        if (!canLaunch()) {
+        if (currentMission == null && !currentMission.canLaunch()) {
             return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
-        }
-
-        currentMission.getParticipants().clear();
-        currentMission.getParticipants().addAll(selectedCrew);
-
-        if (!currentMission.isValid()) {
-            currentMission.getParticipants().clear();
-            return new MissionResult(false, 0, 0, "Selected crew is invalid for this mission.", new ArrayList<>());
-        }
-
-        for (CrewMember member : selectedCrew) {
-            member.setStatus(CrewStatus.ON_MISSION);
         }
 
         MissionResult result = currentMission.resolve();
 
-        selectedCrew.clear();
         currentMission = null;
 
         return result;
     }
-    public boolean canLaunch() {
-        return currentMission != null
-                && selectedCrew != null
-                && selectedCrew.size() >= 2;
-    }
+
+//    public boolean canLaunch() {
+//        return currentMission != null
+//                && currentMission.getParticipants() != null
+//                && currentMission.getParticipants().size() >= 2;
+//    }
 
     public int getSquadSize() {
-        return selectedCrew != null ? selectedCrew.size() : 0;
+        return currentMission.getParticipants() != null ? currentMission.getParticipants().size() : 0;
     }
     public Mission getCurrentMission() {
         return currentMission;

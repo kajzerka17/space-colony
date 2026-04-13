@@ -47,7 +47,7 @@ public class GameManager {
         // Initialize subsystems
         this.quarters      = new Quarters(baseMaxCrew);
         this.simulator     = new Simulator();
-        this.missionControl = new MissionControl();
+        this.missionControl = new MissionControl(1);
         this.medbay        = new Medbay();
         this.statistics    = new Statistics();
     }
@@ -61,7 +61,7 @@ public class GameManager {
 
         this.quarters = new Quarters(baseMaxCrew);
         this.simulator = new Simulator();
-        this.missionControl = new MissionControl();
+        this.missionControl = new MissionControl(1);
         this.medbay = new Medbay();
         this.statistics = new Statistics();
     }
@@ -146,33 +146,33 @@ public class GameManager {
 //    }
 
     // what is this i dont know yet.
-    public MissionResult launchMission() {
-        MissionResult result = missionControl.launchMission();
-
-        if (result == null) {
-            return new MissionResult(false, 0, 0, "Mission launch failed.", new java.util.ArrayList<>());
-        }
-
-        if (result.getSummary().equals("Mission cannot be launched.")
-                || result.getSummary().equals("Selected crew is invalid for this mission.")) {
-            return result;
-        }
-
-        fragments += result.getFragmentsGained();
-        statistics.recordMission();
-
-        for (CrewMember cm : result.getCrewToMedbay()) {
-            medbay.admit(cm);
-        }
-
-        for (CrewMember cm : quarters.getCrew()) {
-            if (cm.getStatus() == CrewStatus.ON_MISSION) {
-                cm.setStatus(CrewStatus.READY);
-            }
-        }
-
-        return result;
-    }
+//    public MissionResult launchMission() {
+//        MissionResult result = missionControl.launchMission();
+//
+//        if (result == null) {
+//            return new MissionResult(false, 0, 0, "Mission launch failed.", new java.util.ArrayList<>());
+//        }
+//
+//        if (result.getSummary().equals("Mission cannot be launched.")
+//                || result.getSummary().equals("Selected crew is invalid for this mission.")) {
+//            return result;
+//        }
+//
+//        fragments += result.getFragmentsGained();
+//        statistics.recordMission();
+//
+//        for (CrewMember cm : result.getCrewToMedbay()) {
+//            medbay.admit(cm);
+//        }
+//
+//        for (CrewMember cm : quarters.getCrew()) {
+//            if (cm.getStatus() == CrewStatus.ON_MISSION) {
+//                cm.setStatus(CrewStatus.READY);
+//            }
+//        }
+//
+//        return result;
+//    }
 
     private void distributeXP(int xp, List<CrewMember> crew) {
         for (CrewMember cm : crew) {
@@ -205,8 +205,8 @@ public class GameManager {
         return false;
     }
 
-    public void selectCrewForMission(List<CrewMember> crew) {
-        missionControl.selectCrew(crew);
+    public void addCrewForMission(CrewMember crew) {
+        missionControl.addCrew(crew);
     }
 
 //    public int getSquadSize() {

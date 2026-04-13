@@ -1,4 +1,6 @@
 package com.example.space_colony.model;
+import static com.example.space_colony.model.CrewStatus.ON_MISSION;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +26,21 @@ public abstract class Mission {
         return type;
     }
 
-    public boolean isValid(){
-        return participants != null && participants.size() >= 2;
+    public void addParticipant(CrewMember crew) {
+        if(crew.isAvailable()) {
+            this.participants.add(crew);
+            crew.status = ON_MISSION;
+        }
     }
-
-    public void addParticipants(List<? extends CrewMember> crew){
-        this.participants.addAll(crew);
-    }
+//    public void addParticipants(List<? extends CrewMember> crew){
+//        this.participants.addAll(crew);
+//    }
 
     public List<CrewMember> getParticipants() {
         return participants;
+    }
+
+    public boolean canLaunch() {
+        return participants != null && participants.size() >= 2;
     }
 }

@@ -53,8 +53,12 @@ public abstract class MissionActivity extends AppCompatActivity {
             CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
                 @Override
                 public void onCrewSelected(CrewMember member) {
-                    crewOnMission.add(member);
-                    adapter.updateData(crewOnMission);
+                    // this list and action is only for the purpose of testing. plz dont trust me that much!
+//                    crewOnMission.add(member);
+//                    adapter.updateData(crewOnMission);
+
+                    manager.addCrewForMission(member);
+                    adapter.updateData(manager.getQuarters().getAvailableCrew());
                     Log.d("HOLA", "onCrewSelected: ");
                 }
             });

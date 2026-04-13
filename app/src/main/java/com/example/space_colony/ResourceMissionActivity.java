@@ -20,8 +20,6 @@ import com.example.space_colony.model.MissionResult;
 
 public class ResourceMissionActivity extends MissionActivity {
 
-
-
     @Override
     protected int getLayout() {
         return R.layout.activity_resource_mission;
