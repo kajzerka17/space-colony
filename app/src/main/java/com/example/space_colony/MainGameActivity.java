@@ -65,7 +65,8 @@ public class MainGameActivity extends AppCompatActivity {
 
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainGameActivity.this, ResourceMissionActivity.class);
+            //im testing this shit plz dont change
+            Intent intent = new Intent(MainGameActivity.this, RepairMissionActivity.class);
             startActivity(intent);
         });
 
