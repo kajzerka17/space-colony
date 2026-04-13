@@ -22,7 +22,7 @@ public class CombatMission extends Mission {
     }
 
     @Override
-    public boolean isValid() {
+    public boolean canLaunch() {
         if (participants == null || participants.size() < 2) {
             return false;
         }
@@ -83,7 +83,7 @@ public class CombatMission extends Mission {
 
     @Override
     public MissionResult resolve() {
-        if (!isValid()) {
+        if (!canLaunch()) {
             return new MissionResult(false,0, 0, "Invalid combat mission", new ArrayList<>());
         }
 

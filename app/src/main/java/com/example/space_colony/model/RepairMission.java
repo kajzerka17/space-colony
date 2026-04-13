@@ -10,8 +10,8 @@ public class RepairMission extends Mission{
         return new MissionResult(true,0, 0, getSummary(), null);
     }
     @Override
-    public boolean isValid() {
-        return super.isValid() && hasEngineer();
+    public boolean canLaunch() {
+        return super.canLaunch() && hasEngineer();
     }
     protected boolean hasEngineer() {
         for (CrewMember member : participants) {

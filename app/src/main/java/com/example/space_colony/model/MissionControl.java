@@ -47,7 +47,19 @@ public class MissionControl {
         currentMission.addParticipant(crew);
     }
 
-    public MissionResult launchMission() {
+//    public MissionResult launchMission() {
+//        if (currentMission == null && !currentMission.canLaunch()) {
+//            return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
+//        }
+//
+//        MissionResult result = currentMission.resolve();
+//
+//        currentMission = null;
+//
+//        return result;
+//    }
+
+        public MissionResult launchMission() {
         if (currentMission == null && !currentMission.canLaunch()) {
             return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
         }
