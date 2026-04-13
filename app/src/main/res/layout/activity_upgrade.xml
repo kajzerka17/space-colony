@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/audiowide"
-            android:text="0"
+            android:text="0✦"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
@@ -107,7 +107,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/audiowide"
                     android:text="Cost: 3 Fragments"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
@@ -116,8 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:fontFamily="@font/audiowide"
-                    android:text="+10 base Power per day"
+                    android:text="Increases base Power generation by +10 per day"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
@@ -161,7 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Simulator grants more XP"
+                    android:text="Increases XP gained from Simulator training."
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
