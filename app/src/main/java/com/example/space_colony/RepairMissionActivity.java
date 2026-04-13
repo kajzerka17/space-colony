@@ -14,4 +14,9 @@ public class RepairMissionActivity extends MissionActivity {
     protected int getLayout() {
         return R.layout.activity_repair_mission;
     }
+
+    @Override
+    protected void setBeginButton() {
+
+    }
 }

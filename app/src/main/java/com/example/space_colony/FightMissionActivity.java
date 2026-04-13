@@ -14,4 +14,9 @@ public class FightMissionActivity extends MissionActivity {
     protected int getLayout() {
         return R.layout.activity_fight_mission;
     }
+
+    @Override
+    protected void setBeginButton() {
+
+    }
 }
