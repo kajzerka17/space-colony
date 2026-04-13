@@ -109,13 +109,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="70dp"
         android:fontFamily="@font/audiowide"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="begin"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewRepair"
-        app:backgroundTint="@color/mainButton"/>
+        app:backgroundTint="@color/mainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewRepair" />
 
     <Button
         android:id="@+id/backButton"
