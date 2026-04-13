@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.space_colony.model.GameManager;
+import com.example.space_colony.model.MissionControl;
 
 public class MainGameActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainGameActivity extends AppCompatActivity {
     private TextView dayTextView;
     private TextView fragmentsTextView;
     private TextView powerTextView;
+    private TextView missionTypeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MainGameActivity extends AppCompatActivity {
         dayTextView = findViewById(R.id.screenDayCount);
         powerTextView = findViewById(R.id.screenPowerCount);
         fragmentsTextView = findViewById(R.id.textFragmentsTop);
+        missionTypeTextView = findViewById(R.id.screenMission);
 
         if (gameManager.getCurrentMission() == null) {
             gameManager.startDay();
@@ -67,8 +70,20 @@ public class MainGameActivity extends AppCompatActivity {
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
             //im testing this shit plz dont change
-            Intent intent = new Intent(MainGameActivity.this, FightMissionActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainGameActivity.this, FightMissionActivity.class);
+//            startActivity(intent);
+            if (String.valueOf(gameManager.getCurrentMission().getType()) == "Resource"){
+                Intent intent = new Intent(MainGameActivity.this, ResourceMissionActivity.class);
+                startActivity(intent);
+            }
+            if (String.valueOf(gameManager.getCurrentMission().getType()) == "Combat"){
+                Intent intent = new Intent(MainGameActivity.this, FightMissionActivity.class);
+                startActivity(intent);
+            }
+            if (String.valueOf(gameManager.getCurrentMission().getType()) == "Repair"){
+                Intent intent = new Intent(MainGameActivity.this, RepairMissionActivity.class);
+                startActivity(intent);
+            }
         });
 
         Button finishDayButton = findViewById(R.id.endDayButton);
@@ -89,10 +104,10 @@ public class MainGameActivity extends AppCompatActivity {
         super.onResume();
         updateUi();
     }
-
     private void updateUi() {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
         powerTextView.setText(String.valueOf(gameManager.getPower()));
         fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
+        missionTypeTextView.setText(String.valueOf(gameManager.getCurrentMission().getType()));
     }
 }

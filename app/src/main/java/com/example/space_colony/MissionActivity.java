@@ -42,33 +42,32 @@ public abstract class MissionActivity extends AppCompatActivity {
 
     protected void setupLayout() {
         Button chooseButton = findViewById(R.id.chooseButton);
-        Button beginButton = findViewById(R.id.beginButton);
+//        Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
         crewOnMission = new ArrayList<CrewMember>();
         adapter = new CrewMemberAdapter<>(crewOnMission);
         recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
-            @Override
-            public void onCrewSelected(CrewMember member) {
-                // this need to be reconnected to the game mechanism
-                // only temporarily used for testing
-                crewOnMission.add(member);
-                adapter.updateData(crewOnMission);
-                //Log.d("HOLA", "onCrewSelected: ");
-            }
-        });
         chooseButton.setOnClickListener(v -> {
+            CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
+                @Override
+                public void onCrewSelected(CrewMember member) {
+                    crewOnMission.add(member);
+                    adapter.updateData(crewOnMission);
+                    Log.d("HOLA", "onCrewSelected: ");
+                }
+            });
             dialog.show();
         });
         backButton.setOnClickListener(v -> {
             finish();
         });
-        beginButton.setOnClickListener(v -> {
-            //launch the mission
-        });
+//        beginButton.setOnClickListener(v -> {
+//            //launch the mission
+//        });
     }
 
     protected abstract int getLayout();
+    protected abstract void setBeginButton();
 }

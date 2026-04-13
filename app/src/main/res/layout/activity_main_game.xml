@@ -99,20 +99,19 @@
         android:id="@+id/textMission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/audiowide"
         android:scaleX="1"
         android:scaleY="1"
-        android:text="Mission Description: "
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPower"
         android:shadowColor="#000000"
-        android:shadowRadius="8"
         android:shadowDx="1"
         android:shadowDy="1"
-        />
+        android:shadowRadius="8"
+        android:text="Mission Type: "
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPower" />
 
     <TextView
         android:id="@+id/screenMission"

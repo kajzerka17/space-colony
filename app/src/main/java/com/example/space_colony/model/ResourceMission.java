@@ -31,6 +31,6 @@ public class ResourceMission extends Mission {
     }
 
     protected String getSummary() {
-        return "Resources collected: " + fragmentsGained + " fragments.";
+        return "jajo " + fragmentsGained;
     }
 }
