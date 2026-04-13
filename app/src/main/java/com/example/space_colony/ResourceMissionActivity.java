@@ -1,6 +1,7 @@
 package com.example.space_colony;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -27,7 +28,15 @@ public class ResourceMissionActivity extends MissionActivity {
     }
 
     @Override
+    //FIXIT i dont fucking know :))
     protected void setBeginButton() {
-
+        Button btnbegin = findViewById(R.id.beginButton);
+        btnbegin.setOnClickListener(v -> {
+            MissionResult result = GameManager.getInstance().launchMission();
+            Intent intent = new Intent();
+            intent.putExtra("fragments gained",result.getFragmentsGained());
+            setResult(RESULT_OK, intent);
+            finish();
+        });
     }
 }

@@ -31,6 +31,7 @@ public class ResourceMission extends Mission {
     }
 
     protected String getSummary() {
-        return "jajo " + fragmentsGained;
+        //i dont know if this has to be string so its like that
+        return "" + fragmentsGained;
     }
 }
