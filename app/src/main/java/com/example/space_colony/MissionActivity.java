@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.space_colony.adapter.CrewMemberAdapter;
@@ -43,8 +44,11 @@ public abstract class MissionActivity extends AppCompatActivity {
         Button chooseButton = findViewById(R.id.chooseButton);
         Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
-        crewOnMission = new ArrayList<>();
+        crewOnMission = new ArrayList<CrewMember>();
         adapter = new CrewMemberAdapter<>(crewOnMission);
+        recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
         CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
             @Override
             public void onCrewSelected(CrewMember member) {
