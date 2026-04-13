@@ -16,10 +16,14 @@ import com.example.space_colony.dialog.CrewSelectionDialog;
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.GameManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class MissionActivity extends AppCompatActivity {
     protected GameManager manager;
     protected RecyclerView recyclerView;
     protected CrewMemberAdapter adapter;
+    protected List<CrewMember> crewOnMission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +43,13 @@ public abstract class MissionActivity extends AppCompatActivity {
         Button chooseButton = findViewById(R.id.chooseButton);
         Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
+        crewOnMission = new ArrayList<>();
+        adapter = new CrewMemberAdapter<>(crewOnMission);
         CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
             @Override
             public void onCrewSelected(CrewMember member) {
+                crewOnMission.add(member);
+                adapter.updateData(crewOnMission);
                 Log.d("HOLA", "onCrewSelected: ");
             }
         });
