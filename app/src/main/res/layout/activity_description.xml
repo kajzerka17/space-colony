@@ -57,8 +57,12 @@
                 android:id="@+id/redCrew"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:background="#66000000"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingLeft="5dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp">
 
                 <ImageView
                     android:id="@+id/imageViewRed"
@@ -86,7 +90,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingBottom="0dp"
+                android:background="#66000000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageViewCyan"
@@ -116,7 +123,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingBottom="0dp"
+                android:background="#66000000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageViewGreen"
@@ -144,7 +154,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingBottom="0dp"
+                android:background="#66000000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageViewOrange"
@@ -172,7 +185,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingBottom="0dp"
+                android:background="#66000000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageViewPink"
@@ -200,7 +216,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingBottom="0dp"
+                android:background="#66000000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageViewPurple"
@@ -228,7 +247,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="0dp">
+                android:paddingBottom="0dp"
+                android:background="#66000000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageViewWhite"

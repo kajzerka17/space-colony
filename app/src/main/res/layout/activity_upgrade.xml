@@ -107,6 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/audiowide"
                     android:text="Cost: 3 Fragments"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
@@ -115,6 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/audiowide"
                     android:text="+10 base Power per day"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
