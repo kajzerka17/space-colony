@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spacecolony" >
         <activity android:name=".UpgradeActivity" />
+        <activity android:name=".StatisticsActivity" />
         <activity
             android:name=".RepairMissionActivity"
             android:exported="false" />
