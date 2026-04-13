@@ -3,6 +3,7 @@ package com.example.space_colony;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -76,7 +77,7 @@ public class MainGameActivity extends AppCompatActivity {
             updateUi();
         });
 
-        Button shopButton = findViewById(R.id.shopButton);
+        ImageButton shopButton = findViewById(R.id.shopButton);
         shopButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainGameActivity.this, UpgradeActivity.class);
             startActivity(intent);
