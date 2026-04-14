@@ -24,7 +24,7 @@ public class FightMissionActivity extends MissionActivity {
     protected void setBeginButton() {
         Button btnBegin = findViewById(R.id.beginButton);
         btnBegin.setOnClickListener(v -> {
-            MissionResult result = manager.launchMission();
+            MissionResult result = GameManager.getInstance().launchMission();
             startActivity(new Intent(this, FightMissionCombatActivity.class));
 //            if (result == null) {
 //                // turn-based, go to combat screen

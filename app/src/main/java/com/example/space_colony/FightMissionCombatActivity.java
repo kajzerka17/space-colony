@@ -101,14 +101,13 @@ public class FightMissionCombatActivity extends AppCompatActivity {
 //    }
 
     private void showResult(MissionResult result) {
-        Log.d("SSS","SSS");
-//        combatLayout.setVisibility(View.GONE);
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.fight_mission_end_layout);
-        TextView resultText = findViewById(R.id.fightResultText);
-        resultText.setText("result.getSummary()");
 
-        Button buttonAccept = findViewById(R.id.btnAccept);
+        TextView resultText = dialog.findViewById(R.id.fightResultText);
+        resultText.setText(result.getSummary()); // also fix string
+
+        Button buttonAccept = dialog.findViewById(R.id.btnAccept);
         buttonAccept.setOnClickListener(v -> {
             dialog.dismiss();
             finish();
