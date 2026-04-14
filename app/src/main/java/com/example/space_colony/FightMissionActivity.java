@@ -30,7 +30,7 @@ public class FightMissionActivity extends MissionActivity {
 //                // turn-based, go to combat screen
 //                startActivity(new Intent(this, FightMissionActivity.class));
 //            } else {
-//                // show result if it failed validation
+//                // show result if it failed validation.
 //
 //            }
         });
