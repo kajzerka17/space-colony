@@ -45,11 +45,10 @@ public abstract class MissionActivity extends AppCompatActivity {
 //        Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
         crewOnMission = new ArrayList<CrewMember>();
-        adapter = new CrewMemberAdapter<>(crewOnMission);
+        adapter = new CrewMemberAdapter<>(manager.getCurrentMission().getParticipants());
         recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.updateData(manager.getCurrentMission().getParticipants());
         chooseButton.setOnClickListener(v -> {
             CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
                 @Override
