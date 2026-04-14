@@ -48,8 +48,10 @@ public class RepairMissionActivity extends MissionActivity {
             Button btnAccept = resultDialog.findViewById(R.id.btnAccept);
 
             if (result.isSuccess()) {
+                manager.applyResult(result);
                 resultText.setText("The repair mission was successful!");
             } else {
+                manager.applyResult(result);
                 resultText.setText("The repair mission was not successful! Game Over !!!");
                 //here we replace the save file for a fresh one because the player died
 //                manager.resetGame();

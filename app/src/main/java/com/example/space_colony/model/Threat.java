@@ -89,24 +89,14 @@ public class Threat {
         }
     }
 
-    public int attackTarget(Fighter target) {
-        int attackVariation = randomInRange(-1, 1);
-        int actualAttack = attack + attackVariation;
-        int damage = attack - target.getEffectiveResilience();
-
-        if (damage < 0) {
-            damage = 0;
-        }
-
-        target.takeDamage(damage);
-        return damage;
-    }
 
     public void performAttack(Fighter fighter) {
-        int damage = attack - fighter.getEffectiveResilience();
+        int attackVariation = randomInRange(-1, 1);
+        int actualAttack = attack + attackVariation;
+        int damage = actualAttack - fighter.getEffectiveResilience();
 
-        if (damage < 0) {
-            damage = 0;
+        if (damage < 1) {
+            damage = 1;
         }
 
         fighter.takeDamage(damage);

@@ -68,7 +68,7 @@ public class GameManager {
         this.medbay = new Medbay();
         this.statistics = new Statistics();
 
-
+        startDay();
         recruit(new Medic("An"));
         recruit(new Soldier("Gracjan"));
         recruit(new Engineer("engineer"));
@@ -166,8 +166,6 @@ public class GameManager {
 
          MissionResult result = missionControl.launchMission();
 
-
-
          applyResult(result);
          return result;
      }
@@ -185,6 +183,7 @@ public class GameManager {
 
         for (CrewMember cm : quarters.getCrew()) {
             if (cm.getStatus() == CrewStatus.ON_MISSION) {
+                cm.restoreEnergy();
                 cm.setStatus(CrewStatus.READY);
             }
         }

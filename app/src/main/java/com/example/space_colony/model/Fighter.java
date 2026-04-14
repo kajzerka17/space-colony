@@ -17,15 +17,16 @@ public abstract class Fighter extends CrewMember{
     }
     public int getEffectiveResilience() { return resilience + bonusResilience; }
     public int getEffectiveAttack() { return attack + bonusAttack; }
-    public int getEffectiveMaxEnergy() { return energy + bonusMaxEnergy; }
+    public int getEffectiveMaxEnergy() { return maxEnergy + bonusMaxEnergy; }
+    @Override
     public void restoreEnergy() {
         this.energy = this.getEffectiveMaxEnergy();
     }
     public void performAttack(Threat target) {
         int damage = this.getEffectiveAttack() - target.getResilience();
 
-        if (damage < 0) {
-            damage = 0;
+        if (damage < 1) {
+            damage = 1;
         }
 
         target.takeDamage(damage);
@@ -38,4 +39,5 @@ public abstract class Fighter extends CrewMember{
         this.energy = max(this.energy,getEffectiveMaxEnergy());
     }
     abstract void useSpecialSkill(Threat target, Fighter ally);
+
 }
