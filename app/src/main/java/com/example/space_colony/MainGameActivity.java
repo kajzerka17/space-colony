@@ -111,7 +111,7 @@ public class MainGameActivity extends AppCompatActivity {
         if (gameManager.getCurrentMission() != null) {
             missionTypeTextView.setText(gameManager.getCurrentMission().getType());
         } else {
-            missionTypeTextView.setText("No mission");
+            missionTypeTextView.setText("Mission finished");
         }
     }
 }

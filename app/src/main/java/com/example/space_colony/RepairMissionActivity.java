@@ -53,6 +53,7 @@ public class RepairMissionActivity extends MissionActivity {
                 resultText.setText("The repair mission was not successful! Game Over !!!");
                 //here we replace the save file for a fresh one because the player died
                 manager.resetGame();
+                manager.startDay();
             }
 
             btnAccept.setOnClickListener(d -> {
