@@ -71,6 +71,7 @@ public class GameManager {
 
         recruit(new Medic("An"));
         recruit(new Soldier("Gracjan"));
+        recruit(new Engineer("engineer"));
     }
 
     // dont think we need this
