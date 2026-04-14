@@ -51,6 +51,8 @@ public class GameManager {
         this.missionControl = new MissionControl(1);
         this.medbay        = new Medbay();
         this.statistics    = new Statistics();
+
+
     }
 
     public void resetGame() {
@@ -65,6 +67,10 @@ public class GameManager {
         this.missionControl = new MissionControl(1);
         this.medbay = new Medbay();
         this.statistics = new Statistics();
+
+
+        recruit(new Medic("An"));
+        recruit(new Soldier("Gracjan"));
     }
 
     // dont think we need this
@@ -167,7 +173,7 @@ public class GameManager {
          return result;
      }
 
-    private void applyResult(MissionResult result) {
+    public void applyResult(MissionResult result) {
         fragments += result.getFragmentsGained();
         statistics.recordMission();
 

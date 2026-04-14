@@ -138,7 +138,7 @@ public class CombatMission extends Mission {
                 case "attack":
                     fighter.performAttack(threat);
                     break;
-                case "specialAttack":
+                case "special":
                     //fighter.useSpecialSkill(threat,ally);
                     break;
             }
