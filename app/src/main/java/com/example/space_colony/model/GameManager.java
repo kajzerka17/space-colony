@@ -2,6 +2,7 @@ package com.example.space_colony.model;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
@@ -145,34 +146,41 @@ public class GameManager {
 //        return missionControl.canLaunch();
 //    }
 
-    // what is this i dont know yet.
-//    public MissionResult launchMission() {
-//        MissionResult result = missionControl.launchMission();
-//
-//        if (result == null) {
-//            return new MissionResult(false, 0, 0, "Mission launch failed.", new java.util.ArrayList<>());
-//        }
-//
-//        if (result.getSummary().equals("Mission cannot be launched.")
-//                || result.getSummary().equals("Selected crew is invalid for this mission.")) {
-//            return result;
-//        }
-//
-//        fragments += result.getFragmentsGained();
-//        statistics.recordMission();
-//
-//        for (CrewMember cm : result.getCrewToMedbay()) {
-//            medbay.admit(cm);
-//        }
-//
-//        for (CrewMember cm : quarters.getCrew()) {
-//            if (cm.getStatus() == CrewStatus.ON_MISSION) {
-//                cm.setStatus(CrewStatus.READY);
-//            }
-//        }
-//
-//        return result;
-//    }
+     // what is this i dont know yet.
+     public MissionResult launchMission() {
+         if (missionControl.getCurrentMission() == null ||
+                 !missionControl.getCurrentMission().canLaunch()) {
+             return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
+         }
+
+         if (missionControl.getCurrentMission().isTurnBased()) {
+             return null; // activity handles turn-based
+         }
+
+         MissionResult result = missionControl.launchMission();
+
+         if (!result.isSuccess()) {
+             return result; // failed, return early
+         }
+
+         applyResult(result);
+         return result;
+     }
+
+    private void applyResult(MissionResult result) {
+        fragments += result.getFragmentsGained();
+        statistics.recordMission();
+
+        for (CrewMember cm : result.getCrewToMedbay()) {
+            medbay.admit(cm);
+        }
+
+        for (CrewMember cm : quarters.getCrew()) {
+            if (cm.getStatus() == CrewStatus.ON_MISSION) {
+                cm.setStatus(CrewStatus.READY);
+            }
+        }
+    }
 
     private void distributeXP(int xp, List<CrewMember> crew) {
         for (CrewMember cm : crew) {

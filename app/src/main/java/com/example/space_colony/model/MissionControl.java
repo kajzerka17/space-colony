@@ -59,14 +59,18 @@ public class MissionControl {
 //        return result;
 //    }
 
-        public MissionResult launchMission() {
-        if (currentMission == null && !currentMission.canLaunch()) {
+    public MissionResult launchMission() {
+        if (currentMission == null || !currentMission.canLaunch()) {
             return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
         }
 
         MissionResult result = currentMission.resolve();
 
-        currentMission = null;
+        if (result != null) {
+            // automatic mission finished immediately
+            currentMission = null;
+        }
+        // if null, combat mission is turn-based, activity calls processTurn()
 
         return result;
     }

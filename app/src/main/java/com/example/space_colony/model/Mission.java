@@ -7,13 +7,11 @@ import java.util.List;
 public abstract class Mission {
     protected String type;
     protected int day;
-    protected boolean onGoing;
     protected List<CrewMember> participants;
 
     Mission(String type, int day, List<? extends CrewMember> participants) {
         this.type = type;
         this.day = day;
-        this.onGoing = false;
         if (participants == null){
             this.participants = new ArrayList<>();
         }else {
@@ -44,4 +42,6 @@ public abstract class Mission {
     public boolean canLaunch() {
         return participants != null && participants.size() >= 2;
     }
+
+    public abstract boolean isTurnBased();
 }

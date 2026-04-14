@@ -81,37 +81,95 @@ public class CombatMission extends Mission {
         return null;
     }
 
+//    @Override
+//    public MissionResult resolve() {
+//        if (!canLaunch()) {
+//            return new MissionResult(false,0, 0, "Invalid combat mission", new ArrayList<>());
+//        }
+//
+//        while (!threat.isDefeated() && hasAliveFighter()) {
+//            Fighter fighter = getCurrentFighter();
+//
+//            if (fighter != null) {
+//                // SOS - player could not choose the action yet
+//                fighter.performAttack(threat);
+//
+//                if (!threat.isDefeated()) {
+//                    threat.performAttack(fighter);
+//                }
+//
+//                currentTurn = currentTurn + 1;
+//            }
+//        }
+//
+//        List<CrewMember> aliveFighter = getAliveFighter();
+//        List<CrewMember> defeatedFighter = getDefeatedFighter();
+//        if (threat.isDefeated()) {
+//            for (int i = 0; i < aliveFighter.size(); i++) {
+//                aliveFighter.get(i).gainXp(10);
+//            }
+//
+//            return new MissionResult(true,10, 0, "Threat defeated", defeatedFighter);
+//        }
+//
+//        return new MissionResult(false,0, 0, "All fighters defeated", defeatedFighter);
+//    }
+
+
     @Override
     public MissionResult resolve() {
         if (!canLaunch()) {
-            return new MissionResult(false,0, 0, "Invalid combat mission", new ArrayList<>());
+            return new MissionResult(false, 0, 0, "Invalid combat mission", new ArrayList<>());
         }
+        return null; // null means turn-based, activity drives it
+    }
 
-        while (!threat.isDefeated() && hasAliveFighter()) {
-            Fighter fighter = getCurrentFighter();
+    // call this once to start
+    public void startMission() {
+        currentTurn = 0;
+    }
 
-            if (fighter != null) {
-                // SOS - player could not choose the action yet
-                fighter.performAttack(threat);
+    // call this each time the player picks an action
+    public MissionResult processTurn(String action) {
+        Fighter fighter = getCurrentFighter();
 
-                if (!threat.isDefeated()) {
-                    threat.performAttack(fighter);
-                }
-
-                currentTurn = currentTurn + 1;
+        if (fighter != null) {
+            switch (action) {
+                case "attack":
+                    fighter.performAttack(threat);
+                    break;
+                case "specialAttack":
+                    //fighter.useSpecialSkill(threat,ally);
+                    break;
             }
+
+            if (!threat.isDefeated()) {
+                threat.performAttack(fighter);
+            }
+
+            currentTurn++;
         }
 
-        List<CrewMember> aliveFighter = getAliveFighter();
-        List<CrewMember> defeatedFighter = getDefeatedFighter();
+        // check win/lose condition after each turn
         if (threat.isDefeated()) {
-            for (int i = 0; i < aliveFighter.size(); i++) {
-                aliveFighter.get(i).gainXp(10);
+            for (CrewMember member : getAliveFighter()) {
+                member.gainXp(10);
             }
-
-            return new MissionResult(true,10, 0, "Threat defeated", defeatedFighter);
+            return new MissionResult(true, 10, 0, "Threat defeated", getDefeatedFighter());
         }
 
-        return new MissionResult(false,0, 0, "All fighters defeated", defeatedFighter);
+        if (!hasAliveFighter()) {
+            return new MissionResult(false, 0, 0, "All fighters defeated", getDefeatedFighter());
+        }
+
+        return null; // null means mission is still ongoing
+    }
+
+    public boolean isOngoing() {
+        return !threat.isDefeated() && hasAliveFighter();
+    }
+
+    public boolean isTurnBased() {
+        return true;
     }
 }
