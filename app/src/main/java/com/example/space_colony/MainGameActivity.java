@@ -100,7 +100,7 @@ public class MainGameActivity extends AppCompatActivity {
     }
     private void updateUi() {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
-        powerTextView.setText(String.valueOf(gameManager.getPower()));
+        powerTextView.setText(String.valueOf(gameManager.getPower())+"/"+gameManager.getMaxPower());
         fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
         if (gameManager.getCurrentMission() != null) {
             missionTypeTextView.setText(gameManager.getCurrentMission().getType());

@@ -12,14 +12,14 @@
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/audiowide"
         android:minWidth="100dp"
-        android:text="⠀⠀⠀⠀⠀Mission Result⠀⠀⠀⠀⠀"
+        android:text="⠀⠀⠀⠀⠀⠀⠀Mission Result⠀⠀⠀⠀⠀"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/ResourceResultText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/audiowide"
         android:text="You've gathered placeholder fragments!"

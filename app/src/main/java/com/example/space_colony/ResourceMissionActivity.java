@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -38,12 +39,23 @@ public class ResourceMissionActivity extends MissionActivity {
             MissionResult result = manager.launchMission();
 
             if (result != null && result.isSuccess()) {
-                Toast.makeText(this,
-                        "Mission success! +" + result.getFragmentsGained() + " fragments",
-                        Toast.LENGTH_SHORT).show();
-            }
+                Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.resource_mission_end_dialog_layout);
 
-            finish();
+                TextView resultText = dialog.findViewById(R.id.ResourceResultText);
+                resultText.setText("You've gathered " + result.getFragmentsGained() + " fragments!");
+
+                Button btnAccept = dialog.findViewById(R.id.btnAccept);
+                btnAccept.setOnClickListener(d -> {
+                    dialog.dismiss();
+                    finish();
+                });
+
+                dialog.setCancelable(false); // force them to press OK
+                dialog.show();
+            } else {
+                finish();
+            }
         });
     }
 }

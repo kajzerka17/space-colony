@@ -265,6 +265,7 @@ public class GameManager {
     public int getCurrentDay()              { return currentDay; }
     public int getFragments()               { return fragments; }
     public int getPower()                   { return power; }
+    public int getMaxPower(){return maxPower;}
     public Quarters getQuarters()           { return quarters; }
     public Simulator getSimulator()         { return simulator; }
     public MissionControl getMissionControl() { return missionControl; }
