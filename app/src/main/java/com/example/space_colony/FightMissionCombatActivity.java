@@ -113,7 +113,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
             dialog.dismiss();
             finish();
         });
-
+        dialog.setCancelable(false);
         dialog.show();
     }
 }

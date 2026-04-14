@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,12 +28,14 @@ import com.example.space_colony.model.Soldier;
 public class RecruitActivity extends AppCompatActivity {
     private EditText nameInput;
     private GameManager manager;
+    private ImageView background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_recruit);
+        background = findViewById(R.id.backgroundRecruit);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -81,5 +84,20 @@ public class RecruitActivity extends AppCompatActivity {
             manager.recruit(newMember);
             finish(); // go back to crew list
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Check if a mission exists and if it is resolved
+        if (manager.getCurrentMission() != null) {
+            if (!manager.getCurrentMission().isResolved()) {
+                // Day background
+                background.setImageResource(R.drawable.quarter);
+            } else {
+                // Night background
+                background.setImageResource(R.drawable.quarternight);
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.space_colony;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import java.util.List;
 public class CrewManagerActivity extends AppCompatActivity {
 
     CrewMemberAdapter adapter;
+    private ImageView background;
 
     GameManager manager = GameManager.getInstance();
      private List<CrewMember> crews = manager.getQuarters().getCrew();
@@ -36,6 +38,7 @@ public class CrewManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_crew_manager);
+        background = findViewById(R.id.backgroundQuarter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -75,5 +78,12 @@ public class CrewManagerActivity extends AppCompatActivity {
         crews = manager.getQuarters().getCrew();
         adapter.updateList(crews);
         adapter.notifyDataSetChanged();
+        if (manager.getCurrentMission() != null) {
+            if (!manager.getCurrentMission().isResolved()) {
+                background.setImageResource(R.drawable.quarter);
+            } else {
+                background.setImageResource(R.drawable.quarternight);
+            }
+        }
     }
 }

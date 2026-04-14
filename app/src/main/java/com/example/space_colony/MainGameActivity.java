@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -26,12 +27,14 @@ public class MainGameActivity extends AppCompatActivity {
     private TextView fragmentsTextView;
     private TextView powerTextView;
     private TextView missionTypeTextView;
+    ImageView background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_game);
+        background = findViewById(R.id.backgroundLounge);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -45,6 +48,7 @@ public class MainGameActivity extends AppCompatActivity {
         powerTextView = findViewById(R.id.screenPowerCount);
         fragmentsTextView = findViewById(R.id.textFragmentsTop);
         missionTypeTextView = findViewById(R.id.screenMission);
+
 
         boolean fromLoad = getIntent().getBooleanExtra("fromLoad", false);
 
@@ -69,6 +73,7 @@ public class MainGameActivity extends AppCompatActivity {
         Button trainingButton = findViewById(R.id.crewTrainingButton);
         trainingButton.setOnClickListener(v -> {
             if (gameManager.getCurrentMission().isResolved()){
+                Toast.makeText(this, "Cannot train at night time", Toast.LENGTH_SHORT).show();
                 return;
             }
             Intent intent = new Intent(MainGameActivity.this, TrainingActivity.class);
@@ -84,6 +89,7 @@ public class MainGameActivity extends AppCompatActivity {
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
             if (gameManager.getCurrentMission().isResolved()){
+                Toast.makeText(this, "Mission has been finished", Toast.LENGTH_SHORT).show();
                 return;
             }
             String type = gameManager.getCurrentMission().getType();
@@ -108,6 +114,10 @@ public class MainGameActivity extends AppCompatActivity {
 
         ImageButton shopButton = findViewById(R.id.shopButton);
         shopButton.setOnClickListener(v -> {
+            if (gameManager.getCurrentMission().isResolved()){
+                Toast.makeText(this, "Cannot buy at night", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent(MainGameActivity.this, UpgradeActivity.class);
             startActivity(intent);
         });
@@ -135,8 +145,10 @@ public class MainGameActivity extends AppCompatActivity {
 
         if (!gameManager.getCurrentMission().isResolved()) {
             missionTypeTextView.setText(gameManager.getCurrentMission().getType());
+            background.setImageResource(R.drawable.lounge);
         } else {
             missionTypeTextView.setText("Mission finished");
+            background.setImageResource(R.drawable.loungenight);
         }
     }
 }

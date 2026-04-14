@@ -43,6 +43,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         holder.tvMissionCount.setText("Missions: " + member.getMissionCompleted());
         holder.tvTrainingCount.setText("Training: " + member.getTrainingSession());
         holder.tvMedbayCount.setText("Medbay: " + member.getTimesInMedbay());
+        holder.tvXPCount.setText("XP: "+ member.getXp());
 
         holder.imgCrewMember.setImageResource(getCrewImageRes(member.getSpecialization()));
     }
@@ -79,6 +80,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         TextView tvMissionCount;
         TextView tvTrainingCount;
         TextView tvMedbayCount;
+        TextView tvXPCount;
 
         public StatisticsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +91,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
             tvMissionCount = itemView.findViewById(R.id.tvMissionCount);
             tvTrainingCount = itemView.findViewById(R.id.tvTrainingCount);
             tvMedbayCount = itemView.findViewById(R.id.tvMedbayCount);
+            tvXPCount = itemView.findViewById(R.id.tvXPCount);
         }
     }
 }
