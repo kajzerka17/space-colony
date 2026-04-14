@@ -6,12 +6,10 @@ import java.util.List;
 public class CombatMission extends Mission {
     private Threat threat;
     private int currentTurn;
-    private boolean isResolved;
     public CombatMission(String type, int day, List<CrewMember> participants, Threat threat){
         super("Combat", day, participants);
         this.threat = threat;
         this.currentTurn = 0;
-        isResolved = false;
     }
 
     public Threat getThreat(){
@@ -171,9 +169,10 @@ public class CombatMission extends Mission {
     public boolean isOngoing() {
         return !threat.isDefeated() && hasAliveFighter();
     }
-    public boolean isResolved() {
-        return isResolved;
-    }
+
+//    public boolean isResolved() {
+//        return isResolved;
+//    }
 
     public boolean isTurnBased() {
         return true;

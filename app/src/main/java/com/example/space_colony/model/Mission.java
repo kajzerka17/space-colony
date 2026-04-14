@@ -7,6 +7,7 @@ import java.util.List;
 public abstract class Mission {
     protected String type;
     protected int day;
+    protected boolean isResolved;
     protected List<CrewMember> participants;
 
     Mission(String type, int day, List<? extends CrewMember> participants) {
@@ -17,6 +18,7 @@ public abstract class Mission {
         }else {
             this.participants = new ArrayList<>(participants);
         }
+        this.isResolved = false;
     }
 
     public abstract MissionResult resolve();
@@ -44,4 +46,8 @@ public abstract class Mission {
     }
 
     public abstract boolean isTurnBased();
+
+    public boolean isResolved() {
+        return isResolved;
+    }
 }

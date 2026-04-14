@@ -33,6 +33,7 @@ public class FightMissionActivity extends MissionActivity {
 //                // show result if it failed validation.
 //
 //            }
+            finish();
         });
     }
 }

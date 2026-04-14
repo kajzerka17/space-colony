@@ -2,6 +2,7 @@ package com.example.space_colony;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -79,12 +80,17 @@ public class MainGameActivity extends AppCompatActivity {
 
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
-            if (gameManager.getCurrentMission() == null) return;
+            if (gameManager.getCurrentMission().isResolved()){
+                return;
+            }
             String type = gameManager.getCurrentMission().getType();
             if (type.equals("Resource")) {
                 startActivity(new Intent(this, ResourceMissionActivity.class));
             } else if (type.equals("Combat")) {
+
+                Log.d("HOLA", "1");
                 startActivity(new Intent(this, FightMissionActivity.class));
+                Log.d("after", "after");
             } else if (type.equals("Repair")) {
                 startActivity(new Intent(this, RepairMissionActivity.class));
             }
@@ -123,7 +129,8 @@ public class MainGameActivity extends AppCompatActivity {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
         powerTextView.setText(String.valueOf(gameManager.getPower())+"/"+gameManager.getMaxPower());
         fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
-        if (gameManager.getCurrentMission() != null) {
+
+        if (!gameManager.getCurrentMission().isResolved()) {
             missionTypeTextView.setText(gameManager.getCurrentMission().getType());
         } else {
             missionTypeTextView.setText("Mission finished");

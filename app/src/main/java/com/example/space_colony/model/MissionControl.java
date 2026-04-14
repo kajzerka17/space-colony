@@ -69,11 +69,6 @@ public class MissionControl {
         if(currentMission.isTurnBased()) {
             return null;
         }
-        else {
-            currentMission = null;
-        }
-
-
         return result;
     }
 

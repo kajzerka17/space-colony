@@ -9,6 +9,7 @@ public class RepairMission extends Mission{
     }
     @Override
     public MissionResult resolve() {
+        this.isResolved = true;
         if (hasEngineer()) {
             return new MissionResult(true, 0, 0, getSummary(), new ArrayList<>());
         }

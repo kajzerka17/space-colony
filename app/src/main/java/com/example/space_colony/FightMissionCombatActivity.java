@@ -77,6 +77,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         updateCombatUI();
 
         if (combatMission.isResolved()) {
+
             manager.applyResult(result);
             showResult(result);
         }

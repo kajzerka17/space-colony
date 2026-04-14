@@ -13,6 +13,7 @@ public class ResourceMission extends Mission {
 
     @Override
     public MissionResult resolve() {
+        this.isResolved = true;
         fragmentsGained = setFragments() + getEngineerBonus();
         return new MissionResult(true, 0, fragmentsGained, getSummary(), new ArrayList<>());
     }

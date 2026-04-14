@@ -37,6 +37,7 @@ public abstract class MissionActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         manager = GameManager.getInstance();
         setupLayout();
     }
@@ -60,7 +61,6 @@ public abstract class MissionActivity extends AppCompatActivity {
 
                     manager.addCrewForMission(member);
                     adapter.updateData(manager.getCurrentMission().getParticipants());
-                    Log.d("HOLA", "onCrewSelected: ");
                 }
             });
             dialog.show();
