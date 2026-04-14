@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.MissionResult;
 
 public class RepairMissionActivity extends MissionActivity {
@@ -51,7 +52,8 @@ public class RepairMissionActivity extends MissionActivity {
             } else {
                 resultText.setText("The repair mission was not successful! Game Over Chuju!!!");
                 //FIXIT
-                //here we fucking replace the save file for a fresh one because the player fucking died
+                //here we replace the save file for a fresh one because the player died
+                manager.resetGame();
             }
 
             btnAccept.setOnClickListener(d -> {
