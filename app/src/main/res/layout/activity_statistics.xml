@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scaleX="1"
+    android:scaleY="1"
     tools:context=".StatisticsActivity">
 
     <ImageView
@@ -12,11 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/quarter" />
+        app:srcCompat="@drawable/stats" />
 
     <View
         android:id="@+id/overlayStatistics"
@@ -34,13 +38,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/audiowide"
-        android:text="Statistics"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"
         android:shadowColor="#000000"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="8"
+        android:text="Statistics"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
