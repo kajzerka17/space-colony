@@ -67,16 +67,16 @@
         android:fontFamily="@font/audiowide"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="8"
         android:text="The base is under attack of aliens that have to be taken care of. Please choose the appropriate crew."
+        android:textAlignment="center"
         android:textColor="#FFFEFE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFight"
-        android:shadowColor="#000000"
-        android:shadowRadius="8"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textFight" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/crewOnMissionRecyclerView"

@@ -67,16 +67,16 @@
         android:fontFamily="@font/audiowide"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:text="There have been major complication which led to the base being partially destroyed. Please select an engineer and one more crew member to proceed with the mission."
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="8"
+        android:text="There have been major complication which led to the base being partially destroyed. Please select an engineer and one more crew member to proceed with the mission, otherwise the base will be completely destroyed."
+        android:textAlignment="center"
         android:textColor="#FFFEFE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRepair"
-        android:shadowColor="#000000"
-        android:shadowRadius="8"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textRepair" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/crewOnMissionRecyclerView"

@@ -50,8 +50,7 @@ public class RepairMissionActivity extends MissionActivity {
             if (result.isSuccess()) {
                 resultText.setText("The repair mission was successful!");
             } else {
-                resultText.setText("The repair mission was not successful! Game Over Chuju!!!");
-                //FIXIT
+                resultText.setText("The repair mission was not successful! Game Over !!!");
                 //here we replace the save file for a fresh one because the player died
                 manager.resetGame();
             }
