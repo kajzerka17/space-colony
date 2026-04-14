@@ -61,14 +61,15 @@ public class FightMissionCombatActivity extends AppCompatActivity {
                 log += currentFighter.getName() + " attacks \n";
                 break;
             case "special":
-                log += currentFighter.getName() + " did special.\n";
+                log += currentFighter.getName() + " used special skill.\n";
                 break;
         }
 
         MissionResult result = combatMission.processTurn(action);
 
         if (!threat.isDefeated()) {
-            log += threat.getName() + " strikes back.\n";
+            log += threat.getName() + " strikes " + currentFighter.getName() + " back.\n";
+            threat.performAttack(currentFighter);
         }
 
         appendLog(log);
