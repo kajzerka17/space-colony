@@ -166,15 +166,16 @@ public class GameManager {
 
          MissionResult result = missionControl.launchMission();
 
-         if (!result.isSuccess()) {
-             return result; // failed, return early
-         }
+
 
          applyResult(result);
          return result;
      }
 
     public void applyResult(MissionResult result) {
+        if (!result.isSuccess()) {
+            resetGame();
+        }
         fragments += result.getFragmentsGained();
         statistics.recordMission();
 
