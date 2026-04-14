@@ -69,12 +69,10 @@ public class MissionControl {
         if(currentMission.isTurnBased()) {
             return null;
         }
-
-        if (result != null) {
-            // automatic mission finished immediately
+        else {
             currentMission = null;
         }
-        // if null, combat mission is turn-based, activity calls processTurn()
+
 
         return result;
     }

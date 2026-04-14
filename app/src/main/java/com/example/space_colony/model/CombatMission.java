@@ -6,11 +6,12 @@ import java.util.List;
 public class CombatMission extends Mission {
     private Threat threat;
     private int currentTurn;
-
+    private boolean isResolved;
     public CombatMission(String type, int day, List<CrewMember> participants, Threat threat){
         super("Combat", day, participants);
         this.threat = threat;
         this.currentTurn = 0;
+        isResolved = false;
     }
 
     public Threat getThreat(){
@@ -152,6 +153,7 @@ public class CombatMission extends Mission {
 
         // check win/lose condition after each turn
         if (threat.isDefeated()) {
+            this.isResolved = true;
             for (CrewMember member : getAliveFighter()) {
                 member.gainXp(10);
             }
@@ -159,6 +161,7 @@ public class CombatMission extends Mission {
         }
 
         if (!hasAliveFighter()) {
+            this.isResolved = true;
             return new MissionResult(false, 0, 0, "All fighters defeated", getDefeatedFighter());
         }
 
@@ -167,6 +170,9 @@ public class CombatMission extends Mission {
 
     public boolean isOngoing() {
         return !threat.isDefeated() && hasAliveFighter();
+    }
+    public boolean isResolved() {
+        return isResolved;
     }
 
     public boolean isTurnBased() {

@@ -16,6 +16,7 @@ import com.example.space_colony.adapter.CrewMemberAdapter;
 import com.example.space_colony.dialog.CrewSelectionDialog;
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.GameManager;
+import com.example.space_colony.model.Mission;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +42,11 @@ public abstract class MissionActivity extends AppCompatActivity {
     }
 
     protected void setupLayout() {
+        Mission mission = manager.getCurrentMission();
         Button chooseButton = findViewById(R.id.chooseButton);
 //        Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
-        adapter = new CrewMemberAdapter<>(manager.getCurrentMission().getParticipants());
+        adapter = new CrewMemberAdapter<>(mission.getParticipants());
         recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

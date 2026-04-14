@@ -1,6 +1,8 @@
 package com.example.space_colony;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -69,13 +71,12 @@ public class FightMissionCombatActivity extends AppCompatActivity {
 
         if (!threat.isDefeated()) {
             log += threat.getName() + " strikes " + currentFighter.getName() + " back.\n";
-            threat.performAttack(currentFighter);
         }
 
         appendLog(log);
         updateCombatUI();
 
-        if (result != null) {
+        if (combatMission.isResolved()) {
             manager.applyResult(result);
             showResult(result);
         }
@@ -93,9 +94,26 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         tvThreat.setText(combatMission.getThreat().getName() + " — HP: " + combatMission.getThreat().getEnergy());
     }
 
+//    private void showResult(MissionResult result) {
+//        combatLayout.setVisibility(View.GONE);
+//        tvResult.setVisibility(View.VISIBLE);
+//        tvResult.setText(result.getSummary());
+//    }
+
     private void showResult(MissionResult result) {
-        combatLayout.setVisibility(View.GONE);
-        tvResult.setVisibility(View.VISIBLE);
-        tvResult.setText(result.getSummary());
+        Log.d("SSS","SSS");
+//        combatLayout.setVisibility(View.GONE);
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.fight_mission_end_layout);
+        TextView resultText = findViewById(R.id.fightResultText);
+        resultText.setText("result.getSummary()");
+
+        Button buttonAccept = findViewById(R.id.btnAccept);
+        buttonAccept.setOnClickListener(v -> {
+            dialog.dismiss();
+            finish();
+        });
+
+        dialog.show();
     }
 }
