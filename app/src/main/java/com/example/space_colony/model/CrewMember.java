@@ -62,4 +62,26 @@ public abstract class CrewMember {
     public void resetXp() {
         xp = 0;
     }
+
+    public void restoreFromSave(int id,
+                                int xp,
+                                int energy,
+                                CrewStatus status,
+                                int missionCompleted,
+                                int trainingSessions,
+                                int timesInMedbay) {
+        this.id = id;
+        this.xp = xp;
+        this.energy = energy;
+        this.status = status;
+        this.missionCompleted = missionCompleted;
+        this.trainingSessions = trainingSessions;
+        this.timesInMedbay = timesInMedbay;
+    }
+
+    public static void syncIdCounter(int nextId) {
+        if (nextId > idCounter) {
+            idCounter = nextId;
+        }
+    }
 }

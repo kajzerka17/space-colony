@@ -59,4 +59,12 @@ public class Medbay {
     public List<CrewMember> getPatients() {
         return patients;
     }
+
+    public void admitWithTimer(CrewMember member, int daysRemaining) {
+        if (!patients.contains(member)) {
+            patients.add(member);
+        }
+        stayTimers.put(member.getId(), daysRemaining);
+        member.status = CrewStatus.IN_MEDBAY;
+    }
 }

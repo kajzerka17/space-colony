@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.widget.Toast;
+import com.example.space_colony.model.SaveManager;
 import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.MissionControl;
 
@@ -43,7 +45,9 @@ public class MainGameActivity extends AppCompatActivity {
         fragmentsTextView = findViewById(R.id.textFragmentsTop);
         missionTypeTextView = findViewById(R.id.screenMission);
 
-        if (gameManager.getCurrentMission() == null) {
+        boolean fromLoad = getIntent().getBooleanExtra("fromLoad", false);
+
+        if (!fromLoad && gameManager.getCurrentMission() == null) {
             gameManager.startDay();
         }
 
@@ -89,6 +93,7 @@ public class MainGameActivity extends AppCompatActivity {
         Button finishDayButton = findViewById(R.id.endDayButton);
         finishDayButton.setOnClickListener(v -> {
             gameManager.endDay();
+            SaveManager.saveGame(this, gameManager);
             updateUi();
         });
 
@@ -96,6 +101,16 @@ public class MainGameActivity extends AppCompatActivity {
         shopButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainGameActivity.this, UpgradeActivity.class);
             startActivity(intent);
+        });
+
+        Button saveButton = findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(v -> {
+            boolean ok = SaveManager.saveGame(this, gameManager);
+            if (ok) {
+                Toast.makeText(this, "Game saved", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Save failed", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

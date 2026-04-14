@@ -89,4 +89,8 @@ public class MissionControl {
     public Mission getCurrentMission() {
         return currentMission;
     }
+
+    public void setCurrentMission(Mission mission) {
+        this.currentMission = mission;
+    }
 }

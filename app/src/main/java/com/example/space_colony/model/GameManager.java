@@ -307,6 +307,38 @@ public class GameManager {
         return false;
     }
 
+    public Map<ColonyUpgrade, Integer> getUnlockedUpgradesSnapshot() {
+        return new EnumMap<>(unlockedUpgrades);
+    }
+
+    public void restoreFromSave(int currentDay,
+                                int fragments,
+                                int power,
+                                int maxPower,
+                                Map<ColonyUpgrade, Integer> upgrades,
+                                Mission restoredMission) {
+        this.currentDay = currentDay;
+        this.fragments = fragments;
+        this.power = power;
+        this.maxPower = maxPower;
+
+        this.unlockedUpgrades.clear();
+        this.unlockedUpgrades.putAll(upgrades);
+
+        int extraCapacity = upgrades.getOrDefault(ColonyUpgrade.RECRUITMENT_POST, 0);
+        int trainingRigCount = upgrades.getOrDefault(ColonyUpgrade.TRAINING_RIG, 0);
+
+        this.quarters = new Quarters(baseMaxCrew + extraCapacity);
+        this.simulator = new Simulator();
+        for (int i = 0; i < trainingRigCount; i++) {
+            this.simulator.addXpGrant(1);
+        }
+
+        this.medbay = new Medbay();
+        this.missionControl = new MissionControl(currentDay);
+        this.missionControl.setCurrentMission(restoredMission);
+        this.statistics = new Statistics();
+    }
 
     // Game Summary
 

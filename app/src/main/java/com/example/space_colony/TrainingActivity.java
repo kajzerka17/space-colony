@@ -40,7 +40,6 @@ public class TrainingActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTraining);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        simulator.assign(new Soldier("An"));   // testing
         adapter = new CrewMemberAdapter<>(simulator.getAssigned());
         recyclerView.setAdapter(adapter);
 

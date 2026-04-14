@@ -35,7 +35,6 @@ public class MedbayActivity extends AppCompatActivity {
             return insets;
         });
 
-        manager.getMedbay().admit(new Soldier("an"));
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());
 
