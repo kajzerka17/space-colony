@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,14 +27,22 @@ public class ResourceMissionActivity extends MissionActivity {
     }
 
     @Override
-    //FIXIT i dont fucking know :))
     protected void setBeginButton() {
-        Button btnbegin = findViewById(R.id.beginButton);
-        btnbegin.setOnClickListener(v -> {
-            MissionResult result = GameManager.getInstance().launchMission();
-            Intent intent = new Intent();
-            intent.putExtra("fragments gained",result.getFragmentsGained());
-            setResult(RESULT_OK, intent);
+        Button btnBegin = findViewById(R.id.beginButton);
+        btnBegin.setOnClickListener(v -> {
+            if (manager.getMissionControl().getSquadSize() < 2) {
+                Toast.makeText(this, "Select at least 2 crew members", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            MissionResult result = manager.launchMission();
+
+            if (result != null && result.isSuccess()) {
+                Toast.makeText(this,
+                        "Mission success! +" + result.getFragmentsGained() + " fragments",
+                        Toast.LENGTH_SHORT).show();
+            }
+
             finish();
         });
     }

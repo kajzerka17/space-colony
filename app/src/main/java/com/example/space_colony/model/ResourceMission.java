@@ -14,7 +14,7 @@ public class ResourceMission extends Mission {
     @Override
     public MissionResult resolve() {
         fragmentsGained = setFragments() + getEngineerBonus();
-        return new MissionResult(true, 0, fragmentsGained, getSummary(), null);
+        return new MissionResult(true, 0, fragmentsGained, getSummary(), new ArrayList<>());
     }
 
     @Override

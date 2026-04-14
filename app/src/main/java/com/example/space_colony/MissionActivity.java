@@ -49,6 +49,7 @@ public abstract class MissionActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        adapter.updateData(manager.getCurrentMission().getParticipants());
         chooseButton.setOnClickListener(v -> {
             CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
                 @Override
@@ -58,7 +59,7 @@ public abstract class MissionActivity extends AppCompatActivity {
 //                    adapter.updateData(crewOnMission);
 
                     manager.addCrewForMission(member);
-                    adapter.updateData(manager.getQuarters().getAvailableCrew());
+                    adapter.updateData(manager.getCurrentMission().getParticipants());
                     Log.d("HOLA", "onCrewSelected: ");
                 }
             });
@@ -70,6 +71,7 @@ public abstract class MissionActivity extends AppCompatActivity {
 //        beginButton.setOnClickListener(v -> {
 //            //launch the mission
 //        });
+        setBeginButton();
     }
 
     protected abstract int getLayout();

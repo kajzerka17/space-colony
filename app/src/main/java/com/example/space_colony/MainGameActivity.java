@@ -69,20 +69,14 @@ public class MainGameActivity extends AppCompatActivity {
 
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
-            //im testing this shit plz dont change
-//            Intent intent = new Intent(MainGameActivity.this, FightMissionActivity.class);
-//            startActivity(intent);
-            if (String.valueOf(gameManager.getCurrentMission().getType()) == "Resource"){
-                Intent intent = new Intent(MainGameActivity.this, ResourceMissionActivity.class);
-                startActivity(intent);
-            }
-            if (String.valueOf(gameManager.getCurrentMission().getType()) == "Combat"){
-                Intent intent = new Intent(MainGameActivity.this, FightMissionActivity.class);
-                startActivity(intent);
-            }
-            if (String.valueOf(gameManager.getCurrentMission().getType()) == "Repair"){
-                Intent intent = new Intent(MainGameActivity.this, RepairMissionActivity.class);
-                startActivity(intent);
+            if (gameManager.getCurrentMission() == null) return;
+            String type = gameManager.getCurrentMission().getType();
+            if (type.equals("Resource")) {
+                startActivity(new Intent(this, ResourceMissionActivity.class));
+            } else if (type.equals("Combat")) {
+                startActivity(new Intent(this, FightMissionActivity.class));
+            } else if (type.equals("Repair")) {
+                startActivity(new Intent(this, RepairMissionActivity.class));
             }
         });
 
@@ -108,6 +102,10 @@ public class MainGameActivity extends AppCompatActivity {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
         powerTextView.setText(String.valueOf(gameManager.getPower()));
         fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
-        missionTypeTextView.setText(String.valueOf(gameManager.getCurrentMission().getType()));
+        if (gameManager.getCurrentMission() != null) {
+            missionTypeTextView.setText(gameManager.getCurrentMission().getType());
+        } else {
+            missionTypeTextView.setText("No mission");
+        }
     }
 }
