@@ -13,6 +13,12 @@ public class RepairMission extends Mission{
     public boolean canLaunch() {
         return super.canLaunch() && hasEngineer();
     }
+
+    @Override
+    public boolean isTurnBased() {
+        return false;
+    }
+
     protected boolean hasEngineer() {
         for (CrewMember member : participants) {
             if (member instanceof Engineer) return true;
@@ -22,4 +28,6 @@ public class RepairMission extends Mission{
     protected String getSummary() {
         return "Repair successful.";
     }
+
+
 }

@@ -17,6 +17,11 @@ public class ResourceMission extends Mission {
         return new MissionResult(true, 0, fragmentsGained, getSummary(), null);
     }
 
+    @Override
+    public boolean isTurnBased() {
+        return false;
+    }
+
     protected int setFragments() {
         return new Random().nextInt(4) + 1; // 1, 2, 3 or 4 shards
     }
