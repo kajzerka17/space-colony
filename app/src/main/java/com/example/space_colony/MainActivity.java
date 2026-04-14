@@ -32,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button statisticsButton = findViewById(R.id.statisticsButton);
-        statisticsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, StatisticsActivity.class);
-            startActivity(intent);
-        });
-
         Button loadGameButton = findViewById(R.id.loadGameButton);
         loadGameButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, MainGameActivity.class);

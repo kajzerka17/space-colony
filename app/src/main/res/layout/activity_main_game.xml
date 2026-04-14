@@ -261,6 +261,20 @@
             android:textSize="10sp"
             app:backgroundTint="@color/mainButton" />
 
+        <Button
+            android:id="@+id/statisticsButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/audiowide"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="Statistics"
+            android:textSize="10sp"
+            app:backgroundTint="@color/mainButton" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

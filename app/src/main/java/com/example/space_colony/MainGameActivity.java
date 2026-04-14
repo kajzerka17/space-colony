@@ -67,6 +67,12 @@ public class MainGameActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button statisticsButton = findViewById(R.id.statisticsButton);
+        statisticsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainGameActivity.this, StatisticsActivity.class);
+            startActivity(intent);
+        });
+
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
             if (gameManager.getCurrentMission() == null) return;
