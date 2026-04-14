@@ -105,7 +105,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.fight_mission_end_layout);
 
         TextView resultText = dialog.findViewById(R.id.fightResultText);
-        resultText.setText(result.getSummary()); // also fix string
+        resultText.setText(result.getSummary());
 
         Button buttonAccept = dialog.findViewById(R.id.btnAccept);
         buttonAccept.setOnClickListener(v -> {
