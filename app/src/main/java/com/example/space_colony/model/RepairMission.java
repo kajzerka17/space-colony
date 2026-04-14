@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import java.util.ArrayList;
+
 public class RepairMission extends Mission{
     private boolean requiresEngineer;
     RepairMission(int day) {
@@ -7,7 +9,13 @@ public class RepairMission extends Mission{
     }
     @Override
     public MissionResult resolve() {
-        return new MissionResult(true,0, 0, getSummary(), null);
+        if (hasEngineer()) {
+            return new MissionResult(true, 0, 0, getSummary(), new ArrayList<>());
+        }
+        if (!hasEngineer()) {
+            return new MissionResult(false, 0, 0, getSummary(), new ArrayList<>());
+        }
+        return null;
     }
     @Override
     public boolean canLaunch() {

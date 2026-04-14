@@ -27,6 +27,7 @@ public class ResourceMissionActivity extends MissionActivity {
         return R.layout.activity_resource_mission;
     }
 
+    private Dialog resultDialog;
     @Override
     protected void setBeginButton() {
         Button btnBegin = findViewById(R.id.beginButton);
@@ -57,5 +58,12 @@ public class ResourceMissionActivity extends MissionActivity {
                 finish();
             }
         });
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (resultDialog != null && resultDialog.isShowing()) {
+            resultDialog.dismiss();
+        }
     }
 }
