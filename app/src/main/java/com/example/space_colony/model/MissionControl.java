@@ -66,6 +66,10 @@ public class MissionControl {
 
         MissionResult result = currentMission.resolve();
 
+        if(currentMission.isTurnBased()) {
+            return null;
+        }
+
         if (result != null) {
             // automatic mission finished immediately
             currentMission = null;

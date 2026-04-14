@@ -44,7 +44,6 @@ public abstract class MissionActivity extends AppCompatActivity {
         Button chooseButton = findViewById(R.id.chooseButton);
 //        Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
-        crewOnMission = new ArrayList<CrewMember>();
         adapter = new CrewMemberAdapter<>(manager.getCurrentMission().getParticipants());
         recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
