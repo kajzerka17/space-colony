@@ -50,4 +50,8 @@ public abstract class Mission {
     public boolean isResolved() {
         return isResolved;
     }
+
+    public void setResolved(boolean resolved) {
+        this.isResolved = resolved;
+    }
 }

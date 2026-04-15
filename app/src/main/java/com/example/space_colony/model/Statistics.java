@@ -48,4 +48,11 @@ public class Statistics {
                 "\nTotal Recruited     : " + totalRecruited +
                 "\nTotal Training Sessions: " + totalTrainingSessions;
     }
+
+    public void restoreFromSave(int totalDays, int totalMissions, int totalRecruited, int totalTrainingSessions) {
+        this.totalDays = totalDays;
+        this.totalMissions = totalMissions;
+        this.totalRecruited = totalRecruited;
+        this.totalTrainingSessions = totalTrainingSessions;
+    }
 }

@@ -46,6 +46,7 @@ public class SaveManager {
                 JSONObject missionJson = new JSONObject();
                 missionJson.put("type", mission.getType());
                 missionJson.put("day", manager.getCurrentDay());
+                missionJson.put("resolved", mission.isResolved());
 
                 if (mission instanceof CombatMission) {
                     CombatMission combatMission = (CombatMission) mission;
@@ -64,6 +65,14 @@ public class SaveManager {
 
                 root.put("mission", missionJson);
             }
+
+            Statistics stats = manager.getStatistics();
+            JSONObject statisticsJson = new JSONObject();
+            statisticsJson.put("totalDays", stats.getTotalDays());
+            statisticsJson.put("totalMissions", stats.getTotalMissions());
+            statisticsJson.put("totalRecruited", stats.getTotalRecruited());
+            statisticsJson.put("totalTrainingSessions", stats.getTotalTrainingSessions());
+            root.put("statistics", statisticsJson);
 
             JSONArray crewArray = new JSONArray();
             for (CrewMember member : manager.getQuarters().getCrew()) {
@@ -127,11 +136,25 @@ public class SaveManager {
                 upgrades.put(ColonyUpgrade.valueOf(key), upgradesJson.getInt(key));
             }
 
+            int totalDays = 0;
+            int totalMissions = 0;
+            int totalRecruited = 0;
+            int totalTrainingSessions = 0;
+
+            if (root.has("statistics")) {
+                JSONObject statisticsJson = root.getJSONObject("statistics");
+                totalDays = statisticsJson.optInt("totalDays", 0);
+                totalMissions = statisticsJson.optInt("totalMissions", 0);
+                totalRecruited = statisticsJson.optInt("totalRecruited", 0);
+                totalTrainingSessions = statisticsJson.optInt("totalTrainingSessions", 0);
+            }
+
             Mission restoredMission = null;
             if (root.has("mission")) {
                 JSONObject missionJson = root.getJSONObject("mission");
                 String type = missionJson.getString("type");
                 int day = missionJson.getInt("day");
+                boolean resolved = missionJson.optBoolean("resolved", false);
 
                 if ("Resource".equals(type)) {
                     restoredMission = new ResourceMission(day);
@@ -155,9 +178,22 @@ public class SaveManager {
 
                     restoredMission = new CombatMission("Combat", day, null, threat);
                 }
+
+                if (restoredMission != null) {
+                    restoredMission.isResolved = resolved;
+                }
             }
 
             manager.restoreFromSave(currentDay, fragments, power, maxPower, upgrades, restoredMission);
+
+            if (root.has("statistics")) {
+                manager.getStatistics().restoreFromSave(
+                        totalDays,
+                        totalMissions,
+                        totalRecruited,
+                        totalTrainingSessions
+                );
+            }
 
             JSONArray crewArray = root.getJSONArray("crew");
             int maxId = -1;
