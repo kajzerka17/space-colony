@@ -2,6 +2,7 @@ package com.example.space_colony;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +50,10 @@ public class TrainingActivity extends AppCompatActivity {
             CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
                 @Override
                 public void onCrewSelected(CrewMember member) {
+                    if (member.getSpecialization().equals("Engineer")){
+                        Toast.makeText(TrainingActivity.this, "Cannot train an engineer",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     // one crew get selected to add to training
                     manager.assignToSimulator(member);
                     adapter.updateData(simulator.getAssigned());
