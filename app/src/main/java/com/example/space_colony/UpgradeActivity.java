@@ -14,11 +14,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.space_colony.model.ColonyUpgrade;
 import com.example.space_colony.model.GameManager;
 
+// upgrade screen
 public class UpgradeActivity extends AppCompatActivity {
 
     private GameManager manager;
     private TextView fragmentsValue;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +53,19 @@ public class UpgradeActivity extends AppCompatActivity {
         updateUi();
     }
 
+    // refresh screen
     @Override
     protected void onResume() {
         super.onResume();
         updateUi();
     }
 
+    // update fragments text
     private void updateUi() {
         fragmentsValue.setText(String.valueOf(manager.getFragments()));
     }
 
+    // buy one upgrade
     private void tryBuyUpgrade(ColonyUpgrade upgrade, String upgradeName) {
         int before = manager.getFragments();
         manager.unlockUpgrade(upgrade);
