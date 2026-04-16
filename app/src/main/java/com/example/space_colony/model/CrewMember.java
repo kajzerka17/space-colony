@@ -1,7 +1,6 @@
 package com.example.space_colony.model;
 
-import static java.lang.Math.max;
-
+// base crew class
 public abstract class CrewMember {
     protected String name;
     protected String specialization;
@@ -15,6 +14,7 @@ public abstract class CrewMember {
     protected int trainingSessions;
     private int timesInMedbay;
 
+    // make crew
     public CrewMember(String name) {
         if(name == null || name == "") {
             this.name = "noname";
@@ -39,17 +39,19 @@ public abstract class CrewMember {
     public int getMissionCompleted() { return this.missionCompleted; }
     public int getTrainingSession() { return this.trainingSessions; }
     public int getTimesInMedbay() { return this.timesInMedbay; }
+    public String getSpecialization() { return specialization; }
+
+    // add xp
     public void gainXp(int xp) {
         this.xp += xp;
     }
+
+    // check ready state
     public boolean isAvailable() {
         return this.status == CrewStatus.READY;
     }
 
-    public String getSpecialization() {
-        return specialization;
-    }
-
+    // reset crew state
     public void restoreEnergy() {
         this.energy = this.maxEnergy;
         this.status = CrewStatus.READY;
@@ -58,12 +60,15 @@ public abstract class CrewMember {
     public void setStatus(CrewStatus crewStatus) {
         this.status = crewStatus;
     }
+
     public void addMissionCompleted() { this.missionCompleted += 1; }
 
+    // clear xp
     public void resetXp() {
         xp = 0;
     }
 
+    // load save data
     public void restoreFromSave(int id,
                                 int xp,
                                 int energy,
@@ -80,6 +85,7 @@ public abstract class CrewMember {
         this.timesInMedbay = timesInMedbay;
     }
 
+    // sync next id
     public static void syncIdCounter(int nextId) {
         if (nextId > idCounter) {
             idCounter = nextId;
