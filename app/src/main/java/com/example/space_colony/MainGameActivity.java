@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.SaveManager;
 
+// main game screen
 public class MainGameActivity extends AppCompatActivity {
 
     private GameManager gameManager;
@@ -28,6 +29,7 @@ public class MainGameActivity extends AppCompatActivity {
     private TextView missionTypeTextView;
     ImageView background;
 
+    // build main screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,12 +138,14 @@ public class MainGameActivity extends AppCompatActivity {
         });
     }
 
+    // refresh screen
     @Override
     protected void onResume() {
         super.onResume();
         updateUi();
     }
 
+    // update game text
     private void updateUi() {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
         powerTextView.setText(String.valueOf(gameManager.getPower()) + "/" + gameManager.getMaxPower());
