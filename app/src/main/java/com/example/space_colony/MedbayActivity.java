@@ -1,7 +1,6 @@
 package com.example.space_colony;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -12,28 +11,25 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.space_colony.adapter.CrewMemberAdapter;
 import com.example.space_colony.adapter.MedbayAdapter;
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.GameManager;
-import com.example.space_colony.model.Soldier;
 
 import java.util.List;
 
+// medbay screen
 public class MedbayActivity extends AppCompatActivity {
 
-    final String TAG = "MEDBAY ACTIVITY";
     private MedbayAdapter adapter;
-    GameManager manager;
+    private GameManager manager;
     private List<CrewMember> medbayCrews;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         manager = GameManager.getInstance();
         medbayCrews = manager.getMedbay().getPatients();
-//        Log.d(TAG,"on create");
-//        System.out.println(medbayCrews);
-//        System.out.println(manager.getMedbay());
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_medbay);
@@ -51,7 +47,5 @@ public class MedbayActivity extends AppCompatActivity {
 
         adapter = new MedbayAdapter(medbayCrews);
         recyclerView.setAdapter(adapter);
-
-
     }
 }
