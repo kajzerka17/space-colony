@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import static com.example.space_colony.model.CrewStatus.ON_MISSION;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,16 @@ public class CombatMission extends Mission {
 
     public int getCurrentTurn(){
         return currentTurn;
+    }
+
+    @Override
+    public boolean addParticipant(CrewMember crew) {
+        if(crew.isAvailable() && !crew.getSpecialization().equals("Engineer") && !crew.getSpecialization().equals("Scientist") && !crew.getSpecialization().equals("Blacksmith")) {
+            this.participants.add(crew);
+            crew.status = ON_MISSION;
+            return true;
+        }
+        return false;
     }
 
     @Override

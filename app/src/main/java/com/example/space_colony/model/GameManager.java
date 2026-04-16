@@ -220,8 +220,8 @@ public class GameManager {
         return false;
     }
 
-    public void addCrewForMission(CrewMember crew) {
-        missionControl.addCrew(crew);
+    public boolean addCrewForMission(CrewMember crew) {
+        return missionControl.addCrew(crew);
     }
 
 //    public int getSquadSize() {

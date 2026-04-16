@@ -3,6 +3,7 @@ package com.example.space_colony;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +60,9 @@ public abstract class MissionActivity extends AppCompatActivity {
 //                    crewOnMission.add(member);
 //                    adapter.updateData(crewOnMission);
 
-                    manager.addCrewForMission(member);
+                    if(!manager.addCrewForMission(member)) {
+                        Toast.makeText(MissionActivity.this, member.getSpecialization() + " cannot fight.",Toast.LENGTH_SHORT).show();
+                    }
                     adapter.updateData(manager.getCurrentMission().getParticipants());
                 }
             });

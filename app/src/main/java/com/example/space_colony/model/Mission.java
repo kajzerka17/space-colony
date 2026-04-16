@@ -27,11 +27,13 @@ public abstract class Mission {
         return type;
     }
 
-    public void addParticipant(CrewMember crew) {
+    public boolean addParticipant(CrewMember crew) {
         if(crew.isAvailable()) {
             this.participants.add(crew);
             crew.status = ON_MISSION;
+            return true;
         }
+        return false;
     }
 //    public void addParticipants(List<? extends CrewMember> crew){
 //        this.participants.addAll(crew);

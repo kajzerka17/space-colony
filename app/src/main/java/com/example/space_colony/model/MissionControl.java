@@ -43,8 +43,8 @@ public class MissionControl {
 //        }
 //    }
 
-    public void addCrew(CrewMember crew) {
-        currentMission.addParticipant(crew);
+    public boolean addCrew(CrewMember crew) {
+        return currentMission.addParticipant(crew);
     }
 
 //    public MissionResult launchMission() {
