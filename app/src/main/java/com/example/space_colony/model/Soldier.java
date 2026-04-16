@@ -1,13 +1,14 @@
 package com.example.space_colony.model;
 
+// soldier crew
 public class Soldier extends Fighter{
     private int powerStrikeUses;
 
+    // make soldier
     public Soldier(String name){
         super(name);
         this.specialization = "Soldier";
         this.maxEnergy = 18;
-        //was 18
         this.energy = 18;
         this.attack = 7;
         this.resilience = 5;
@@ -18,6 +19,7 @@ public class Soldier extends Fighter{
         return this.powerStrikeUses;
     }
 
+    // use power strike
     @Override
     public void useSpecialSkill(Threat target, Fighter ally){
         if (powerStrikeUses > 0){
