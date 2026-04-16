@@ -12,6 +12,7 @@ import com.example.space_colony.model.CrewMember;
 
 import java.util.List;
 
+// crew pick dialog
 public class CrewSelectionDialog {
     private final Context context;
     private final List<CrewMember> crewList;
@@ -21,23 +22,20 @@ public class CrewSelectionDialog {
         void onCrewSelected(CrewMember member);
     }
 
+    // make dialog data
     public CrewSelectionDialog(Context context, List<CrewMember> crewList, OnCrewSelectedListener listener) {
         this.context = context;
         this.crewList = crewList;
         this.listener = listener;
     }
 
+    // show dialog
     public void show() {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.crew_selection_dialog_layout);
 
         RecyclerView recyclerView = dialog.findViewById(R.id.dialogRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-//        CrewMemberAdapter adapter = new CrewMemberAdapter(crewList, member -> {
-//            listener.onCrewSelected(member);
-//            dialog.dismiss();
-//        });
 
         CrewMemberAdapter adapter = new CrewMemberAdapter<>(crewList, new CrewMemberAdapter.OnCrewClickListener() {
             @Override
