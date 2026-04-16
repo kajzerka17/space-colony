@@ -2,11 +2,15 @@ package com.example.space_colony.model;
 
 import java.util.ArrayList;
 
-public class RepairMission extends Mission{
-    private boolean requiresEngineer;
+// repair mission class
+public class RepairMission extends Mission {
+
+    // make repair mission
     RepairMission(int day) {
         super("Repair", day, null);
     }
+
+    // run repair mission
     @Override
     public MissionResult resolve() {
         this.isResolved = true;
@@ -18,6 +22,8 @@ public class RepairMission extends Mission{
         }
         return null;
     }
+
+    // check start rule
     @Override
     public boolean canLaunch() {
         return super.canLaunch() && hasEngineer();
@@ -28,15 +34,16 @@ public class RepairMission extends Mission{
         return false;
     }
 
+    // check engineer
     protected boolean hasEngineer() {
         for (CrewMember member : participants) {
             if (member instanceof Engineer) return true;
         }
         return false;
     }
+
+    // get result text
     protected String getSummary() {
         return "Repair successful.";
     }
-
-
 }
