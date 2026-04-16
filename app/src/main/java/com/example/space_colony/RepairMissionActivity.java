@@ -35,7 +35,7 @@ public class RepairMissionActivity extends MissionActivity {
             }
 
             if (!result.isSuccess()) {
-                Toast.makeText(this, "Repair mission failed. Resetting to Day 1.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Repair mission failed! Game Over !!!", Toast.LENGTH_SHORT).show();
                 manager.resetGame();
                 finish();
                 return;

@@ -115,9 +115,9 @@ public abstract class MissionActivity extends AppCompatActivity {
 
         manager.getCurrentMission().getParticipants().clear();
 
-        if (adapter != null) {
-            adapter.updateData(manager.getCurrentMission().getParticipants());
-        }
+//        if (adapter != null) {
+//            //adapter.updateData(manager.getCurrentMission().getParticipants());
+//        }
     }
 
     protected abstract int getLayout();
