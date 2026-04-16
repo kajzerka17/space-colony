@@ -23,34 +23,39 @@ import com.example.space_colony.model.Soldier;
 import java.util.ArrayList;
 import java.util.List;
 
+// crew list adapter
 public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapter<CrewMemberAdapter.ViewHolder> {
 
     protected List<T> items;
-
-    public CrewMemberAdapter(List<T> items) {
-        this.items = new ArrayList<>(items);
-    }
+    private OnCrewClickListener clickListener;
 
     public interface OnCrewClickListener {
         void onCrewClick(CrewMember member);
     }
 
-    private OnCrewClickListener clickListener;
+    // set first list
+    public CrewMemberAdapter(List<T> items) {
+        this.items = new ArrayList<>(items);
+    }
 
+    // set list and click
     public CrewMemberAdapter(List<T> items, OnCrewClickListener clickListener) {
         this.items = new ArrayList<>(items);
         this.clickListener = clickListener;
     }
 
+    // replace list and refresh
     public void updateData(List<T> newItems) {
         this.items = new ArrayList<>(newItems);
         notifyDataSetChanged();
     }
 
+    // replace list only
     public void updateList(List<T> newList) {
         this.items = newList;
     }
 
+    // make row view
     @NonNull
     @Override
     public CrewMemberAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,6 +64,7 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         return new ViewHolder(view);
     }
 
+    // fill row data
     @Override
     public void onBindViewHolder(@NonNull CrewMemberAdapter.ViewHolder holder, int position) {
         T item = items.get(position);
@@ -100,6 +106,7 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         return items.size();
     }
 
+    // get defense text
     private String getResilienceText(CrewMember member) {
         if (member instanceof Fighter) {
             Fighter fighter = (Fighter) member;
@@ -108,10 +115,12 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         return "-";
     }
 
+    // fix status text
     private String formatStatus(String rawStatus) {
         return rawStatus.replace("_", " ");
     }
 
+    // row holder
     static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView tvName;
         final TextView tvRole;
