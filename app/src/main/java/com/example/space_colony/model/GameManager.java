@@ -69,9 +69,9 @@ public class GameManager {
         this.statistics = new Statistics();
 
         startDay();
-//        recruit(new Medic("An"));
-//        recruit(new Soldier("Gracjan"));
-//        recruit(new Engineer("engineer"));
+        recruit(new Medic("An"));
+        recruit(new Soldier("Gracjan"));
+        recruit(new Engineer("engineer"));
     }
 
     // dont think we need this
@@ -127,16 +127,14 @@ public class GameManager {
 
         // Advance simulator training
         int cost = this.simulator.getPowerCost();
-        if (cost <= this.power) {
-            List<CrewMember> trainedCrew = new java.util.ArrayList<>(simulator.getAssigned());
-
-            spendPower(cost);
-            simulator.train();
-
-            for (CrewMember cm : trainedCrew) {
-                statistics.recordTraining(cm);
-            }
-        }
+//        if (cost <= this.power) {
+        List<CrewMember> trainedCrew = new java.util.ArrayList<>(simulator.getAssigned());
+//
+//            //spendPower(cost);
+        simulator.train();
+//
+        for (CrewMember cm : trainedCrew) {statistics.recordTraining(cm);}
+//        }
 
         // Record day in statistics
         statistics.advanceDay();
