@@ -26,11 +26,13 @@ import com.example.space_colony.model.Soldier;
 
 import java.util.List;
 
+// recruit screen
 public class RecruitActivity extends AppCompatActivity {
     private EditText nameInput;
     private GameManager manager;
     private ImageView background;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +104,7 @@ public class RecruitActivity extends AppCompatActivity {
         });
     }
 
+    // check same name
     private boolean hasDuplicateName(String newName) {
         List<CrewMember> crewList = manager.getQuarters().getCrew();
 
@@ -113,6 +116,7 @@ public class RecruitActivity extends AppCompatActivity {
         return false;
     }
 
+    // refresh background
     @Override
     protected void onResume() {
         super.onResume();
