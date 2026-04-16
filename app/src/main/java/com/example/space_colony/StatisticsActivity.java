@@ -19,6 +19,7 @@ import com.example.space_colony.model.Statistics;
 
 import java.util.List;
 
+// statistics screen
 public class StatisticsActivity extends AppCompatActivity {
 
     private GameManager manager;
@@ -31,6 +32,7 @@ public class StatisticsActivity extends AppCompatActivity {
     private RecyclerView recyclerViewStatistics;
     private StatisticsAdapter adapter;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +65,14 @@ public class StatisticsActivity extends AppCompatActivity {
         updateUi();
     }
 
+    // refresh screen
     @Override
     protected void onResume() {
         super.onResume();
         updateUi();
     }
 
+    // update stat text
     private void updateUi() {
         Statistics statistics = manager.getStatistics();
 
