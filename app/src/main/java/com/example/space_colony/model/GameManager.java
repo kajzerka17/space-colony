@@ -20,6 +20,7 @@ public class GameManager {
     private int power;
     private int maxPower;
     private int missionMaxSquad;
+    private int lastMissionRecordedDay;
     private Map<ColonyUpgrade, Integer> unlockedUpgrades;
 
     private Quarters quarters;
@@ -43,6 +44,7 @@ public class GameManager {
         this.maxPower = 20;
         this.power = 20;
         this.missionMaxSquad = 2;
+        this.lastMissionRecordedDay = 0;
         this.unlockedUpgrades = new EnumMap<>(ColonyUpgrade.class);
 
         this.quarters = new Quarters(baseMaxCrew);
@@ -59,6 +61,7 @@ public class GameManager {
         this.maxPower = 20;
         this.power = 20;
         this.missionMaxSquad = 2;
+        this.lastMissionRecordedDay = 0;
         this.unlockedUpgrades.clear();
 
         this.quarters = new Quarters(baseMaxCrew);
@@ -143,7 +146,10 @@ public class GameManager {
             return;
         }
         fragments += result.getFragmentsGained();
-        statistics.recordMission(getCurrentMission().getParticipants());
+        if (lastMissionRecordedDay != currentDay) {
+            statistics.recordMission(getCurrentMission().getParticipants());
+            lastMissionRecordedDay = currentDay;
+        }
         Log.d(TAG, "applyResult");
 
         for (CrewMember cm : result.getCrewToMedbay()) {
