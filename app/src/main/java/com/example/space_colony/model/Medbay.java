@@ -5,15 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// medbay for hurt crew
 public class Medbay {
     private List<CrewMember> patients;
     private Map<Integer, Integer> stayTimers;
 
+    // make medbay
     public Medbay(){
         patients = new ArrayList<>();
         stayTimers = new HashMap<>();
     }
 
+    // send crew to medbay
     public void admit(CrewMember member){
         if (!patients.contains(member)){
             patients.add(member);
@@ -22,6 +25,7 @@ public class Medbay {
         }
     }
 
+    // send crew back
     public void discharge(CrewMember member){
         patients.remove(member);
         stayTimers.remove(member.getId());
@@ -30,6 +34,7 @@ public class Medbay {
         member.status = CrewStatus.READY;
     }
 
+    // move one day
     public void advanceDay() {
         List<CrewMember> recovered = new ArrayList<>();
 
@@ -49,6 +54,7 @@ public class Medbay {
         }
     }
 
+    // get days left
     public int getStayRemaining(int id){
         if (stayTimers.containsKey(id)){
             return stayTimers.get(id);
@@ -60,6 +66,7 @@ public class Medbay {
         return patients;
     }
 
+    // load medbay time
     public void admitWithTimer(CrewMember member, int daysRemaining) {
         if (!patients.contains(member)) {
             patients.add(member);
