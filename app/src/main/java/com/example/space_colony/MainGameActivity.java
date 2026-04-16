@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import android.widget.Toast;
-import com.example.space_colony.model.SaveManager;
 import com.example.space_colony.model.GameManager;
-import com.example.space_colony.model.MissionControl;
+import com.example.space_colony.model.SaveManager;
 
 public class MainGameActivity extends AppCompatActivity {
 
@@ -49,7 +48,6 @@ public class MainGameActivity extends AppCompatActivity {
         fragmentsTextView = findViewById(R.id.textFragmentsTop);
         missionTypeTextView = findViewById(R.id.screenMission);
 
-
         boolean fromLoad = getIntent().getBooleanExtra("fromLoad", false);
 
         if (!fromLoad && gameManager.getCurrentMission() == null) {
@@ -72,7 +70,7 @@ public class MainGameActivity extends AppCompatActivity {
 
         Button trainingButton = findViewById(R.id.crewTrainingButton);
         trainingButton.setOnClickListener(v -> {
-            if (gameManager.getCurrentMission().isResolved()){
+            if (gameManager.getCurrentMission().isResolved()) {
                 Toast.makeText(this, "Cannot train at night time", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -88,15 +86,15 @@ public class MainGameActivity extends AppCompatActivity {
 
         Button missionButton = findViewById(R.id.missionButton);
         missionButton.setOnClickListener(v -> {
-            if (gameManager.getCurrentMission().isResolved()){
+            if (gameManager.getCurrentMission().isResolved()) {
                 Toast.makeText(this, "Mission has been finished", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             String type = gameManager.getCurrentMission().getType();
             if (type.equals("Resource")) {
                 startActivity(new Intent(this, ResourceMissionActivity.class));
             } else if (type.equals("Combat")) {
-
                 Log.d("HOLA", "1");
                 startActivity(new Intent(this, FightMissionActivity.class));
                 Log.d("after", "after");
@@ -107,6 +105,11 @@ public class MainGameActivity extends AppCompatActivity {
 
         Button finishDayButton = findViewById(R.id.endDayButton);
         finishDayButton.setOnClickListener(v -> {
+            if (gameManager.getCurrentMission() != null && !gameManager.getCurrentMission().isResolved()) {
+                Toast.makeText(this, "You must finish the mission before starting the next day", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             gameManager.endDay();
             SaveManager.saveGame(this, gameManager);
             updateUi();
@@ -114,7 +117,7 @@ public class MainGameActivity extends AppCompatActivity {
 
         ImageButton shopButton = findViewById(R.id.shopButton);
         shopButton.setOnClickListener(v -> {
-            if (gameManager.getCurrentMission().isResolved()){
+            if (gameManager.getCurrentMission().isResolved()) {
                 Toast.makeText(this, "Cannot buy at night", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -138,9 +141,10 @@ public class MainGameActivity extends AppCompatActivity {
         super.onResume();
         updateUi();
     }
+
     private void updateUi() {
         dayTextView.setText(String.valueOf(gameManager.getCurrentDay()));
-        powerTextView.setText(String.valueOf(gameManager.getPower())+"/"+gameManager.getMaxPower());
+        powerTextView.setText(String.valueOf(gameManager.getPower()) + "/" + gameManager.getMaxPower());
         fragmentsTextView.setText("Fragments: " + gameManager.getFragments());
 
         if (!gameManager.getCurrentMission().isResolved()) {

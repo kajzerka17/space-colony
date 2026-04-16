@@ -1,7 +1,6 @@
 package com.example.space_colony;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.space_colony.adapter.CrewMemberAdapter;
 import com.example.space_colony.dialog.CrewSelectionDialog;
 import com.example.space_colony.model.CrewMember;
+import com.example.space_colony.model.CrewStatus;
 import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.Mission;
 
@@ -25,7 +25,7 @@ import java.util.List;
 public abstract class MissionActivity extends AppCompatActivity {
     protected GameManager manager;
     protected RecyclerView recyclerView;
-    protected CrewMemberAdapter adapter;
+    protected CrewMemberAdapter<CrewMember> adapter;
     protected List<CrewMember> crewOnMission;
 
     @Override
@@ -46,38 +46,72 @@ public abstract class MissionActivity extends AppCompatActivity {
     protected void setupLayout() {
         Mission mission = manager.getCurrentMission();
         Button chooseButton = findViewById(R.id.chooseButton);
-//        Button beginButton = findViewById(R.id.beginButton);
         Button backButton = findViewById(R.id.backButton);
+
         adapter = new CrewMemberAdapter<>(mission.getParticipants());
         recyclerView = findViewById(R.id.crewOnMissionRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
         chooseButton.setOnClickListener(v -> {
-            CrewSelectionDialog dialog = new CrewSelectionDialog(this, manager.getQuarters().getAvailableCrew(), new CrewSelectionDialog.OnCrewSelectedListener() {
-                @Override
-                public void onCrewSelected(CrewMember member) {
-                    // this list and action is only for the purpose of testing. plz dont trust me that much!
-//                    crewOnMission.add(member);
-//                    adapter.updateData(crewOnMission);
-                    if (!(manager.getCurrentMission().getParticipants().size() < manager.getMissionMaxSquad())){
-                        Toast.makeText(MissionActivity.this,"You can only choose " + manager.getMissionMaxSquad() + " people.",Toast.LENGTH_SHORT).show();
-                        return;
+            CrewSelectionDialog dialog = new CrewSelectionDialog(
+                    this,
+                    manager.getQuarters().getAvailableCrew(),
+                    new CrewSelectionDialog.OnCrewSelectedListener() {
+                        @Override
+                        public void onCrewSelected(CrewMember member) {
+                            if (!(manager.getCurrentMission().getParticipants().size() < manager.getMissionMaxSquad())) {
+                                Toast.makeText(
+                                        MissionActivity.this,
+                                        "You can only choose " + manager.getMissionMaxSquad() + " people.",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                                return;
+                            }
+
+                            if (!manager.addCrewForMission(member)) {
+                                Toast.makeText(
+                                        MissionActivity.this,
+                                        member.getSpecialization() + " cannot fight.",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+
+                            adapter.updateData(manager.getCurrentMission().getParticipants());
+                        }
                     }
-                    if(!manager.addCrewForMission(member)) {
-                        Toast.makeText(MissionActivity.this, member.getSpecialization() + " cannot fight.",Toast.LENGTH_SHORT).show();
-                    }
-                    adapter.updateData(manager.getCurrentMission().getParticipants());
-                }
-            });
+            );
             dialog.show();
         });
+
         backButton.setOnClickListener(v -> {
+            if (manager.getCurrentMission() != null && !manager.getCurrentMission().isResolved()) {
+                clearCurrentSelection();
+            }
             finish();
         });
-//        beginButton.setOnClickListener(v -> {
-//            //launch the mission
-//        });
+
         setBeginButton();
+    }
+
+    protected void clearCurrentSelection() {
+        if (manager == null || manager.getCurrentMission() == null) {
+            return;
+        }
+
+        List<CrewMember> selectedCrew = new ArrayList<>(manager.getCurrentMission().getParticipants());
+
+        for (CrewMember member : selectedCrew) {
+            if (member.getStatus() == CrewStatus.ON_MISSION) {
+                member.setStatus(CrewStatus.READY);
+            }
+        }
+
+        manager.getCurrentMission().getParticipants().clear();
+
+        if (adapter != null) {
+            adapter.updateData(manager.getCurrentMission().getParticipants());
+        }
     }
 
     protected abstract int getLayout();

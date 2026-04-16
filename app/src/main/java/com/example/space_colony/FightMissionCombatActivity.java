@@ -2,17 +2,12 @@ package com.example.space_colony;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.space_colony.model.CombatMission;
 import com.example.space_colony.model.Fighter;
@@ -23,12 +18,17 @@ import com.example.space_colony.model.Threat;
 public class FightMissionCombatActivity extends AppCompatActivity {
     private CombatMission combatMission;
     private GameManager manager;
+
     private TextView tvLog;
     private TextView tvCurrentFighter;
+    private TextView tvCurrentFighterHp;
     private TextView tvThreat;
+    private TextView tvThreatHp;
     private LinearLayout combatLayout;
-    private TextView tvResult;
-    private Button btnAttack, btnSpecial;
+    private Button btnAttack;
+    private Button btnSpecial;
+    private ProgressBar progressThreat;
+    private ProgressBar progressCurrentFighter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,14 @@ public class FightMissionCombatActivity extends AppCompatActivity {
 
         tvLog = findViewById(R.id.tvLog);
         tvCurrentFighter = findViewById(R.id.tvCurrentFighter);
+        tvCurrentFighterHp = findViewById(R.id.tvCurrentFighterHp);
         tvThreat = findViewById(R.id.tvThreat);
+        tvThreatHp = findViewById(R.id.tvThreatHp);
         combatLayout = findViewById(R.id.combatLayout);
-        tvResult = findViewById(R.id.tvResult);
         btnAttack = findViewById(R.id.btnAttack);
         btnSpecial = findViewById(R.id.btnSpecialSkill);
+        progressThreat = findViewById(R.id.progressThreat);
+        progressCurrentFighter = findViewById(R.id.progressCurrentFighter);
 
         updateCombatUI();
 
@@ -56,15 +59,16 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         Fighter currentFighter = combatMission.getCurrentFighter();
         Threat threat = combatMission.getThreat();
 
+        if (currentFighter == null) {
+            return;
+        }
+
         String log = "";
 
-        switch (action) {
-            case "attack":
-                log += currentFighter.getName() + " attacks \n";
-                break;
-            case "special":
-                log += currentFighter.getName() + " used special skill.\n";
-                break;
+        if (action.equals("attack")) {
+            log += currentFighter.getName() + " attacks.\n";
+        } else if (action.equals("special")) {
+            log += currentFighter.getName() + " used special skill.\n";
         }
 
         MissionResult result = combatMission.processTurn(action);
@@ -77,7 +81,6 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         updateCombatUI();
 
         if (combatMission.isResolved()) {
-
             manager.applyResult(result);
             showResult(result);
         }
@@ -88,18 +91,27 @@ public class FightMissionCombatActivity extends AppCompatActivity {
     }
 
     private void updateCombatUI() {
+        Threat threat = combatMission.getThreat();
+        tvThreat.setText(threat.getName());
+        tvThreatHp.setText("HP: " + threat.getEnergy() + " / " + threat.getMaxEnergy());
+        progressThreat.setMax(threat.getMaxEnergy());
+        progressThreat.setProgress(threat.getEnergy());
+
         Fighter currentFighter = combatMission.getCurrentFighter();
         if (currentFighter != null) {
-            tvCurrentFighter.setText(currentFighter.getName() + " — HP: " + currentFighter.getEnergy());
+            tvCurrentFighter.setText("Current Fighter: " + currentFighter.getName());
+            tvCurrentFighterHp.setText(
+                    "Energy: " + currentFighter.getEnergy() + " / " + currentFighter.getEffectiveMaxEnergy()
+            );
+            progressCurrentFighter.setMax(currentFighter.getEffectiveMaxEnergy());
+            progressCurrentFighter.setProgress(currentFighter.getEnergy());
+        } else {
+            tvCurrentFighter.setText("Current Fighter: None");
+            tvCurrentFighterHp.setText("Energy: 0 / 0");
+            progressCurrentFighter.setMax(1);
+            progressCurrentFighter.setProgress(0);
         }
-        tvThreat.setText(combatMission.getThreat().getName() + " — HP: " + combatMission.getThreat().getEnergy());
     }
-
-//    private void showResult(MissionResult result) {
-//        combatLayout.setVisibility(View.GONE);
-//        tvResult.setVisibility(View.VISIBLE);
-//        tvResult.setText(result.getSummary());
-//    }
 
     private void showResult(MissionResult result) {
         Dialog dialog = new Dialog(this);
@@ -113,6 +125,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
             dialog.dismiss();
             finish();
         });
+
         dialog.setCancelable(false);
         dialog.show();
     }

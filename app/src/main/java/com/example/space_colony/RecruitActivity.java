@@ -1,7 +1,6 @@
 package com.example.space_colony;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +24,8 @@ import com.example.space_colony.model.Medic;
 import com.example.space_colony.model.Scientist;
 import com.example.space_colony.model.Soldier;
 
+import java.util.List;
+
 public class RecruitActivity extends AppCompatActivity {
     private EditText nameInput;
     private GameManager manager;
@@ -36,6 +37,7 @@ public class RecruitActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_recruit);
         background = findViewById(R.id.backgroundRecruit);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -46,20 +48,29 @@ public class RecruitActivity extends AppCompatActivity {
 
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());
+
         Button recruitButton = findViewById(R.id.recruitButton);
 
         nameInput = findViewById(R.id.nameInput);
         Spinner spinner = findViewById(R.id.spinner);
-        String[] options = {"Blacksmith","Medic","Engineer","Scientist","Soldier","Magician","Defender"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item,options);
+
+        String[] options = {"Blacksmith", "Medic", "Engineer", "Scientist", "Soldier", "Magician", "Defender"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, options);
         spinner.setAdapter(adapter);
 
         recruitButton.setOnClickListener(v -> {
-            String name = nameInput.getText().toString();
+            String name = nameInput.getText().toString().trim();
+
             if (name.isEmpty()) {
                 Toast.makeText(this, "Name can not be empty", Toast.LENGTH_LONG).show();
                 return;
             }
+
+            if (hasDuplicateName(name)) {
+                Toast.makeText(this, "This name already exists", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             String selectedRole = spinner.getSelectedItem().toString();
 
             CrewMember newMember;
@@ -81,21 +92,35 @@ public class RecruitActivity extends AppCompatActivity {
                 newMember = new Medic(name);
             }
 
-            manager.recruit(newMember);
-            finish(); // go back to crew list
+            boolean recruited = manager.recruit(newMember);
+            if (!recruited) {
+                Toast.makeText(this, "Recruitment failed", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            finish();
         });
     }
+
+    private boolean hasDuplicateName(String newName) {
+        List<CrewMember> crewList = manager.getQuarters().getCrew();
+
+        for (CrewMember member : crewList) {
+            if (member.getName() != null && member.getName().trim().equalsIgnoreCase(newName.trim())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
 
-        // Check if a mission exists and if it is resolved
         if (manager.getCurrentMission() != null) {
             if (!manager.getCurrentMission().isResolved()) {
-                // Day background
                 background.setImageResource(R.drawable.quarter);
             } else {
-                // Night background
                 background.setImageResource(R.drawable.quarternight);
             }
         }

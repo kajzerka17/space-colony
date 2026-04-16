@@ -1,11 +1,8 @@
 package com.example.space_colony.adapter;
 
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,15 +23,12 @@ import com.example.space_colony.model.Soldier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapter<CrewMemberAdapter.ViewHolder>{
-
-    final String TAG = "CREWMEMBER ADAPTER";
+public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapter<CrewMemberAdapter.ViewHolder> {
 
     protected List<T> items;
 
     public CrewMemberAdapter(List<T> items) {
-        this.items         = new ArrayList<>(items);
-        //this.clickListener = clickListener;
+        this.items = new ArrayList<>(items);
     }
 
     public interface OnCrewClickListener {
@@ -44,14 +38,17 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
     private OnCrewClickListener clickListener;
 
     public CrewMemberAdapter(List<T> items, OnCrewClickListener clickListener) {
-        this.items = items;
+        this.items = new ArrayList<>(items);
         this.clickListener = clickListener;
     }
 
     public void updateData(List<T> newItems) {
         this.items = new ArrayList<>(newItems);
         notifyDataSetChanged();
-//        Log.d(TAG,"updateData");
+    }
+
+    public void updateList(List<T> newList) {
+        this.items = newList;
     }
 
     @NonNull
@@ -65,12 +62,13 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
     @Override
     public void onBindViewHolder(@NonNull CrewMemberAdapter.ViewHolder holder, int position) {
         T item = items.get(position);
+
         holder.tvName.setText(item.getName());
         holder.tvRole.setText(item.getSpecialization());
-        // Lambda click handler
-//        holder.itemView.setOnClickListener(v -> {
-//            if (clickListener != null) clickListener.onItemClick(item);
-//        });
+        holder.tvEnergy.setText("Energy: " + item.getEnergy() + "/" + item.getMaxEnergy());
+        holder.tvXp.setText("XP: " + item.getXp());
+        holder.tvStatus.setText("Status: " + formatStatus(item.getStatus().name()));
+        holder.tvResilience.setText("Resilience: " + getResilienceText(item));
 
         if (item instanceof Defender) {
             holder.imgCrewMember.setImageResource(R.drawable.green);
@@ -92,7 +90,7 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
 
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
-                clickListener.onCrewClick(items.get(position));
+                clickListener.onCrewClick(item);
             }
         });
     }
@@ -102,19 +100,35 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
         return items.size();
     }
 
-    public void updateList(List<T> newList) {
-//        Log.d(TAG,"updateList");
-        this.items = newList;
+    private String getResilienceText(CrewMember member) {
+        if (member instanceof Fighter) {
+            Fighter fighter = (Fighter) member;
+            return String.valueOf(fighter.getEffectiveResilience());
+        }
+        return "-";
+    }
+
+    private String formatStatus(String rawStatus) {
+        return rawStatus.replace("_", " ");
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView tvName;
         final TextView tvRole;
-        private ImageView imgCrewMember;
+        final TextView tvEnergy;
+        final TextView tvXp;
+        final TextView tvResilience;
+        final TextView tvStatus;
+        final ImageView imgCrewMember;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvRole = itemView.findViewById(R.id.tvRole);
+            tvEnergy = itemView.findViewById(R.id.tvEnergy);
+            tvXp = itemView.findViewById(R.id.tvXp);
+            tvResilience = itemView.findViewById(R.id.tvResilience);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
             imgCrewMember = itemView.findViewById(R.id.imgCrewMember);
         }
     }

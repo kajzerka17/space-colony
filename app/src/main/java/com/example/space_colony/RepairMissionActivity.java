@@ -1,18 +1,10 @@
 package com.example.space_colony;
 
 import android.app.Dialog;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.MissionResult;
 
 public class RepairMissionActivity extends MissionActivity {
@@ -40,6 +32,12 @@ public class RepairMissionActivity extends MissionActivity {
                 return;
             }
 
+            if (!result.isSuccess()) {
+                clearCurrentSelection();
+                Toast.makeText(this, "Repair mission needs at least one Engineer. Please choose again.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             resultDialog = new Dialog(this);
             resultDialog.setContentView(R.layout.repair_mission_end_dialog_layout);
             resultDialog.setCancelable(false);
@@ -47,16 +45,7 @@ public class RepairMissionActivity extends MissionActivity {
             TextView resultText = resultDialog.findViewById(R.id.RepairResultText);
             Button btnAccept = resultDialog.findViewById(R.id.btnAccept);
 
-            if (result.isSuccess()) {
-                //manager.applyResult(result);
-                resultText.setText("The repair mission was successful!");
-            } else {
-                //manager.applyResult(result);
-                resultText.setText("The repair mission was not successful! Game Over !!!");
-                //here we replace the save file for a fresh one because the player died
-//                manager.resetGame();
-//                manager.startDay();
-            }
+            resultText.setText("The repair mission was successful!");
 
             btnAccept.setOnClickListener(d -> {
                 resultDialog.dismiss();

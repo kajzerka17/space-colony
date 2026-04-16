@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResourceMissionActivity">
+    tools:context=".FightMissionActivity">
 
     <ImageView
         android:id="@+id/backgroundFight"
@@ -29,16 +29,15 @@
         android:fontFamily="@font/audiowide"
         android:scaleX="3"
         android:scaleY="3"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="8"
         android:text="Mission"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:shadowColor="#000000"
-        android:shadowRadius="8"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textFight"
@@ -48,16 +47,15 @@
         android:fontFamily="@font/audiowide"
         android:scaleX="2"
         android:scaleY="2"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="8"
         android:text="Threat Elimination"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMissionFight"
-        android:shadowColor="#000000"
-        android:shadowRadius="8"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textMissionFight" />
 
     <TextView
         android:id="@+id/textFightDescription"
@@ -78,14 +76,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFight" />
 
+    <LinearLayout
+        android:id="@+id/threatInfoLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:background="#D9FFFFFF"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFightDescription">
+
+        <TextView
+            android:id="@+id/tvThreatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/audiowide"
+            android:text="Threat"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/progressThreatPreview"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/tvThreatHpPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/audiowide"
+            android:text="HP: 0 / 0"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvThreatStatsPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/audiowide"
+            android:text="Attack: 0   Resilience: 0"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/crewOnMissionRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="220dp"
         android:layout_marginTop="20dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/textFightDescription"
+        app:layout_constraintTop_toBottomOf="@+id/threatInfoLayout"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
@@ -99,9 +150,9 @@
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="choose"
+        app:backgroundTint="@color/mainButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crewOnMissionRecyclerView"
-        app:backgroundTint="@color/mainButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/crewOnMissionRecyclerView" />
 
     <Button
         android:id="@+id/beginButton"
@@ -128,8 +179,9 @@
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="go back"
+        app:backgroundTint="@color/mainButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crewOnMissionRecyclerView"
-        app:backgroundTint="@color/mainButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/crewOnMissionRecyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
