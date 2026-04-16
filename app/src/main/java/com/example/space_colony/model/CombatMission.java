@@ -24,9 +24,17 @@ public class CombatMission extends Mission {
 
     @Override
     public boolean addParticipant(CrewMember crew) {
-        if(crew.isAvailable() && !crew.getSpecialization().equals("Engineer") && !crew.getSpecialization().equals("Scientist") && !crew.getSpecialization().equals("Blacksmith")) {
+        if (crew == null) {
+            return false;
+        }
+        if (!crew.isAvailable()) {
+            return false;
+        }
+        if (this.participants.contains(crew)) {
+            return false;
+        }
+        if(!crew.getSpecialization().equals("Engineer") && !crew.getSpecialization().equals("Scientist") && !crew.getSpecialization().equals("Blacksmith")) {
             this.participants.add(crew);
-            crew.status = ON_MISSION;
             return true;
         }
         return false;

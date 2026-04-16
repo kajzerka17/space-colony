@@ -151,23 +151,27 @@ public class GameManager {
 //        return missionControl.canLaunch();
 //    }
 
-     // what is this i dont know yet.
-     public MissionResult launchMission() {
-         if (missionControl.getCurrentMission() == null ||
-                 !missionControl.getCurrentMission().canLaunch()) {
-             return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
-         }
+    // what is this i dont know yet.
+    public MissionResult launchMission() {
+        if (missionControl.getCurrentMission() == null ||
+                !missionControl.getCurrentMission().canLaunch()) {
+            return new MissionResult(false, 0, 0, "Mission cannot be launched.", new ArrayList<>());
+        }
 
-         if (missionControl.getCurrentMission().isTurnBased()) {
-             return null; // activity handles turn-based
-         }
+        for (CrewMember member : missionControl.getCurrentMission().getParticipants()) {
+            member.setStatus(CrewStatus.ON_MISSION);
+        }
 
-         MissionResult result = missionControl.launchMission();
-         Log.d(TAG,"launch mission");
+        if (missionControl.getCurrentMission().isTurnBased()) {
+            return null; // activity handles turn-based
+        }
 
-         applyResult(result);
-         return result;
-     }
+        MissionResult result = missionControl.launchMission();
+        Log.d(TAG,"launch mission");
+
+        applyResult(result);
+        return result;
+    }
 
     public void applyResult(MissionResult result) {
         if (!result.isSuccess()) {

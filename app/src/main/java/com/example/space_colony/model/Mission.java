@@ -28,12 +28,17 @@ public abstract class Mission {
     }
 
     public boolean addParticipant(CrewMember crew) {
-        if(crew.isAvailable()) {
-            this.participants.add(crew);
-            crew.status = ON_MISSION;
-            return true;
+        if (crew == null) {
+            return false;
         }
-        return false;
+        if (!crew.isAvailable()) {
+            return false;
+        }
+        if (this.participants.contains(crew)) {
+            return false;
+        }
+        this.participants.add(crew);
+        return true;
     }
 //    public void addParticipants(List<? extends CrewMember> crew){
 //        this.participants.addAll(crew);
