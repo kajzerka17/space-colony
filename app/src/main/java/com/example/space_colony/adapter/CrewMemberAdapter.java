@@ -1,6 +1,7 @@
 package com.example.space_colony.adapter;
 
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import java.util.List;
 
 public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapter<CrewMemberAdapter.ViewHolder>{
 
+    final String TAG = "CREWMEMBER ADAPTER";
+
     protected List<T> items;
 
     public CrewMemberAdapter(List<T> items) {
@@ -48,6 +51,7 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
     public void updateData(List<T> newItems) {
         this.items = new ArrayList<>(newItems);
         notifyDataSetChanged();
+//        Log.d(TAG,"updateData");
     }
 
     @NonNull
@@ -99,6 +103,7 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
     }
 
     public void updateList(List<T> newList) {
+//        Log.d(TAG,"updateList");
         this.items = newList;
     }
 

@@ -171,6 +171,7 @@ public class GameManager {
     public void applyResult(MissionResult result) {
         if (!result.isSuccess()) {
             resetGame();
+            return;
         }
         fragments += result.getFragmentsGained();
         statistics.recordMission();
@@ -207,7 +208,8 @@ public class GameManager {
     }
 
     public boolean assignToSimulator(CrewMember cm) {
-        if (simulator.canAssign(cm)) {
+        if (simulator.canAssign(cm) && power >= 10) {
+            spendPower(10);
             simulator.assign(cm);
             //System.out.println(cm.getName() + " assigned to simulator.");
             Log.d(TAG, "assignToSimulator successfully");
@@ -296,7 +298,7 @@ public class GameManager {
         return false;
     }
 
-    public boolean spendPower(int amount) {
+    private boolean spendPower(int amount) {
         if (power >= amount) {
             power -= amount;
             return true;

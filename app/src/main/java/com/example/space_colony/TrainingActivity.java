@@ -55,12 +55,17 @@ public class TrainingActivity extends AppCompatActivity {
                         return;
                     }
                     // one crew get selected to add to training
-                    if (manager.getPower() == 0){
+//                    if (manager.getPower() == 0){
+//                        Toast.makeText(TrainingActivity.this,"No power left for training",Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    manager.assignToSimulator(member);
+//                    adapter.updateData(simulator.getAssigned());
+
+                    if (!manager.assignToSimulator(member)) {
                         Toast.makeText(TrainingActivity.this,"No power left for training",Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    manager.assignToSimulator(member);
-                    manager.spendPower(10);
                     adapter.updateData(simulator.getAssigned());
                 }
             });

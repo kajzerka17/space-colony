@@ -1,6 +1,7 @@
 package com.example.space_colony;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -20,12 +21,19 @@ import com.example.space_colony.model.Soldier;
 import java.util.List;
 
 public class MedbayActivity extends AppCompatActivity {
+
+    final String TAG = "MEDBAY ACTIVITY";
     private MedbayAdapter adapter;
-    GameManager manager = GameManager.getInstance();
-    private List<CrewMember> medbayCrews = manager.getMedbay().getPatients();
+    GameManager manager;
+    private List<CrewMember> medbayCrews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        manager = GameManager.getInstance();
+        medbayCrews = manager.getMedbay().getPatients();
+//        Log.d(TAG,"on create");
+//        System.out.println(medbayCrews);
+//        System.out.println(manager.getMedbay());
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_medbay);
