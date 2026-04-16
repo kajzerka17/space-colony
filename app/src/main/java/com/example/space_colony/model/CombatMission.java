@@ -1,27 +1,31 @@
 package com.example.space_colony.model;
 
-import static com.example.space_colony.model.CrewStatus.ON_MISSION;
-
 import java.util.ArrayList;
 import java.util.List;
 
+// combat mission class
 public class CombatMission extends Mission {
     private Threat threat;
     private int currentTurn;
+
+    // make combat mission
     public CombatMission(String type, int day, List<CrewMember> participants, Threat threat){
         super("Combat", day, participants);
         this.threat = threat;
         this.currentTurn = 0;
     }
 
+    // get threat
     public Threat getThreat(){
         return threat;
     }
 
+    // get turn
     public int getCurrentTurn(){
         return currentTurn;
     }
 
+    // add one crew
     @Override
     public boolean addParticipant(CrewMember crew) {
         if (crew == null) {
@@ -40,6 +44,7 @@ public class CombatMission extends Mission {
         return false;
     }
 
+    // check start rule
     @Override
     public boolean canLaunch() {
         if (participants == null || participants.size() < 2) {
@@ -56,6 +61,7 @@ public class CombatMission extends Mission {
         return true;
     }
 
+    // get alive crew
     public List<CrewMember> getAliveFighter() {
         List<CrewMember> aliveFighter = new ArrayList<>();
         for (CrewMember member : participants) {
@@ -66,6 +72,7 @@ public class CombatMission extends Mission {
         return aliveFighter;
     }
 
+    // get dead crew
     public List<CrewMember> getDefeatedFighter() {
         List<CrewMember> defeatedFighter = new ArrayList<>();
         for (CrewMember member : participants) {
@@ -76,6 +83,7 @@ public class CombatMission extends Mission {
         return defeatedFighter;
     }
 
+    // check alive crew
     public boolean hasAliveFighter() {
         for (int i = 0; i < participants.size(); i++) {
             if (participants.get(i).getEnergy() > 0) {
@@ -85,7 +93,8 @@ public class CombatMission extends Mission {
 
         return false;
     }
-    //
+
+    // get next crew
     public Fighter getCurrentFighter() {
         int startIndex = currentTurn % participants.size();
 
@@ -100,41 +109,7 @@ public class CombatMission extends Mission {
         return null;
     }
 
-//    @Override
-//    public MissionResult resolve() {
-//        if (!canLaunch()) {
-//            return new MissionResult(false,0, 0, "Invalid combat mission", new ArrayList<>());
-//        }
-//
-//        while (!threat.isDefeated() && hasAliveFighter()) {
-//            Fighter fighter = getCurrentFighter();
-//
-//            if (fighter != null) {
-//                // SOS - player could not choose the action yet
-//                fighter.performAttack(threat);
-//
-//                if (!threat.isDefeated()) {
-//                    threat.performAttack(fighter);
-//                }
-//
-//                currentTurn = currentTurn + 1;
-//            }
-//        }
-//
-//        List<CrewMember> aliveFighter = getAliveFighter();
-//        List<CrewMember> defeatedFighter = getDefeatedFighter();
-//        if (threat.isDefeated()) {
-//            for (int i = 0; i < aliveFighter.size(); i++) {
-//                aliveFighter.get(i).gainXp(10);
-//            }
-//
-//            return new MissionResult(true,10, 0, "Threat defeated", defeatedFighter);
-//        }
-//
-//        return new MissionResult(false,0, 0, "All fighters defeated", defeatedFighter);
-//    }
-
-
+    // start mission flow
     @Override
     public MissionResult resolve() {
         if (!canLaunch()) {
@@ -143,12 +118,12 @@ public class CombatMission extends Mission {
         return null; // null means turn-based, activity drives it
     }
 
-    // call this once to start
+    // start first turn
     public void startMission() {
         currentTurn = 0;
     }
 
-    // call this each time the player picks an action
+    // run one turn
     public MissionResult processTurn(String action) {
         Fighter fighter = getCurrentFighter();
 
@@ -186,14 +161,12 @@ public class CombatMission extends Mission {
         return null; // null means mission is still ongoing
     }
 
+    // check mission state
     public boolean isOngoing() {
         return !threat.isDefeated() && hasAliveFighter();
     }
 
-//    public boolean isResolved() {
-//        return isResolved;
-//    }
-
+    // check mission type
     public boolean isTurnBased() {
         return true;
     }
