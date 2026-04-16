@@ -3,7 +3,6 @@ package com.example.space_colony;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,6 +14,7 @@ import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.MissionResult;
 import com.example.space_colony.model.Threat;
 
+// combat battle screen
 public class FightMissionCombatActivity extends AppCompatActivity {
     private CombatMission combatMission;
     private GameManager manager;
@@ -24,12 +24,12 @@ public class FightMissionCombatActivity extends AppCompatActivity {
     private TextView tvCurrentFighterHp;
     private TextView tvThreat;
     private TextView tvThreatHp;
-    private LinearLayout combatLayout;
     private Button btnAttack;
     private Button btnSpecial;
     private ProgressBar progressThreat;
     private ProgressBar progressCurrentFighter;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,6 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         tvCurrentFighterHp = findViewById(R.id.tvCurrentFighterHp);
         tvThreat = findViewById(R.id.tvThreat);
         tvThreatHp = findViewById(R.id.tvThreatHp);
-        combatLayout = findViewById(R.id.combatLayout);
         btnAttack = findViewById(R.id.btnAttack);
         btnSpecial = findViewById(R.id.btnSpecialSkill);
         progressThreat = findViewById(R.id.progressThreat);
@@ -55,6 +54,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         btnSpecial.setOnClickListener(v -> handleTurn("special"));
     }
 
+    // run one turn
     private void handleTurn(String action) {
         Fighter currentFighter = combatMission.getCurrentFighter();
         Threat threat = combatMission.getThreat();
@@ -90,6 +90,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         tvLog.append(text + "\n");
     }
 
+    // refresh battle view
     private void updateCombatUI() {
         Threat threat = combatMission.getThreat();
         tvThreat.setText(threat.getName());
@@ -113,6 +114,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         }
     }
 
+    // show end result
     private void showResult(MissionResult result) {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.fight_mission_end_layout);
