@@ -2,6 +2,7 @@ package com.example.space_colony.model;
 
 import java.util.Random;
 
+// enemy class
 public class Threat {
     private String name;
     private int attack;
@@ -10,6 +11,7 @@ public class Threat {
     private int energy;
     private int day;
 
+    // make threat
     public Threat(String name, int maxEnergy, int attack, int resilience, int day) {
         this.name = name;
         this.attack = attack;
@@ -47,11 +49,13 @@ public class Threat {
         return energy == 0;
     }
 
+    // roll one stat
     private static int randomInRange(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
 
+    // make random threat
     public static Threat rollStats(int day) {
         int maxEnergyMin = 18;
         int maxEnergyMax = 22 + ((day - 1) / 2) * 2;
@@ -69,6 +73,7 @@ public class Threat {
         return new Threat("Threat", rolledMaxEnergy, rolledAttack, rolledResilience, day);
     }
 
+    // lose hp
     public void takeDamage(int damage) {
         if (damage < 0) {
             damage = 0;
@@ -81,6 +86,7 @@ public class Threat {
         }
     }
 
+    // lower defense
     public void reduceResilience(int amount) {
         resilience = resilience - amount;
 
@@ -89,7 +95,7 @@ public class Threat {
         }
     }
 
-
+    // hit one fighter
     public void performAttack(Fighter fighter) {
         int attackVariation = randomInRange(-1, 1);
         int actualAttack = attack + attackVariation;
