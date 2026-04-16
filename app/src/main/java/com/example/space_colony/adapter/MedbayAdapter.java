@@ -13,15 +13,18 @@ import com.example.space_colony.model.GameManager;
 
 import java.util.List;
 
+// medbay list adapter
 public class MedbayAdapter extends CrewMemberAdapter<CrewMember> {
 
     private GameManager manager;
 
+    // set medbay list
     public MedbayAdapter(List<CrewMember> medbayCrew) {
         super(medbayCrew);
         manager = GameManager.getInstance();
     }
 
+    // make medbay row
     @Override
     public CrewMemberAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -29,6 +32,7 @@ public class MedbayAdapter extends CrewMemberAdapter<CrewMember> {
         return new MedbayViewHolder(view);
     }
 
+    // fill medbay row
     @Override
     public void onBindViewHolder(@NonNull CrewMemberAdapter.ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
@@ -37,6 +41,7 @@ public class MedbayAdapter extends CrewMemberAdapter<CrewMember> {
         medbayHolder.tvTime.setText(String.valueOf(manager.getMedbay().getStayRemaining(item.getId())));
     }
 
+    // medbay row holder
     public static class MedbayViewHolder extends CrewMemberAdapter.ViewHolder {
         TextView tvTime;
 
