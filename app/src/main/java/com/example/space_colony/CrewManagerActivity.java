@@ -26,6 +26,7 @@ import com.example.space_colony.model.GameManager;
 
 import java.util.List;
 
+// crew manager screen
 public class CrewManagerActivity extends AppCompatActivity {
 
     private CrewMemberAdapter<CrewMember> adapter;
@@ -34,6 +35,7 @@ public class CrewManagerActivity extends AppCompatActivity {
     private final GameManager manager = GameManager.getInstance();
     private List<CrewMember> crews = manager.getQuarters().getCrew();
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,7 @@ public class CrewManagerActivity extends AppCompatActivity {
         });
     }
 
+    // refresh screen
     @Override
     protected void onResume() {
         super.onResume();
@@ -86,6 +89,7 @@ public class CrewManagerActivity extends AppCompatActivity {
         }
     }
 
+    // show crew info
     private void showCrewDetails(CrewMember member) {
         StringBuilder details = new StringBuilder();
 
@@ -123,7 +127,7 @@ public class CrewManagerActivity extends AppCompatActivity {
         textView.setTextColor(Color.BLACK);
         textView.setPadding(48, 32, 48, 16);
 
-        androidx.appcompat.app.AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setCustomTitle(titleView)
                 .setView(textView)
                 .setPositiveButton("OK", null)
@@ -134,6 +138,7 @@ public class CrewManagerActivity extends AppCompatActivity {
         okButton.setTextColor(ContextCompat.getColor(this, R.color.mainButton));
     }
 
+    // fix status text
     private String formatStatus(String rawStatus) {
         return rawStatus.replace("_", " ");
     }
