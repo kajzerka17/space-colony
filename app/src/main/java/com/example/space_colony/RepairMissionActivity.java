@@ -7,15 +7,17 @@ import android.widget.Toast;
 
 import com.example.space_colony.model.MissionResult;
 
+// repair mission screen
 public class RepairMissionActivity extends MissionActivity {
+
+    private Dialog resultDialog;
 
     @Override
     protected int getLayout() {
         return R.layout.activity_repair_mission;
     }
 
-    private Dialog resultDialog;
-
+    // start repair mission
     @Override
     protected void setBeginButton() {
         Button btnBegin = findViewById(R.id.beginButton);
@@ -57,6 +59,7 @@ public class RepairMissionActivity extends MissionActivity {
         });
     }
 
+    // clear dialog
     @Override
     protected void onDestroy() {
         super.onDestroy();
