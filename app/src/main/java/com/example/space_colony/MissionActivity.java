@@ -56,9 +56,12 @@ public abstract class MissionActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         chooseButton.setOnClickListener(v -> {
+            List<CrewMember> selectableCrew = new ArrayList<>(manager.getQuarters().getAvailableCrew());
+            selectableCrew.removeAll(manager.getCurrentMission().getParticipants());
+
             CrewSelectionDialog dialog = new CrewSelectionDialog(
                     this,
-                    manager.getQuarters().getAvailableCrew(),
+                    selectableCrew,
                     new CrewSelectionDialog.OnCrewSelectedListener() {
                         @Override
                         public void onCrewSelected(CrewMember member) {
