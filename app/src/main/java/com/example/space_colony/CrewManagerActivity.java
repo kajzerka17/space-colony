@@ -1,13 +1,18 @@
 package com.example.space_colony;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -102,11 +107,31 @@ public class CrewManagerActivity extends AppCompatActivity {
             details.append("Resilience: -\n");
         }
 
-        new AlertDialog.Builder(this)
-                .setTitle(member.getName() + " Stats")
-                .setMessage(details.toString())
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.audiowide);
+
+        TextView titleView = new TextView(this);
+        titleView.setText(member.getName() + "'s Stats");
+        titleView.setTypeface(typeface);
+        titleView.setTextSize(20);
+        titleView.setTextColor(Color.BLACK);
+        titleView.setPadding(48, 48, 48, 16);
+
+        TextView textView = new TextView(this);
+        textView.setText(details.toString());
+        textView.setTypeface(typeface);
+        textView.setTextSize(14);
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(48, 32, 48, 16);
+
+        androidx.appcompat.app.AlertDialog dialog = new AlertDialog.Builder(this)
+                .setCustomTitle(titleView)
+                .setView(textView)
                 .setPositiveButton("OK", null)
                 .show();
+
+        Button okButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        okButton.setTypeface(typeface);
+        okButton.setTextColor(ContextCompat.getColor(this, R.color.mainButton));
     }
 
     private String formatStatus(String rawStatus) {

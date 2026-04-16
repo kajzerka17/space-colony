@@ -34,6 +34,7 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/audiowide"
                 android:text="Crew Name"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -44,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/audiowide"
                 android:text="Role"
                 android:textColor="@color/darker_gray"
                 android:textSize="13sp" />
@@ -53,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/audiowide"
                 android:text="Missions: 0"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -62,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/audiowide"
                 android:text="Training: 0"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -71,6 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/audiowide"
                 android:text="Medbay: 0"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -80,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/audiowide"
                 android:text="XP: 0" />
         </LinearLayout>
     </LinearLayout>

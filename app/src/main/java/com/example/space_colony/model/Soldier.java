@@ -6,8 +6,9 @@ public class Soldier extends Fighter{
     public Soldier(String name){
         super(name);
         this.specialization = "Soldier";
-        this.maxEnergy = 18;
-        this.energy = 18;
+        this.maxEnergy = 1;
+        //was 18
+        this.energy = 1;
         this.attack = 7;
         this.resilience = 5;
         this.powerStrikeUses = 2;
