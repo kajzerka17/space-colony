@@ -2,6 +2,7 @@ package com.example.space_colony.model;
 
 import java.util.List;
 
+// game stats class
 public class Statistics {
 
     private int totalDays;
@@ -9,6 +10,7 @@ public class Statistics {
     private int totalRecruited;
     private int totalTrainingSessions;
 
+    // make stats
     public Statistics() {
         totalDays = 0;
         totalMissions = 0;
@@ -16,12 +18,12 @@ public class Statistics {
         totalTrainingSessions = 0;
     }
 
-    // Called at end of each day in GameManager
+    // add one day
     public void advanceDay() {
         totalDays++;
     }
 
-    // Called when a mission is completed
+    // add mission data
     public void recordMission(List<CrewMember> participants) {
         totalMissions++;
         for(CrewMember crew : participants) {
@@ -29,23 +31,23 @@ public class Statistics {
         }
     }
 
-    // Called when a new crew member is recruited
+    // add recruit data
     public void recordRecruitment() {
         totalRecruited++;
     }
 
-    // Called when a crew member trains in simulator
+    // add training data
     public void recordTraining(CrewMember cm) {
         totalTrainingSessions++;
         cm.trainingSessions++;
     }
 
-    // Getters
     public int getTotalDays() { return totalDays; }
     public int getTotalMissions() { return totalMissions; }
     public int getTotalRecruited() { return totalRecruited; }
     public int getTotalTrainingSessions() { return totalTrainingSessions; }
 
+    // build stats text
     public String getSummary() {
         return "=== Statistics ===" +
                 "\nTotal Days Survived : " + totalDays +
@@ -54,6 +56,7 @@ public class Statistics {
                 "\nTotal Training Sessions: " + totalTrainingSessions;
     }
 
+    // load save data
     public void restoreFromSave(int totalDays, int totalMissions, int totalRecruited, int totalTrainingSessions) {
         this.totalDays = totalDays;
         this.totalMissions = totalMissions;
