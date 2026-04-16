@@ -172,7 +172,7 @@ public class CombatMission extends Mission {
 
         if (!hasAliveFighter()) {
             this.isResolved = true;
-            return new MissionResult(false, 0, 0, "All fighters defeated", getDefeatedFighter());
+            return new MissionResult(false, 0, 0, "All fighters defeated! Game Over !!!", getDefeatedFighter());
         }
 
         return null; // null means mission is still ongoing
