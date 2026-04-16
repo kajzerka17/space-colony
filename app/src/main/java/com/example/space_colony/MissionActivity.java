@@ -22,12 +22,13 @@ import com.example.space_colony.model.Mission;
 import java.util.ArrayList;
 import java.util.List;
 
+// base mission screen
 public abstract class MissionActivity extends AppCompatActivity {
     protected GameManager manager;
     protected RecyclerView recyclerView;
     protected CrewMemberAdapter<CrewMember> adapter;
-    protected List<CrewMember> crewOnMission;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public abstract class MissionActivity extends AppCompatActivity {
         setupLayout();
     }
 
+    // set mission view
     protected void setupLayout() {
         Mission mission = manager.getCurrentMission();
         Button chooseButton = findViewById(R.id.chooseButton);
@@ -94,6 +96,7 @@ public abstract class MissionActivity extends AppCompatActivity {
         setBeginButton();
     }
 
+    // clear picked crew
     protected void clearCurrentSelection() {
         if (manager == null || manager.getCurrentMission() == null) {
             return;
