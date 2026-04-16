@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import java.util.List;
+
 public class Statistics {
 
     private int totalDays;
@@ -20,8 +22,11 @@ public class Statistics {
     }
 
     // Called when a mission is completed
-    public void recordMission() {
+    public void recordMission(List<CrewMember> participants) {
         totalMissions++;
+        for(CrewMember crew : participants) {
+            crew.addMissionCompleted();
+        }
     }
 
     // Called when a new crew member is recruited

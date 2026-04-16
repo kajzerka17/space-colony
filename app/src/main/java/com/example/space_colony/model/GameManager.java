@@ -163,6 +163,7 @@ public class GameManager {
          }
 
          MissionResult result = missionControl.launchMission();
+         Log.d(TAG,"launch mission");
 
          applyResult(result);
          return result;
@@ -174,7 +175,8 @@ public class GameManager {
             return;
         }
         fragments += result.getFragmentsGained();
-        statistics.recordMission();
+        statistics.recordMission(getCurrentMission().getParticipants());
+        Log.d(TAG,"applyResult");
 
         for (CrewMember cm : result.getCrewToMedbay()) {
             medbay.admit(cm);
