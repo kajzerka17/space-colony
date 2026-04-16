@@ -12,10 +12,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.space_colony.model.GameManager;
 
+// class info screen
 public class DescriptionActivity extends AppCompatActivity {
     private ImageView background;
     private GameManager manager;
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +34,16 @@ public class DescriptionActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());
     }
+
+    // refresh background
     @Override
     protected void onResume() {
         super.onResume();
 
-        // Check if a mission exists and if it is resolved
         if (manager.getCurrentMission() != null) {
             if (!manager.getCurrentMission().isResolved()) {
-                // Day background
                 background.setImageResource(R.drawable.quarter);
             } else {
-                // Night background
                 background.setImageResource(R.drawable.quarternight);
             }
         }
