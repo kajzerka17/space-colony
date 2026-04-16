@@ -1,5 +1,6 @@
 package com.example.space_colony.model;
 
+// colony upgrade list
 public enum ColonyUpgrade {
 
     POWER_CELL(3),
@@ -9,10 +10,12 @@ public enum ColonyUpgrade {
 
     private final int cost;
 
+    // set upgrade cost
     ColonyUpgrade(int cost) {
         this.cost = cost;
     }
 
+    // get cost
     public int getCost() {
         return cost;
     }
