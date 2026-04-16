@@ -1,9 +1,10 @@
 package com.example.space_colony.model;
 
-import java.util.Random;
-
+// magician crew
 public class Magician extends Fighter {
     private double vanishChance;
+
+    // make magician
     public Magician (String name) {
         super(name);
         this.specialization = "Magician";
@@ -12,6 +13,8 @@ public class Magician extends Fighter {
         this.attack = 6;
         this.vanishChance = 0.3;
     }
+
+    // use vanish skill
     @Override
     public void useSpecialSkill(Threat target, Fighter ally) {
         double rand = Math.random();
