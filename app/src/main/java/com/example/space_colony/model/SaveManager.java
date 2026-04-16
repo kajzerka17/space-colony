@@ -13,18 +13,22 @@ import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
 
+// save file class
 public class SaveManager {
 
     private static final String FILE_NAME = "save_game.json";
 
+    // check save file
     public static boolean hasSave(Context context) {
         return context.getFileStreamPath(FILE_NAME).exists();
     }
 
+    // delete save file
     public static boolean deleteSave(Context context) {
         return context.deleteFile(FILE_NAME);
     }
 
+    // save game data
     public static boolean saveGame(Context context, GameManager manager) {
         try {
             JSONObject root = new JSONObject();
@@ -108,6 +112,7 @@ public class SaveManager {
         }
     }
 
+    // load game data
     public static boolean loadGame(Context context, GameManager manager) {
         try {
             BufferedReader reader = new BufferedReader(
@@ -251,6 +256,7 @@ public class SaveManager {
         }
     }
 
+    // make crew by class
     private static CrewMember createCrewMember(String specialization, String name) {
         switch (specialization) {
             case "Blacksmith":
