@@ -9,9 +9,9 @@ import android.widget.Toast;
 
 import com.example.space_colony.model.CombatMission;
 import com.example.space_colony.model.GameManager;
-import com.example.space_colony.model.MissionResult;
 import com.example.space_colony.model.Threat;
 
+// combat select screen
 public class FightMissionActivity extends MissionActivity {
 
     private TextView tvThreatName;
@@ -24,6 +24,7 @@ public class FightMissionActivity extends MissionActivity {
         return R.layout.activity_fight_mission;
     }
 
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +37,14 @@ public class FightMissionActivity extends MissionActivity {
         updateThreatPreview();
     }
 
+    // refresh threat view
     @Override
     protected void onResume() {
         super.onResume();
         updateThreatPreview();
     }
 
+    // show threat info
     private void updateThreatPreview() {
         if (!(manager.getCurrentMission() instanceof CombatMission)) {
             return;
@@ -60,6 +63,7 @@ public class FightMissionActivity extends MissionActivity {
         progressThreatPreview.setProgress(threat.getEnergy());
     }
 
+    // start combat
     @Override
     protected void setBeginButton() {
         Button btnBegin = findViewById(R.id.beginButton);
@@ -69,7 +73,7 @@ public class FightMissionActivity extends MissionActivity {
                 return;
             }
 
-            MissionResult result = GameManager.getInstance().launchMission();
+            GameManager.getInstance().launchMission();
             startActivity(new Intent(this, FightMissionCombatActivity.class));
             finish();
         });
