@@ -3,14 +3,17 @@ package com.example.space_colony.model;
 import java.util.ArrayList;
 import java.util.Random;
 
+// resource mission class
 public class ResourceMission extends Mission {
     private int fragmentsGained;
 
+    // make resource mission
     ResourceMission(int day) {
         super("Resource", day, null);
         this.fragmentsGained = 0;
     }
 
+    // run resource mission
     @Override
     public MissionResult resolve() {
         this.isResolved = true;
@@ -23,21 +26,23 @@ public class ResourceMission extends Mission {
         return false;
     }
 
+    // roll fragments
     protected int setFragments() {
-        return new Random().nextInt(4) + 1; // 1, 2, 3 or 4 shards
+        return new Random().nextInt(4) + 1;
     }
 
+    // check engineer bonus
     protected int getEngineerBonus() {
         for (CrewMember member : participants) {
             if (member instanceof Engineer) {
-                return 2; // engineer adds 2 extra fragments
+                return 2;
             }
         }
         return 0;
     }
 
+    // get result text
     protected String getSummary() {
-        //i dont know if this has to be string so its like that
         return "" + fragmentsGained;
     }
 }
