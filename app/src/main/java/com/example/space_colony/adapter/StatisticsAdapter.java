@@ -14,18 +14,22 @@ import com.example.space_colony.model.CrewMember;
 
 import java.util.List;
 
+// stats list adapter
 public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.StatisticsViewHolder> {
 
     private List<CrewMember> crewList;
 
+    // set first list
     public StatisticsAdapter(List<CrewMember> crewList) {
         this.crewList = crewList;
     }
 
+    // update list
     public void updateList(List<CrewMember> newList) {
         this.crewList = newList;
     }
 
+    // make row view
     @NonNull
     @Override
     public StatisticsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,6 +38,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         return new StatisticsViewHolder(view);
     }
 
+    // fill row data
     @Override
     public void onBindViewHolder(@NonNull StatisticsViewHolder holder, int position) {
         CrewMember member = crewList.get(position);
@@ -43,7 +48,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         holder.tvMissionCount.setText("Missions: " + member.getMissionCompleted());
         holder.tvTrainingCount.setText("Training: " + member.getTrainingSession());
         holder.tvMedbayCount.setText("Medbay: " + member.getTimesInMedbay());
-        holder.tvXPCount.setText("XP: "+ member.getXp());
+        holder.tvXPCount.setText("XP: " + member.getXp());
 
         holder.imgCrewMember.setImageResource(getCrewImageRes(member.getSpecialization()));
     }
@@ -53,6 +58,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         return crewList == null ? 0 : crewList.size();
     }
 
+    // pick crew image
     private int getCrewImageRes(String specialization) {
         if ("Soldier".equals(specialization)) {
             return R.drawable.red;
@@ -72,6 +78,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         return R.drawable.white;
     }
 
+    // row holder
     static class StatisticsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgCrewMember;
