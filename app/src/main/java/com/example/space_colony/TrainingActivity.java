@@ -17,13 +17,15 @@ import com.example.space_colony.dialog.CrewSelectionDialog;
 import com.example.space_colony.model.CrewMember;
 import com.example.space_colony.model.GameManager;
 import com.example.space_colony.model.Simulator;
-import com.example.space_colony.model.Soldier;
 
+// training screen
 public class TrainingActivity extends AppCompatActivity {
 
     private CrewMemberAdapter adapter;
     GameManager manager = GameManager.getInstance();
     Simulator simulator = manager.getSimulator();
+
+    // build screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +56,6 @@ public class TrainingActivity extends AppCompatActivity {
                         Toast.makeText(TrainingActivity.this, "Cannot train an engineer",Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    // one crew get selected to add to training
-//                    if (manager.getPower() == 0){
-//                        Toast.makeText(TrainingActivity.this,"No power left for training",Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                    manager.assignToSimulator(member);
-//                    adapter.updateData(simulator.getAssigned());
 
                     if (!manager.assignToSimulator(member)) {
                         Toast.makeText(TrainingActivity.this,"No power left for training",Toast.LENGTH_SHORT).show();
@@ -73,6 +68,7 @@ public class TrainingActivity extends AppCompatActivity {
         });
     }
 
+    // refresh list
     @Override
     protected void onResume() {
         super.onResume();
