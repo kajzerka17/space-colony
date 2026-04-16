@@ -3,6 +3,7 @@ package com.example.space_colony;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,10 @@ public class FightMissionActivity extends MissionActivity {
     protected void setBeginButton() {
         Button btnBegin = findViewById(R.id.beginButton);
         btnBegin.setOnClickListener(v -> {
+            if (manager.getMissionControl().getSquadSize() < 2) {
+                Toast.makeText(this, "Select at least 2 crew members", Toast.LENGTH_SHORT).show();
+                return;
+            }
             MissionResult result = GameManager.getInstance().launchMission();
             startActivity(new Intent(this, FightMissionCombatActivity.class));
 //            if (result == null) {
