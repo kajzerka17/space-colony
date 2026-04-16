@@ -12,42 +12,56 @@
         android:theme="@style/Theme.Spacecolony">
         <activity
             android:name=".FightMissionCombatActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity android:name=".UpgradeActivity" />
-        <activity android:name=".StatisticsActivity" />
+        <activity
+            android:name=".UpgradeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StatisticsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RepairMissionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".FightMissionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ResourceMissionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".TrainingActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MedbayActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RecruitActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".DescriptionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".CrewManagerActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainGameActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -71,6 +71,12 @@ public class GameManager {
         this.medbay = new Medbay();
         this.statistics = new Statistics();
 
+
+        //testing people added
+        recruit(new Soldier("Gracjan"));
+        recruit(new Medic("An"));
+        recruit(new Engineer("Engineer"));
+
         startDay();
     }
 

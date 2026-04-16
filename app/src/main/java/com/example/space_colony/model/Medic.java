@@ -7,9 +7,9 @@ public class Medic extends Fighter{
     public Medic(String name) {
         super(name);
         this.specialization = "Medic";
-        this.maxEnergy = 1;
+        this.maxEnergy = 22;
         //was 22
-        this.energy = 1;
+        this.energy = 22;
         this.attack = 4;
         this.resilience = 6;
         this.healAmount = 5;
