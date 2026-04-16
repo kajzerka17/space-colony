@@ -7,6 +7,7 @@ The project was made by An Hoang, Gracjan Siemczonek, Jiyuan Yang.
 space-colony is a repository for a mobile phone game Mr. Base.
 
 github link: https://github.com/kajzerka17/space-colony
+
 video link:
 
 The game has all of the bonuses in it.
