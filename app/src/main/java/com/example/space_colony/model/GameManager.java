@@ -27,6 +27,7 @@ public class GameManager {
     private int fragments;
     private int power;
     private int maxPower;
+    private int missionMaxSquad;
     private Map<ColonyUpgrade, Integer> unlockedUpgrades;
 
     // Managed subsystems
@@ -43,6 +44,7 @@ public class GameManager {
         this.fragments = 0;
         this.maxPower = 20;
         this.power = 20;
+        this.missionMaxSquad = 2;
         this.unlockedUpgrades = new EnumMap<>(ColonyUpgrade.class);
 
         // Initialize subsystems
@@ -60,6 +62,7 @@ public class GameManager {
         this.fragments = 0;
         this.maxPower = 20;
         this.power = 20;
+        this.missionMaxSquad = 2;
         this.unlockedUpgrades.clear();
 
         this.quarters = new Quarters(baseMaxCrew);
@@ -223,7 +226,8 @@ public class GameManager {
     }
 
     public boolean addCrewForMission(CrewMember crew) {
-        return missionControl.addCrew(crew);
+
+        return (getCurrentMission().getParticipants().size() < missionMaxSquad && missionControl.addCrew(crew));
     }
 
 //    public int getSquadSize() {
@@ -262,8 +266,7 @@ public class GameManager {
                 break;
 
             case COMMAND_CENTER:
-//                missionControl.unlockAdvancedMissions();
-//                System.out.println("Command Center level " + count);
+                missionMaxSquad++;
                 break;
         }
     }
@@ -275,6 +278,7 @@ public class GameManager {
     public int getFragments()               { return fragments; }
     public int getPower()                   { return power; }
     public int getMaxPower(){return maxPower;}
+    public int getMissionMaxSquad() {return missionMaxSquad;}
     public Quarters getQuarters()           { return quarters; }
     public Simulator getSimulator()         { return simulator; }
     public MissionControl getMissionControl() { return missionControl; }

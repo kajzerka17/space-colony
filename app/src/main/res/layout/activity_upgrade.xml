@@ -310,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/audiowide"
-                    android:text="Unlocks 3-member squad for missions"
+                    android:text="Unlocks one extra squad size for missions"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:shadowColor="#000000"

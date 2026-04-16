@@ -59,7 +59,10 @@ public abstract class MissionActivity extends AppCompatActivity {
                     // this list and action is only for the purpose of testing. plz dont trust me that much!
 //                    crewOnMission.add(member);
 //                    adapter.updateData(crewOnMission);
-
+                    if (!(manager.getCurrentMission().getParticipants().size() < manager.getMissionMaxSquad())){
+                        Toast.makeText(MissionActivity.this,"You can only choose " + manager.getMissionMaxSquad() + " people.",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if(!manager.addCrewForMission(member)) {
                         Toast.makeText(MissionActivity.this, member.getSpecialization() + " cannot fight.",Toast.LENGTH_SHORT).show();
                     }
