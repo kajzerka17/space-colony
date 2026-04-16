@@ -33,8 +33,9 @@ public class RepairMissionActivity extends MissionActivity {
             }
 
             if (!result.isSuccess()) {
-                clearCurrentSelection();
-                Toast.makeText(this, "Repair mission needs at least one Engineer. Please choose again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Repair mission failed. Resetting to Day 1.", Toast.LENGTH_SHORT).show();
+                manager.resetGame();
+                finish();
                 return;
             }
 
