@@ -5,6 +5,7 @@ public abstract class CrewMember {
     protected String name;
     protected String specialization;
     protected int maxEnergy;
+    protected int bonusMaxEnergy;
     protected int energy;
     protected int xp;
     protected int id;
@@ -34,6 +35,10 @@ public abstract class CrewMember {
     public String getName() { return this.name; }
     public int getXp() { return this.xp; }
     public int getMaxEnergy() { return this.maxEnergy; }
+    public int getBonusMaxEnergy() {
+        return bonusMaxEnergy + GameManager.getInstance().getBonusScientist();
+    }
+    public int getEffectiveMaxEnergy() { return maxEnergy + getBonusMaxEnergy(); }
     public int getEnergy() { return this.energy; }
     public CrewStatus getStatus() { return this.status; }
     public int getMissionCompleted() { return this.missionCompleted; }

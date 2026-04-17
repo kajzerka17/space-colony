@@ -11,7 +11,7 @@ public abstract class Fighter extends CrewMember{
     protected int resilience;
     protected int bonusResilience;
     protected int bonusAttack;
-    protected int bonusMaxEnergy;
+
 
     // make fighter
     public Fighter(String name) {
@@ -22,9 +22,15 @@ public abstract class Fighter extends CrewMember{
         this.bonusAttack = 0;
     }
 
-    public int getEffectiveResilience() { return resilience + bonusResilience; }
-    public int getEffectiveAttack() { return attack + bonusAttack; }
-    public int getEffectiveMaxEnergy() { return maxEnergy + bonusMaxEnergy; }
+    public int getEffectiveResilience() { return resilience + getBonusResilience(); }
+    public int getEffectiveAttack() { return attack + getBonusAttack(); }
+
+    public int getBonusResilience() {
+        return bonusResilience + GameManager.getInstance().getBonusBlacksmith();
+    }
+    public int getBonusAttack() {
+        return bonusAttack + GameManager.getInstance().getBonusBlacksmith();
+    }
 
     // fill fighter energy
     @Override
@@ -34,7 +40,7 @@ public abstract class Fighter extends CrewMember{
 
     // do attack
     public void performAttack(Threat target) {
-        int damage = this.getEffectiveAttack() - target.getResilience();
+        int damage = getEffectiveAttack() - target.getResilience();
 
         if (damage < 1) {
             damage = 1;
@@ -56,5 +62,4 @@ public abstract class Fighter extends CrewMember{
 
     // use skill
     abstract void useSpecialSkill(Threat target, List<Fighter> ally);
-
 }

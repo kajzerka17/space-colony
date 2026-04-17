@@ -71,7 +71,7 @@ public class CrewMemberAdapter<T extends CrewMember> extends RecyclerView.Adapte
 
         holder.tvName.setText(item.getName());
         holder.tvRole.setText(item.getSpecialization());
-        holder.tvEnergy.setText("Energy: " + item.getEnergy() + "/" + item.getMaxEnergy());
+        holder.tvEnergy.setText("Energy: " + item.getEnergy() + "/" + item.getEffectiveMaxEnergy());
         holder.tvXp.setText("XP: " + item.getXp());
         holder.tvStatus.setText("Status: " + formatStatus(item.getStatus().name()));
         holder.tvResilience.setText("Resilience: " + getResilienceText(item));
