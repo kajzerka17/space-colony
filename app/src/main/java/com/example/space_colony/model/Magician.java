@@ -2,6 +2,8 @@ package com.example.space_colony.model;
 
 import static java.lang.Math.floor;
 
+import com.example.space_colony.FightMissionCombatActivity;
+
 import java.util.List;
 
 // magician crew
@@ -19,17 +21,27 @@ public class Magician extends Fighter {
     }
 
     // use vanish skill
+    private boolean specialUsed = false;
+    public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
-        double effectiveVanishChance = getEffectiveVanishChance();
-        double rand = Math.random();
-        if(rand <= vanishChance) {
-            // vanish the target
-            target.takeDamage(10000);
+        if (!specialUsed) {
+            double effectiveVanishChance = getEffectiveVanishChance();
+            double rand = Math.random();
+            if (rand <= vanishChance) {
+                // vanish the target
+                target.takeDamage(10000);
+                FightMissionCombatActivity.appendLog(getName() + " vaporized the threat!");
+                specialUsed = true;
+            } else {
+                // vanish himself
+                this.takeDamage(10000);
+                FightMissionCombatActivity.appendLog(getName() + " vaporized themselves into ash!");
+                specialUsed = true;
+            }
         }
-        else {
-            // vanish himself
-            this.takeDamage(10000);
+        else{
+            FightMissionCombatActivity.appendLog(getName() + " have used up the Special Attack before. What a waste of the turn!");
         }
     }
 

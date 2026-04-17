@@ -2,6 +2,8 @@ package com.example.space_colony.model;
 
 import static java.lang.Math.floor;
 
+import com.example.space_colony.FightMissionCombatActivity;
+
 import java.util.List;
 
 // soldier crew
@@ -29,28 +31,24 @@ public class Soldier extends Fighter{
     }
 
     // use power strike
+    private boolean specialUsed = false;
+    public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally){
-//        if (powerStrikeUses > 0){
-//            powerStrikeUses = powerStrikeUses - 1;
-//
-//            int damage = (int) (this.getEffectiveAttack()*1.5 - target.getResilience());
-//
-//            if (damage < 0){
-//                damage = 0;
-//            }
-//
-//            target.takeDamage(damage);
-//            target.reduceResilience(2);
-//        }
+        if (!specialUsed) {
+            int damage = (int) (this.getEffectiveAttack() * 1.5 - target.getResilience());
 
-        int damage = (int) (this.getEffectiveAttack()*1.5 - target.getResilience());
-
-            if (damage < 0){
+            if (damage < 0) {
                 damage = 0;
             }
 
             target.takeDamage(damage);
             target.reduceResilience(2);
+            FightMissionCombatActivity.appendLog(getName() + " used power strike.");
+            specialUsed = true;
+        }
+        else{
+            FightMissionCombatActivity.appendLog(getName() + " have used up Power Strike before. What a waste of the turn!");
+        }
     }
 }

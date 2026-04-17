@@ -32,11 +32,11 @@ public class Medic extends Fighter{
         if(!specialUsed) {
             int EffectiveHealAmount = getEffectiveHealAmount();
             ally.get(new Random().nextInt(ally.size())).heal(EffectiveHealAmount);
-            FightMissionCombatActivity.appendLog(getName() + " used special skill.");
+            FightMissionCombatActivity.appendLog(getName() + " used healing skill.");
             specialUsed = true;
         }
         else{
-            FightMissionCombatActivity.appendLog(getName() + " have used up the Special Attack before. Wasted a turn!");
+            FightMissionCombatActivity.appendLog(getName() + " have used up the heal before. What a waste of the turn!");
         }
     }
 

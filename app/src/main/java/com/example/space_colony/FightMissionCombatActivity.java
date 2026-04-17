@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,12 +74,15 @@ public class FightMissionCombatActivity extends AppCompatActivity {
 
         MissionResult result = combatMission.processTurn(action);
 
-        if (!threat.isDefeated()) {
+        if (!threat.isDefeated() && currentFighter.getEnergy() > 0) {
             log += threat.getName() + " strikes " + currentFighter.getName() + " back.\n";
         }
 
         appendLog(log);
         updateCombatUI();
+        ((ScrollView) tvLog.getParent()).post(() ->
+                ((ScrollView) tvLog.getParent()).fullScroll(ScrollView.FOCUS_DOWN)
+        );
 
         if (combatMission.isResolved()) {
             manager.applyResult(result);
