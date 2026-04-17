@@ -35,9 +35,22 @@ public class RepairMissionActivity extends MissionActivity {
             }
 
             if (!result.isSuccess()) {
-                Toast.makeText(this, "Repair mission failed! Game Over !!!", Toast.LENGTH_SHORT).show();
+                resultDialog = new Dialog(this);
+                resultDialog.setContentView(R.layout.repair_mission_end_dialog_layout);
+                resultDialog.setCancelable(false);
+
+                TextView resultText = resultDialog.findViewById(R.id.RepairResultText);
+                Button btnAccept = resultDialog.findViewById(R.id.btnAccept);
+
+                resultText.setText("The repair mission failed! Game Over !!!");
+
+                btnAccept.setOnClickListener(d -> {
+                    resultDialog.dismiss();
+                    finish();
+                });
+
+                resultDialog.show();
                 manager.resetGame();
-                finish();
                 return;
             }
 
