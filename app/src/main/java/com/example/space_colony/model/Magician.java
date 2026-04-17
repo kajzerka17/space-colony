@@ -21,7 +21,7 @@ public class Magician extends Fighter {
     // use vanish skill
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
-        double effectiveVanishChance = getEffectiveVanishChance()
+        double effectiveVanishChance = getEffectiveVanishChance();
         double rand = Math.random();
         if(rand <= vanishChance) {
             // vanish the target
