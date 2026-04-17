@@ -137,7 +137,7 @@ public class CombatMission extends Mission {
             }
 
             if (!threat.isDefeated()) {
-                threat.performAttack(fighter);
+                threat.performAttack(getAliveFighter(),fighter);
             }
 
             currentTurn++;
