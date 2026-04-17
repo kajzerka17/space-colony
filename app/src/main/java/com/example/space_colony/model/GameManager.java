@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import static java.lang.Math.floor;
+
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class GameManager {
     private int fragments;
     private int power;
     private int maxPower;
+
+    private int bonusScientist;
+    private int bonusBlacksmith;
     private int missionMaxSquad;
     private int lastMissionRecordedDay;
     private Map<ColonyUpgrade, Integer> unlockedUpgrades;
@@ -232,8 +237,31 @@ public class GameManager {
     public int getFragments() { return fragments; }
     public int getPower() { return power; }
     public int getMaxPower() { return maxPower; }
+    public int getBonusScientist() {
+        if(getCrew() == null) return 0;
+        int bonus = 0;
+        for (CrewMember crew : getQuarters().getCrew()) {
+            if(crew instanceof Scientist) {
+                bonus += 2 * (int) floor (crew.getXp()/10);
+            }
+        }
+        return bonus;
+    }
+    public int getBonusBlacksmith() {
+        if(getCrew() == null) return 0;
+        int bonus = 0;
+        for (CrewMember crew : getQuarters().getCrew()) {
+            if(crew instanceof Blacksmith) {
+                return (int) floor (crew.getXp()/10);
+            }
+        }
+        return bonus;
+    }
     public int getMissionMaxSquad() { return missionMaxSquad; }
     public Quarters getQuarters() { return quarters; }
+    public List<CrewMember> getCrew() {
+        return getQuarters().getCrew();
+    }
     public Simulator getSimulator() { return simulator; }
     public MissionControl getMissionControl() { return missionControl; }
     public Medbay getMedbay() { return medbay; }
