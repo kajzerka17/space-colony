@@ -17,7 +17,7 @@ space-colony is a repository for a mobile phone game Mr. Base.
 
 github link: https://github.com/kajzerka17/space-colony
 
-video link:
+video link: 
 
 The app is mainly optimized for the 'Medium Phone' in Android Studio in terms of button placements, however everything works and was visible in the actual phones we tested (some xiaomi and samsung phones).
 
@@ -29,3 +29,5 @@ About the game: This game is about managing crew and power. The game is split in
 
 Bonuses: We have all of them
 Recycler View | Crew Images | Mission Visualization | Tactical Combat | Statistics | No Death | Randomness | Specialization Bonuses | Larger Squads | Data Storage | Custom Feature (Currency)
+
+The UML is part of the source code in main branch, it's there as a photo. Link: 
