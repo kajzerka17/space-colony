@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import java.util.List;
+
 // defender crew
 public class Defender extends Fighter {
     private int shieldBonus;
@@ -17,7 +19,8 @@ public class Defender extends Fighter {
 
     // add shield bonus
     @Override
-    public void useSpecialSkill(Threat target, Fighter ally) {
-        ally.bonusResilience += shieldBonus;
+    public void useSpecialSkill(Threat target, List<Fighter> ally) {
+        //ally.bonusResilience += shieldBonus;
+        this.bonusResilience = shieldBonus;
     }
 }

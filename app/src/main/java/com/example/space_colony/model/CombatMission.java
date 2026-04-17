@@ -62,11 +62,11 @@ public class CombatMission extends Mission {
     }
 
     // get alive crew
-    public List<CrewMember> getAliveFighter() {
-        List<CrewMember> aliveFighter = new ArrayList<>();
+    public List<Fighter> getAliveFighter() {
+        List<Fighter> aliveFighter = new ArrayList<>();
         for (CrewMember member : participants) {
             if (member.getEnergy() > 0) {
-                aliveFighter.add(member);
+                aliveFighter.add((Fighter) member);
             }
         }
         return aliveFighter;
@@ -133,8 +133,7 @@ public class CombatMission extends Mission {
                     fighter.performAttack(threat);
                     break;
                 case "special":
-                    //fighter.useSpecialSkill(threat,ally);
-                    break;
+                    fighter.useSpecialSkill(threat,getAliveFighter());
             }
 
             if (!threat.isDefeated()) {

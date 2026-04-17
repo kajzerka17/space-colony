@@ -1,5 +1,8 @@
 package com.example.space_colony.model;
 
+import java.util.List;
+import java.util.Random;
+
 // medic crew
 public class Medic extends Fighter{
     private int healAmount;
@@ -17,7 +20,7 @@ public class Medic extends Fighter{
 
     // heal one crew
     @Override
-    public void useSpecialSkill(Threat target, Fighter ally) {
-        ally.heal(healAmount);
+    public void useSpecialSkill(Threat target, List<Fighter> ally) {
+        ally.get(new Random().nextInt(ally.size())).heal(healAmount);
     }
 }

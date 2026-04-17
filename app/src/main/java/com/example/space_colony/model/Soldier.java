@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import java.util.List;
+
 // soldier crew
 public class Soldier extends Fighter{
     private int powerStrikeUses;
@@ -21,7 +23,7 @@ public class Soldier extends Fighter{
 
     // use power strike
     @Override
-    public void useSpecialSkill(Threat target, Fighter ally){
+    public void useSpecialSkill(Threat target, List<Fighter> ally){
         if (powerStrikeUses > 0){
             powerStrikeUses = powerStrikeUses - 1;
 

@@ -2,6 +2,8 @@ package com.example.space_colony.model;
 
 import static java.lang.Math.max;
 
+import java.util.List;
+
 // base fighter class
 public abstract class Fighter extends CrewMember{
     protected int attack;
@@ -52,6 +54,6 @@ public abstract class Fighter extends CrewMember{
     }
 
     // use skill
-    abstract void useSpecialSkill(Threat target, Fighter ally);
+    abstract void useSpecialSkill(Threat target, List<Fighter> ally);
 
 }
