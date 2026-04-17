@@ -21,7 +21,7 @@ public class Soldier extends Fighter{
 
     @Override
     public int getEffectiveAttack() {
-        return attack + (int) floor(getXp()/20);
+        return attack + (int) floor(getXp()/20) + bonusAttack;
     }
 
     public int getPowerStrikeUses(){
