@@ -1,6 +1,7 @@
 package com.example.space_colony.model;
 
 import static java.lang.Math.floor;
+import static java.lang.Math.min;
 
 import com.example.space_colony.FightMissionCombatActivity;
 
@@ -36,7 +37,7 @@ public class Magician extends Fighter {
             } else {
                 // vanish himself
                 this.takeDamage(10000);
-                FightMissionCombatActivity.appendLog(getName() + " vaporized themselves into ash!");
+                FightMissionCombatActivity.appendLog(getName() + " vaporized themselves into ash, and somehow ends up in the medbay!");
                 specialUsed = true;
             }
         }
@@ -46,6 +47,6 @@ public class Magician extends Fighter {
     }
 
     public double getEffectiveVanishChance() {
-        return 0.3 + 0.05*((int) floor(getXp()/20));
+        return min(0.6, 0.3 + 0.05*((int) floor(getXp()/20)));
     }
 }

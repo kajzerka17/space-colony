@@ -144,7 +144,7 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="8"
-                    android:text="Defender - Wall of shield - Passive: Resilience is increased by 2 at the start of the mission for its duration. Every 20 XP increases the bonus by 1."
+                    android:text="Defender - Wall of shield - Once per mission - Resilience is increased by 2 until the end of the mission."
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
@@ -237,7 +237,7 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="8"
-                    android:text="Magician - Create shortcut - Once per mission, 30% chance to remove the threat directly; 10% chance Magician is sent to Medbay instead; rest chance nothing happens. Every 20 XP increases the success chance of Vanish by 5%, up to 55%."
+                    android:text="Magician - Create shortcut - Once per mission, Fifty-fifty percent chance of removing the threat or removing themselfs. Every 20XP increases the success chance of vanishing the enemy by 5% up, to 60%."
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
