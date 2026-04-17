@@ -19,7 +19,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
     private CombatMission combatMission;
     private GameManager manager;
 
-    private TextView tvLog;
+    private static TextView tvLog;
     private TextView tvCurrentFighter;
     private TextView tvCurrentFighterHp;
     private TextView tvThreat;
@@ -68,7 +68,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         if (action.equals("attack")) {
             log += currentFighter.getName() + " attacks.\n";
         } else if (action.equals("special")) {
-            log += currentFighter.getName() + " used special skill.\n";
+            //log += currentFighter.getName() + " used special skill.\n";
         }
 
         MissionResult result = combatMission.processTurn(action);
@@ -86,7 +86,7 @@ public class FightMissionCombatActivity extends AppCompatActivity {
         }
     }
 
-    private void appendLog(String text) {
+    public static void appendLog(String text) {
         tvLog.append(text + "\n");
     }
 

@@ -57,8 +57,10 @@ public class Threat {
 
     // make random threat
     public static Threat rollStats(int day) {
-        int maxEnergyMin = 18;
-        int maxEnergyMax = 22 + ((day - 1) / 2) * 2;
+        //int maxEnergyMin = 18;
+        //int maxEnergyMax = 22 + ((day - 1) / 2) * 2;
+        int maxEnergyMin = 10000;
+        int maxEnergyMax = 10000;
 
         int attackMin = 4;
         int attackMax = 6 + ((day - 1) / 3);

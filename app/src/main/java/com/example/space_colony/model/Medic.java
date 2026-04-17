@@ -4,6 +4,8 @@ import static android.util.Half.trunc;
 
 import static java.lang.Math.floor;
 
+import com.example.space_colony.FightMissionCombatActivity;
+
 import java.util.List;
 import java.util.Random;
 
@@ -23,9 +25,22 @@ public class Medic extends Fighter{
     }
 
     // heal one crew
+    private boolean specialUsed = false;
+    public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
-        int EffectiveHealAmount = healAmount + (int) floor(getXp()/20);
-        ally.get(new Random().nextInt(ally.size())).heal(EffectiveHealAmount);
+        if(!specialUsed) {
+            int EffectiveHealAmount = getEffectiveHealAmount();
+            ally.get(new Random().nextInt(ally.size())).heal(EffectiveHealAmount);
+            FightMissionCombatActivity.appendLog(getName() + " used special skill.");
+            specialUsed = true;
+        }
+        else{
+            FightMissionCombatActivity.appendLog(getName() + " have used up the Special Attack before. Wasted a turn!");
+        }
+    }
+
+    public int getEffectiveHealAmount() {
+        return healAmount + (int) floor(getXp() / 20);
     }
 }
