@@ -122,8 +122,8 @@ public class Threat {
             int leastHP = 100000;
             int leastEnergyIndex = 0;
             for (int i = 0; i < fighters.size(); i++) {
-                if (fighter.getEnergy() < leastHP) {
-                    leastHP = fighter.getEnergy();
+                if (fighters.get(i).getEnergy() < leastHP) {
+                    leastHP = fighters.get(i).getEnergy();
                     leastEnergyIndex = i;
                 }
             }
