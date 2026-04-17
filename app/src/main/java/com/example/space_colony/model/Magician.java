@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import static java.lang.Math.floor;
+
 import java.util.List;
 
 // magician crew
@@ -19,6 +21,7 @@ public class Magician extends Fighter {
     // use vanish skill
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
+        double effectiveVanishChance = getEffectiveVanishChance()
         double rand = Math.random();
         if(rand <= vanishChance) {
             // vanish the target
@@ -28,5 +31,9 @@ public class Magician extends Fighter {
             // vanish himself
             this.takeDamage(10000);
         }
+    }
+
+    public double getEffectiveVanishChance() {
+        return 0.3 + 0.05*((int) floor(getXp()/20));
     }
 }

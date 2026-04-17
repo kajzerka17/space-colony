@@ -1,5 +1,7 @@
 package com.example.space_colony.model;
 
+import static java.lang.Math.floor;
+
 import java.util.List;
 
 // soldier crew
@@ -15,6 +17,11 @@ public class Soldier extends Fighter{
         this.attack = 7;
         this.resilience = 5;
         //this.powerStrikeUses = 2;
+    }
+
+    @Override
+    public int getEffectiveAttack() {
+        return attack + (int) floor(getXp()/20);
     }
 
     public int getPowerStrikeUses(){
