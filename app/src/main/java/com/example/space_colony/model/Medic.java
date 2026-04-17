@@ -1,5 +1,9 @@
 package com.example.space_colony.model;
 
+import static android.util.Half.trunc;
+
+import static java.lang.Math.floor;
+
 import java.util.List;
 import java.util.Random;
 
@@ -21,6 +25,7 @@ public class Medic extends Fighter{
     // heal one crew
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
-        ally.get(new Random().nextInt(ally.size())).heal(healAmount);
+        int EffectiveHealAmount = healAmount + (int) floor(getXp()/20);
+        ally.get(new Random().nextInt(ally.size())).heal(EffectiveHealAmount);
     }
 }

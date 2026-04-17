@@ -1,6 +1,7 @@
 package com.example.space_colony.model;
 
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 import java.util.List;
 
@@ -50,7 +51,7 @@ public abstract class Fighter extends CrewMember{
     // heal energy
     public void heal(int amount) {
         this.energy += amount;
-        this.energy = max(this.energy,getEffectiveMaxEnergy());
+        this.energy = min(this.energy,getEffectiveMaxEnergy());
     }
 
     // use skill
