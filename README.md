@@ -30,4 +30,4 @@ About the game: This game is about managing crew and power. The game is split in
 Bonuses: We have all of them
 Recycler View | Crew Images | Mission Visualization | Tactical Combat | Statistics | No Death | Randomness | Specialization Bonuses | Larger Squads | Data Storage | Custom Feature (Currency)
 
-The UML is part of the source code in main branch, it's there as a photo. Link: 
+The UML is part of the source code in main branch, it's there as a photo. Link: https://github.com/kajzerka17/space-colony/blob/main/uml_graph.png
