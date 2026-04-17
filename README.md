@@ -5,7 +5,9 @@ In the creation of the project AI was used to generate background images.
 
 The project was made by:
 An Hoang | 00316047 | an.hoang@student.lut.fi
+
 Gracjan Siemczonek | 003119736 | gracjan.siemczonek@student.lut.fi
+
 Jiyuan Yang | 003206979 | jiyuan.yang@student.lut.fi
 
 All of us worked on the design, code, and bugfixing.
