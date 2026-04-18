@@ -39,6 +39,17 @@ public class Quarters {
         return available;
     }
 
+    // get ready fighters
+    public List<Fighter> getAvailableFighters(){
+        List<Fighter> available = new ArrayList<>();
+        for (CrewMember member : crew){
+            if(member.isAvailable() && member instanceof Fighter) {
+                available.add((Fighter) member);
+            }
+        }
+        return available;
+    }
+
     // check full state
     private boolean atCapacity(){
         return crew.size() >= maxCapacity;

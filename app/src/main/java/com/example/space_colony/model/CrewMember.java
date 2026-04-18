@@ -1,6 +1,7 @@
 package com.example.space_colony.model;
 
 // base crew class
+// Each crew member has name, id, specialization, status, statistics feature
 public abstract class CrewMember {
     protected String name;
     protected String specialization;
