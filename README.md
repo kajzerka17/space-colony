@@ -31,3 +31,5 @@ Bonuses: We have all of them
 Recycler View | Crew Images | Mission Visualization | Tactical Combat | Statistics | No Death | Randomness | Specialization Bonuses | Larger Squads | Data Storage | Custom Feature (Currency)
 
 The UML is part of the source code in main branch, it's there as a photo. Link: https://github.com/kajzerka17/space-colony/blob/main/uml_graph.png
+
+The updated game description is also part of the source code in main branch. Link: https://github.com/kajzerka17/space-colony/blob/main/OOP%20Project%20Plan.pdf
