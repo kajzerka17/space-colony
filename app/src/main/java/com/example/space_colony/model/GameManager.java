@@ -21,9 +21,6 @@ public class GameManager {
     private int fragments;
     private int power;
     private int maxPower;
-
-    private int bonusScientist;
-    private int bonusBlacksmith;
     private int missionMaxSquad;
     private int lastMissionRecordedDay;
     private Map<ColonyUpgrade, Integer> unlockedUpgrades;

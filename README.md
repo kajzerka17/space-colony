@@ -1,7 +1,7 @@
 LUT OOP project Space Colony Game | coolGroup :p
 
 AI usage:
-In the creation of the project AI was used to generate background images.
+In the creation of the project AI was used to generate background images and the game icon.
 
 The project was made by:
 An Hoang | 00316047 | an.hoang@student.lut.fi
