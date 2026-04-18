@@ -164,6 +164,9 @@ public class GameManager {
         for (CrewMember cm : quarters.getCrew()) {
             if (cm.getStatus() == CrewStatus.ON_MISSION) {
                 cm.restoreEnergy();
+                if(cm instanceof Fighter) {
+                    ((Fighter) cm).setSpecialUsed(false);
+                }
                 cm.setStatus(CrewStatus.READY);
             }
         }

@@ -11,6 +11,7 @@ public abstract class Fighter extends CrewMember{
     protected int resilience;
     protected int bonusResilience;
     protected int bonusAttack;
+    protected boolean specialUsed = false;
 
 
     // make fighter
@@ -47,6 +48,10 @@ public abstract class Fighter extends CrewMember{
         }
 
         target.takeDamage(damage);
+    }
+
+    public void setSpecialUsed(boolean specialUsed) {
+        this.specialUsed = specialUsed;
     }
 
     // lose energy

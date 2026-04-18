@@ -22,7 +22,6 @@ public class Magician extends Fighter {
     }
 
     // use vanish skill
-    private boolean specialUsed = false;
     public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
@@ -33,12 +32,12 @@ public class Magician extends Fighter {
                 // vanish the target
                 target.takeDamage(10000);
                 FightMissionCombatActivity.appendLog(getName() + " vaporized the threat!");
-                specialUsed = true;
+                setSpecialUsed(true);
             } else {
                 // vanish himself
                 this.takeDamage(10000);
                 FightMissionCombatActivity.appendLog(getName() + " vaporized themselves into ash, and somehow ends up in the medbay!");
-                specialUsed = true;
+                setSpecialUsed(true);
             }
         }
         else{

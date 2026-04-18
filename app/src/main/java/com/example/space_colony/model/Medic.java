@@ -25,7 +25,6 @@ public class Medic extends Fighter{
     }
 
     // heal one crew
-    private boolean specialUsed = false;
     public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
@@ -33,7 +32,7 @@ public class Medic extends Fighter{
             int EffectiveHealAmount = getEffectiveHealAmount();
             ally.get(new Random().nextInt(ally.size())).heal(EffectiveHealAmount);
             FightMissionCombatActivity.appendLog(getName() + " used healing skill.");
-            specialUsed = true;
+            setSpecialUsed(true);
         }
         else{
             FightMissionCombatActivity.appendLog(getName() + " have used up the heal before. What a waste of the turn!");

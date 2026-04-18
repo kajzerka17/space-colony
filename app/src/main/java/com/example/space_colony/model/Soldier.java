@@ -31,7 +31,6 @@ public class Soldier extends Fighter{
     }
 
     // use power strike
-    private boolean specialUsed = false;
     public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally){
@@ -45,7 +44,7 @@ public class Soldier extends Fighter{
             target.takeDamage(damage);
             target.reduceResilience(2);
             FightMissionCombatActivity.appendLog(getName() + " used power strike.");
-            specialUsed = true;
+            setSpecialUsed(true);
         }
         else{
             FightMissionCombatActivity.appendLog(getName() + " have used up Power Strike before. What a waste of the turn!");

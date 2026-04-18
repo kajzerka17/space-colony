@@ -22,7 +22,6 @@ public class Defender extends Fighter {
     }
 
     // add shield bonus
-    private boolean specialUsed = false;
     public static FightMissionCombatActivity instance;
     @Override
     public void useSpecialSkill(Threat target, List<Fighter> ally) {
@@ -30,7 +29,7 @@ public class Defender extends Fighter {
         if (!specialUsed) {
             this.bonusResilience = shieldBonus + (int) floor(getXp() / 20);
             FightMissionCombatActivity.appendLog(getName() + " used defending skill.");
-            specialUsed = true;
+            setSpecialUsed(true);
         }
         else{
             FightMissionCombatActivity.appendLog(getName() + " have used up the defending skill before. What a waste of the turn!");
