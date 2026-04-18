@@ -28,7 +28,7 @@ public class Magician extends Fighter {
         if (!specialUsed) {
             double effectiveVanishChance = getEffectiveVanishChance();
             double rand = Math.random();
-            if (rand <= vanishChance) {
+            if (rand <= effectiveVanishChance) {
                 // vanish the target
                 target.takeDamage(10000);
                 FightMissionCombatActivity.appendLog(getName() + " vaporized the threat!");
