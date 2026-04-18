@@ -155,7 +155,7 @@ public class GameManager {
             statistics.recordMission(getCurrentMission().getParticipants());
             lastMissionRecordedDay = currentDay;
         }
-        Log.d(TAG, "applyResult");
+        // Log.d(TAG, "applyResult");
 
         for (CrewMember cm : result.getCrewToMedbay()) {
             medbay.admit(cm);

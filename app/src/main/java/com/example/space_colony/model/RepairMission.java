@@ -10,7 +10,7 @@ public class RepairMission extends Mission {
         super("Repair", day, null);
     }
 
-    // run repair mission
+    // repair mission is successful if there is an engineer, failed otherwise.
     @Override
     public MissionResult resolve() {
         this.isResolved = true;
