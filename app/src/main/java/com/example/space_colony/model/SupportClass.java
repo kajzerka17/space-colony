@@ -10,7 +10,5 @@ public abstract class SupportClass extends CrewMember {
         super(name);
     }
 
-    // give team bonus
-    public abstract void applyPassiveBonus(List<Fighter> team);
 
 }

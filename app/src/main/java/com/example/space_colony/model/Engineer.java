@@ -13,8 +13,4 @@ public class Engineer extends SupportClass {
         this.energy = 20;
     }
 
-    // no team bonus
-    @Override
-    public void applyPassiveBonus(List<Fighter> team) {
-    }
 }
