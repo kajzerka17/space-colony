@@ -1,5 +1,6 @@
 package com.example.space_colony;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,8 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.space_colony.model.CombatMission;
+import com.example.space_colony.model.Fighter;
 import com.example.space_colony.model.GameManager;
+import com.example.space_colony.model.MissionResult;
 import com.example.space_colony.model.Threat;
+
+import java.util.ArrayList;
 
 // combat select screen
 public class FightMissionActivity extends MissionActivity {
@@ -35,6 +40,23 @@ public class FightMissionActivity extends MissionActivity {
         progressThreatPreview = findViewById(R.id.progressThreatPreview);
 
         updateThreatPreview();
+        if (manager.getCrew().size() == manager.getQuarters().getMaxCapacity() && manager.getQuarters().getAvailableFighters().size() < 2){
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.fight_mission_end_layout);
+
+            TextView resultText = dialog.findViewById(R.id.fightResultText);
+            resultText.setText("You did not recruit any fighters too fight with and have no room for more! Game Over !!!");
+
+            Button buttonAccept = dialog.findViewById(R.id.btnAccept);
+            buttonAccept.setOnClickListener(v2 -> {
+                dialog.dismiss();
+                finish();
+                manager.applyResult(new MissionResult(false,0,0,"", new ArrayList<>()));
+            });
+
+            dialog.setCancelable(false);
+            dialog.show();
+        }
     }
 
     // refresh threat view
