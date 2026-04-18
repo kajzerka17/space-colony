@@ -17,7 +17,7 @@ space-colony is a repository for a mobile phone game Mr. Base.
 
 github link: https://github.com/kajzerka17/space-colony
 
-video link: 
+video link: https://lut-my.sharepoint.com/:v:/g/personal/gracjan_siemczonek_student_lut_fi/IQDHPd-vwo5XRJnK4X4WBV64AbxHX8HHUsRDVx0Nq3nrLEU?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=jNb1rj
 
 The app is mainly optimized for the 'Medium Phone' in Android Studio in terms of button placements, however everything works and was visible in the actual phones we tested (some xiaomi and samsung phones).
 
